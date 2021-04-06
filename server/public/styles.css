@@ -1,0 +1,26 @@
+body {
+  margin: 0 0;
+}
+
+header {
+  background-color: #053f5e;
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.tv-icon {
+  color: #ffd700;
+  position: absolute;
+  top: 8px;
+  left: 8px;
+}
+
+h1 {
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 400;
+  color: #ffd700;
+  margin-top: 4px;
+  margin-bottom: 6px;
+}

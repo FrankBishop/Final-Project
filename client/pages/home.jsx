@@ -9,7 +9,9 @@ export default function Home(props) {
         <h1> {props.text} </h1>
       </header>
       <main>
-        <SearchFrom />
+        <div className="search-form">
+          <SearchFrom />
+        </div>
         <h1 className="main-header">Popular Shows</h1>
         <div className="image-holder-row">
           <img src="/images/683813.jpg" alt="The Mandalorian" />

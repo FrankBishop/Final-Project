@@ -10,12 +10,13 @@ class SearchForm extends React.Component {
 
   render() {
     return <form onSubmit={this.handleSubmit}>
-      <input type="search" value={this.state.value} onChange={this.handleChange} ></input>
-      <button type="submit">Search</button>
+      <input className="search-bar" type="search" value={this.state.value} onChange={this.handleChange} ></input>
+      <button className="search-button" type="submit">Search</button>
     </form>;
   }
 
   handleChange(event) {
+    console.log('value', this.state.value)
     this.setState({ value: event.target.value });
   }
 

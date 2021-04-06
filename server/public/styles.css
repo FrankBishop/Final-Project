@@ -49,3 +49,22 @@ h1 {
 .image-holder-row > img {
   height: 200px;
 }
+
+.search-button {
+  background-color: #ffd700;
+  border: none;
+  padding: 10px 20px;
+  font-family: 'roboto', sans-serif;
+  font-weight: 600;
+  margin-left: 5px;
+}
+
+.search-bar {
+  height: 38px;
+  width: 250px;
+  margin-left: 20px;
+}
+
+.search-form {
+  margin-top: 7px;
+}

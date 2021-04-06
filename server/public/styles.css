@@ -10,6 +10,14 @@ header {
   align-items: flex-start;
 }
 
+main {
+  background-color: #115173;
+}
+
+footer {
+  background-color: #053f5e;
+}
+
 .tv-icon {
   color: #ffd700;
   position: absolute;

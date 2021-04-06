@@ -1,5 +1,5 @@
 import React from 'react';
-import SearchFrom from './search';
+import SearchForm from './search';
 
 export default function Home(props) {
   return (
@@ -10,7 +10,7 @@ export default function Home(props) {
       </header>
       <main>
         <div className="search-form">
-          <SearchFrom />
+          <SearchForm onSubmit = { props.SetSearchResults } />
         </div>
         <h1 className="main-header">Popular Shows</h1>
         <div className="image-holder-row">

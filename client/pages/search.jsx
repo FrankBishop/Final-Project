@@ -3,7 +3,7 @@ import React from 'react';
 class SearchForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { value: '' };
+    this.state = { value: '', searching: false };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -21,9 +21,14 @@ class SearchForm extends React.Component {
   }
 
   handleSubmit(event) {
-    console.log('state', this.state);
+    this.setState({ searching: true });
     event.preventDefault();
+    console.log('state2', this.state);
+    // let test = thing => console.log('arrow', this.state.value);
+    // test();
+    //do fetch here, when I get results, call this.props.onSubmit(with data passed in)
   }
+
 }
 
 export default SearchForm;

@@ -3,7 +3,7 @@ import React from 'react';
 class SearchForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { value: '', searching: false };
+    this.state = { value: '' };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -16,15 +16,11 @@ class SearchForm extends React.Component {
   }
 
   handleChange(event) {
-    console.log('value', this.state.value)
     this.setState({ value: event.target.value });
   }
 
   handleSubmit(event) {
-    this.setState({ searching: true });
     event.preventDefault();
-    console.log('state2', this.state);
-    //do fetch here, when I get results, call this.props.onSubmit(with data passed in)
     fetch('http://api.tvmaze.com/search/shows?q=' + this.state.value + '')
       .then(response => response.json())
       .then(results => this.props.onSubmit(results));
@@ -33,5 +29,3 @@ class SearchForm extends React.Component {
 }
 
 export default SearchForm;
-
-

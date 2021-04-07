@@ -5,7 +5,6 @@ import SearchResults from './search-results';
 export default class Home extends React.Component {
 
   render() {
-    console.log('render', this.props.searchResults)
     if (this.props.searchResults.length > 0) {
       return <div>
         <header>
@@ -27,7 +26,6 @@ export default class Home extends React.Component {
         </footer>
       </div>;
     } else {
-      console.log('there is a search', this.props.searchResults);
       return <div>
         <header>
           <i className="fas fa-tv fa-2x tv-icon"></i>

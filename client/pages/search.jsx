@@ -24,11 +24,18 @@ class SearchForm extends React.Component {
     this.setState({ searching: true });
     event.preventDefault();
     console.log('state2', this.state);
-    // let test = thing => console.log('arrow', this.state.value);
-    // test();
     //do fetch here, when I get results, call this.props.onSubmit(with data passed in)
+    fetch('http://api.tvmaze.com/search/shows?q=' + this.state.value + '')
+      .then(response => response.json())
+      .then(results => this.props.onSubmit(results));
   }
 
 }
 
 export default SearchForm;
+
+// componentDidMount() {
+//   fetch('https://jsonplaceholder.typicode.com/users')
+//     .then(response => response.json())
+//     .then(users => this.setState({ isLoading: false, users: users }));
+// }

@@ -69,3 +69,35 @@ h1 {
   margin-top: 7px;
 }
 
+.search-result {
+  display: flex;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: #053F5E;
+  color: #ffd700;
+  font-family: 'roboto', sans-serif;
+  font-weight: 600;
+  align-items: center;
+}
+
+.search-result > img {
+  height: 125px;
+}
+
+.search-result > ul {
+  width: 25%;
+}
+
+.list-results {
+  margin: auto;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+ul:nth-child(2) {
+  font-size: 22px;
+}
+
+ul:nth-child(3) {
+  font-size: 16px;
+}

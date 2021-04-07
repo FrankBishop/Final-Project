@@ -2,11 +2,6 @@ import React from 'react';
 
 class SearchResults extends React.Component {
 
-  // constructor(props) {
-  //   super(props);
-  //   // this.state = { value: '', searching: false };
-  // }
-
   render() {
     function ListItem(props) {
       return <ul>{props.value}</ul>;
@@ -14,13 +9,13 @@ class SearchResults extends React.Component {
     const results = this.props.results;
     console.log(results);
     const listResults = results.map((result) =>
-      <div key={result.show.id}>
+      <div className="search-result" key={result.show.id}>
         <img src={result.show.image.medium} ></img>
         <ListItem value={result.show.name} />
-        <ListItem value={result.show.status} />
+        <ListItem value={result.show.premiered} />
       </div>
     );
-    return <ul> {listResults} </ul>
+    return <ul className="list-results"> {listResults} </ul>
   }
 
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import SearchForm from './search';
+import SearchResults from './search-results';
 
 export default function Home(props) {
   return (
@@ -10,8 +11,9 @@ export default function Home(props) {
       </header>
       <main>
         <div className="search-form">
-          <SearchForm onSubmit = { props.SetSearchResults } />
+          <SearchForm onSubmit={props.SetSearchResults} />
         </div>
+        <SearchResults results={props.searchResults} />
         <h1 className="main-header">Popular Shows</h1>
         <div className="image-holder-row">
           <img src="/images/683813.jpg" alt="The Mandalorian" />

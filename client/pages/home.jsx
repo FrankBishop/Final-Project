@@ -19,7 +19,7 @@ export default class Home extends React.Component {
             <SearchForm onSubmit={this.props.SetSearchResults} />
           </div>
           <h1 className="main-header">Search Results</h1>
-          <SearchResults results={this.props.searchResults} />
+          <SearchResults results={this.props.searchResults} show={this.props.ShowInfo} />
         </main>
         <footer>
 

@@ -1,0 +1,153 @@
+body {
+  background-color: #115173;
+  margin: 0 0;
+}
+
+header {
+  background-color: #053f5e;
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+main {
+  height: 100%;
+  padding-bottom: 100px;
+}
+
+footer {
+  background-color: #053f5e;
+  height: 50px;
+  width: 100%;
+  margin-top: 20px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
+
+.tv-icon {
+  color: #ffd700;
+  position: absolute;
+  top: 8px;
+  left: 8px;
+}
+
+h1 {
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 400;
+  color: #ffd700;
+  margin-top: 4px;
+  margin-bottom: 6px;
+}
+
+.main-header {
+  text-align: center;
+  font-size: 30px;
+  margin-top: 20px;
+}
+
+.image-holder-row {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 50px;
+}
+
+.image-holder-row > img {
+  height: 200px;
+}
+
+.search-button {
+  background-color: #ffd700;
+  border: none;
+  padding: 10px 20px;
+  font-family: 'roboto', sans-serif;
+  font-weight: 600;
+  margin-left: 5px;
+}
+
+.search-bar {
+  height: 38px;
+  width: 250px;
+  margin-left: 20px;
+}
+
+.search-form {
+  margin-top: 7px;
+}
+
+.search-form-header {
+  display: none;
+}
+
+.search-result {
+  display: flex;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: #053f5e;
+  color: #ffd700;
+  font-family: 'roboto', sans-serif;
+  font-weight: 600;
+  align-items: center;
+}
+
+.search-result > img {
+  height: 125px;
+}
+
+.search-result > ul {
+  width: 50%;
+}
+
+.list-results {
+  margin: auto;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+ul:nth-child(2) {
+  font-size: 22px;
+}
+
+@media screen and (min-width: 1025px) {
+  .image-holder-row > img {
+    height: 300px;
+  }
+
+  header {
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
+    padding-top: 10px;
+  }
+
+  header > h1 {
+    font-size: 42px;
+    margin-left: 70px;
+  }
+
+  .main-header {
+    font-size: 34px;
+  }
+
+  .search-form {
+    display: none;
+  }
+
+  .search-form-header {
+    display: inline;
+  }
+
+  .tv-icon {
+    top: 24px;
+    left: 10px;
+  }
+
+  .search-result > img {
+    height: 150px;
+  }
+
+  ul:nth-child(2) {
+    font-size: 26px;
+  }
+}

@@ -11,6 +11,9 @@ export default class Home extends React.Component {
         <header>
           <i className="fas fa-tv fa-2x tv-icon"></i>
           <h1> {this.props.text} </h1>
+          <div className="search-form-header">
+            <SearchForm onSubmit={this.props.SetSearchResults} />
+          </div>
         </header>
         <main>
           <div className="search-form">
@@ -29,6 +32,9 @@ export default class Home extends React.Component {
         <header>
           <i className="fas fa-tv fa-2x tv-icon"></i>
           <h1> {this.props.text} </h1>
+          <div className="search-form-header">
+            <SearchForm onSubmit={this.props.SetSearchResults} />
+          </div>
         </header>
         <main>
           <div className="search-form">

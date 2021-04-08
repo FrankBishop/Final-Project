@@ -18,7 +18,7 @@ class SearchResults extends React.Component {
       const listResults = filteredResults.map(result =>
         <div className="search-result" key={result.show.id} id={result.show.id}>
           <img src={result.show.image.medium} alt={result.show.name} ></img>
-          <ul onClick={this.ShowInfo} value={result.show.name}> {result.show.name} </ul>
+          <ul className="show" onClick={this.ShowInfo} value={result.show.name}> {result.show.name} </ul>
         </div>
       );
       return <ul className="list-results"> {listResults} </ul>;

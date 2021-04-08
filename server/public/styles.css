@@ -253,4 +253,9 @@ h4 {
   .cast-image {
     height: 150px;
   }
+
+  .episodes-link {
+    left: 150px;
+    top: 80px;
+  }
 }

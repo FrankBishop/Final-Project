@@ -33,11 +33,8 @@ class SearchResults extends React.Component {
     fetch('http://api.tvmaze.com/shows/' + showId + '?embed[]=episodes&embed[]=cast')
       .then(response => response.json())
       .then(result => {
-        this.setState({ show: result.id });
+        this.setState({ show: result });
       });
-    // .then(result => console.log(result.id));
-
-    // .then(result => console.log(result));
   }
 }
 

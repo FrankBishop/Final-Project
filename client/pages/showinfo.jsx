@@ -11,7 +11,6 @@ class ShowInfo extends React.Component {
 
   render() {
     if (this.state.episodes !== null) {
-      console.log('no episodes');
       return < EpisodeList show={this.state.episodes} />;
     } else {
       const summary = this.state.showName.summary;

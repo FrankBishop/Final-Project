@@ -29,10 +29,7 @@ class SearchResults extends React.Component {
   }
 
   ShowInfo(event) {
-    console.log('it clicks a show');
-    console.log(event.target.parentElement);
-    let showId = event.target.parentElement.getAttribute('id');
-    console.log('showId', showId);
+    const showId = event.target.parentElement.getAttribute('id');
     fetch('http://api.tvmaze.com/shows/' + showId + '?embed[]=episodes&embed[]=cast')
       .then(response => response.json())
       .then(result => {

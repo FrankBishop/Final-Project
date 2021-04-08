@@ -42,7 +42,7 @@ h1 {
 }
 
 h4 {
-  font-family: 'Work Sans', sans-serif;
+  font-family: 'roboto', sans-serif;
   font-weight: 400;
   color: #ffd700;
   margin-top: 2px;
@@ -118,9 +118,10 @@ h4 {
   font-size: 15px;
   color: #ffd700;
   font-family: 'roboto', sans-serif;
-  font-weight: 600;
   padding-left: 3px;
   padding-right: 3px;
+  margin-bottom: 10px;
+  margin-left: 10px;
 }
 
 .show-info {
@@ -134,6 +135,7 @@ h4 {
 .actor {
   margin-top: 2px;
   font-family: 'roboto', sans-serif;
+  font-weight: 600;
   font-size: 16px;
   color: #ffd700;
   padding-left: 0;
@@ -175,25 +177,40 @@ h4 {
 
 .show-image {
   height: 150px;
-  margin-left: 2px;
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .show-header {
-  margin-left: 2px;
+  margin-left: 10px;
   margin-bottom: 3px;
+  margin-top: 8px;
 }
 
 .episodes-link {
   font-size: 22px;
   background-color: #053f5e;
   position: absolute;
-  right: 75px;
-  top: 80px;
+  left: 140px;
+  top: 110px;
   color: #ffd700;
   font-family: 'Work Sans', sans-serif;
   border: none;
   border-radius: 5px;
-  padding: 10px 10px;
+  padding: 10px 20px;
+}
+
+.summary-header {
+  color: #ffd700;
+  font-family: 'Work Sans', sans-serif;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 10px;
+}
+
+.premiere-date {
+  margin-left: 10px;
 }
 
 @media screen and (min-width: 1025px) {
@@ -239,15 +256,26 @@ h4 {
   }
 
   .show-image {
-    height: 200px;
+    height: 250px;
+    margin-left: 20px;
   }
 
   .summary {
     font-size: 18px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+  }
+
+  .premiere-date {
+    margin-left: 20px;
   }
 
   .cast-member {
     width: 10%;
+  }
+
+  .show-header {
+    margin-left: 20px;
   }
 
   .cast-image {
@@ -255,7 +283,11 @@ h4 {
   }
 
   .episodes-link {
-    left: 150px;
-    top: 80px;
+    left: 250px;
+    top: 125px;
+  }
+
+  .summary-header {
+    margin-left: 20px;
   }
 }

@@ -21,10 +21,10 @@ class ShowInfo extends React.Component {
     );
     return <div className="show-info">
       <h1 className="show-header">{this.state.showName.name}</h1>
-      <h4>Premiere Date - {this.state.showName.premiered}</h4>
+      <h4 className="premiere-date">Premiere Date - {this.state.showName.premiered}</h4>
       <button className="episodes-link">Episode List</button>
       <img className="show-image" src={this.state.showName.image.medium} alt={this.state.showName.name} ></img>
-      <h4>Summary</h4>
+      <h3 className="summary-header">Summary</h3>
       <div className="summary"> {filteredSummary}</div>
       <ul className="cast-list">{listResults}</ul>
     </div>;

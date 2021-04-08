@@ -8,7 +8,8 @@ class ShowInfo extends React.Component {
   }
 
   render() {
-    console.log(this.state.showName)
+    const summary = this.state.showName.summary;
+    const filteredSummary = summary.replace(/<[^>]+>/g, '');
     const cast = this.state.showName._embedded.cast;
     const filteredCast = cast.filter(result => result.person.image != null);
     const listResults = filteredCast.map(result =>
@@ -21,10 +22,10 @@ class ShowInfo extends React.Component {
     return <div>
       <h1 className="show-header">{this.state.showName.name}</h1>
       <h4>Premiere Date - {this.state.showName.premiered}</h4>
-      <h4>View Episode List</h4>
+      <h4 className="episodes-link">View Episode List</h4>
       <img className="show-image" src={this.state.showName.image.medium} alt={this.state.showName.name} ></img>
       <h4>Summary</h4>
-      <div className="summary">{this.state.showName.summary}</div>
+      <div className="summary"> {filteredSummary}</div>
       <ul className="cast-list">{listResults}</ul>
     </div>;
   }

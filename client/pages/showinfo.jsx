@@ -19,8 +19,11 @@ class ShowInfo extends React.Component {
       </div>
     );
     return <div>
-      <h1>{this.state.showName.name}</h1>
-      <img src={this.state.showName.image.medium} alt={this.state.showName.name} ></img>
+      <h1 className="show-header">{this.state.showName.name}</h1>
+      <h4>Premiere Date - {this.state.showName.premiered}</h4>
+      <h4>View Episode List</h4>
+      <img className="show-image" src={this.state.showName.image.medium} alt={this.state.showName.name} ></img>
+      <h4>Summary</h4>
       <div className="summary">{this.state.showName.summary}</div>
       <ul className="cast-list">{listResults}</ul>
     </div>;

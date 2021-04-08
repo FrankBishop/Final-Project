@@ -21,7 +21,10 @@ class SearchResults extends React.Component {
           <ul className="show" onClick={this.ShowInfo} value={result.show.name}> {result.show.name} </ul>
         </div>
       );
-      return <ul className="list-results"> {listResults} </ul>;
+      return <div>
+        <h1 className="main-header">Search Results</h1>
+        <ul className="list-results"> {listResults} </ul>
+        </div>;
     }
   }
 

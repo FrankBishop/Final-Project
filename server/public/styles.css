@@ -290,7 +290,7 @@ h4 {
 
 .episode-image-holder {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   margin: 10px 10px;
 }
 
@@ -424,5 +424,21 @@ h4 {
 
   .episode-image-holder > img {
     width: 600px;
+  }
+
+  .episode-image-holder {
+    justify-content: flex-start;
+    flex-direction: row;
+  }
+
+  .episode-image-holder > p {
+    margin-left: 20px;
+  }
+
+  .episode-button-container > button {
+    width: 25%;
+    height: 60px;
+    margin-left: 20px;
+    margin-top: 20px;
   }
 }

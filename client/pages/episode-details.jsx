@@ -10,10 +10,12 @@ class EpisodeDetails extends React.Component {
       <h3 className="episode-details">S{this.props.episode.season}E{this.props.episode.number}</h3>
       <h3 className="episode-details">{this.props.episode.name}</h3>
       <h4 className="episode-details">{this.props.episode.airdate}</h4>
-      <div className="episode-image-holder">
-        <img src={this.props.episode.image.original} alt="episode" />
-      </div>
-      <div className="summary">
+      <div className="episode-image-holder summary">
+        {/* <div className="episode-image"> */}
+          <img src={this.props.episode.image.original} alt="episode" />
+        {/* </div> */}
+        {/* </div>
+      <div className="summary episode-summary"> */}
         <p>{filteredSummary}</p>
       </div>
       <div className="episode-button-container">
@@ -26,3 +28,5 @@ class EpisodeDetails extends React.Component {
 }
 
 export default EpisodeDetails;
+
+// re-center image on mobile

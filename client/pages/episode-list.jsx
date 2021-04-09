@@ -2,13 +2,8 @@ import React from 'react';
 
 class EpisodeList extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.state = { episodes: this.props.show };
-  }
-
   render() {
-    const filteredEpisodes = this.state.episodes.filter(episode => episode.image !== null);
+    const filteredEpisodes = this.props.show.filter(episode => episode.image !== null);
     const listResults = filteredEpisodes.map(episode =>
       <div className="episodes-list" key={episode.id}>
         <img src={episode.image.medium} alt={episode.image.name} />

@@ -3,23 +3,19 @@ import React from 'react';
 class EpisodeDetails extends React.Component {
 
   render() {
-    return <h1>This is an episode</h1>;
-    // const filteredEpisodes = this.props.show.filter(episode => episode.image !== null);
-    // const listResults = filteredEpisodes.map(episode =>
-    //   <div className="episodes-list" key={episode.id}>
-    //     <img src={episode.image.medium} alt={episode.image.name} />
-    //     <ul className="episode-title" value={episode.name}>S{episode.season}E{episode.number} {episode.name}</ul>
-    //     <ul className="episode-date" value={episode.airdate}> {episode.airdate} </ul>
-    //     <div className="list-button-container">
-    //       <button>Log</button>
-    //       <button>Need to Watch</button>
-    //     </div>
-    //   </div>
-    // );
-    // return <div>
-    //   <h1 className="episodes-list-header">Episode List</h1>
-    //   <ul className="list-results"> {listResults} </ul>
-    // </div>;
+    return <div className="episode-info">
+      <img src= {this.props.episode.image.medium} alt="episode"/>
+      <div className="episode-summary">
+        <p>{this.props.episode.summary}</p>
+      </div>
+      {/* <h1 className="show-header">{this.props.showName.name}</h1>
+      <h4 className="premiere-date">Premiere Date - {this.state.showName.premiered}</h4>
+      <button className="episodes-link" onClick={this.EpisodeListings}>Episode List</button>
+      <img className="show-image" src={this.state.showName.image.medium} alt={this.state.showName.name} ></img>
+      <h3 className="summary-header">Summary</h3>
+      <div className="summary"> {filteredSummary}</div>
+      <ul className="cast-list">{listResults}</ul> */}
+    </div>;
   }
 }
 

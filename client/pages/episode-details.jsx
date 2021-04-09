@@ -7,8 +7,8 @@ class EpisodeDetails extends React.Component {
     const filteredSummary = summary.replace(/<[^>]+>/g, '');
     return <div className="episode-info">
       <h2 className="episode-header">{this.props.episode._embedded.show.name}</h2>
-      <h3 className="episode-details">S{this.props.episode.season}E{this.props.episode.number}</h3>
-      <h3 className="episode-details">{this.props.episode.name}</h3>
+      <h3 className="episode-details">S{this.props.episode.season} E{this.props.episode.number} {this.props.episode.name}</h3>
+      {/* <h3 className="episode-details">{this.props.episode.name}</h3> */}
       <h4 className="episode-details">{this.props.episode.airdate}</h4>
       <div className="episode-image-holder summary">
           <img src={this.props.episode.image.original} alt="episode" />

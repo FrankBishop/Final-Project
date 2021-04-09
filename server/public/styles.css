@@ -241,6 +241,7 @@ h4 {
   position: absolute;
   right: 10px;
   margin-top: 5px;
+  font-size: 14px;
 }
 
 .list-button-container {
@@ -345,5 +346,35 @@ h4 {
 
   .summary-header {
     margin-left: 20px;
+  }
+
+  .episodes-list {
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    align-items: center;
+  }
+
+  .episode-date {
+    position: relative;
+    font-size: 20px;
+  }
+
+  .list-button-container {
+    height: 100%;
+    align-items: center;
+    bottom: 0;
+  }
+
+  .list-button-container > button {
+    height: 80%;
+    font-size: 20px;
+    margin-right: 15px;
+  }
+
+  .episodes-list-header {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
   }
 }

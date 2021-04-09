@@ -8,7 +8,8 @@ class EpisodeList extends React.Component {
   }
 
   render() {
-    const listResults = this.state.episodes.map(episode =>
+    const filteredEpisodes = this.state.episodes.filter(episode => episode.image !== null);
+    const listResults = filteredEpisodes.map(episode =>
       <div className="episodes-list" key={episode.id}>
         <img src={episode.image.medium} alt={episode.image.name} />
         <ul className="episode-title" value={episode.name}>S{episode.season}E{episode.number} {episode.name}</ul>

@@ -122,6 +122,7 @@ h4 {
   padding-right: 3px;
   margin-bottom: 10px;
   margin-left: 10px;
+  margin-right: 10px;
 }
 
 .show-info {
@@ -270,6 +271,53 @@ h4 {
   margin-top: 10px;
 }
 
+.episode-button-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.episode-button-container > button {
+  width: 50%;
+  background-color: #ffd700;
+  height: 40px;
+  font-family: 'roboto', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  margin-left: 15px;
+  margin-top: 15px;
+}
+
+.episode-image-holder {
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.episode-image-holder > img {
+  width: 345px;
+}
+
+.episode-header {
+  font-family: 'Work Sans', sans-serif;
+  color: #ffd700;
+  margin-left: 15px;
+  margin-bottom: 5px;
+  margin-top: 20px;
+  font-weight: 400;
+}
+
+.episode-details {
+  color: #ffd700;
+  font-family: 'roboto', sans-serif;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 15px;
+}
+
 @media screen and (min-width: 1025px) {
   .image-holder-row > img {
     height: 300px;
@@ -376,5 +424,35 @@ h4 {
     text-align: center;
     margin-top: 20px;
     margin-bottom: 20px;
+  }
+
+  .episode-image-holder > img {
+    width: 600px;
+  }
+
+  .episode-image-holder {
+    justify-content: flex-start;
+    flex-direction: row;
+    margin-left: 10px;
+  }
+
+  .episode-image-holder > p {
+    margin-left: 50px;
+  }
+
+  .episode-button-container > button {
+    width: 25%;
+    height: 60px;
+    margin-left: 15px;
+    margin-top: 20px;
+  }
+
+  .episode-info {
+    margin-left: 50px;
+    margin-right: 50px;
+  }
+
+  .episode-header {
+    margin-top: 50px;
   }
 }

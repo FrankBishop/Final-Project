@@ -13,6 +13,10 @@ class EpisodeList extends React.Component {
         <img src={episode.image.medium} alt={episode.image.name} />
         <ul className="episode-title" value={episode.name}> {episode.number} {episode.name} </ul>
         <ul className="episode-date" value={episode.airdate}> {episode.airdate} </ul>
+        <div className="list-button-container">
+          <button>Log</button>
+          <button>Need to Watch</button>
+        </div>
       </div>
     );
     return <div className="Episode List">

@@ -285,25 +285,28 @@ h4 {
   font-size: 16px;
   border: none;
   border-radius: 5px;
-  margin-left: 13px;
+  margin-left: 15px;
   margin-top: 15px;
 }
 
 .episode-image-holder {
   display: flex;
   flex-direction: column;
+  padding: 5px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .episode-image-holder > img {
-  width: 350px;
+  width: 345px;
 }
 
 .episode-header {
   font-family: 'Work Sans', sans-serif;
   color: #ffd700;
-  margin-left: 13px;
+  margin-left: 15px;
   margin-bottom: 5px;
-  font-weight: 600;
+  font-weight: 400;
 }
 
 .episode-details {
@@ -311,7 +314,7 @@ h4 {
   font-family: 'roboto', sans-serif;
   margin-top: 5px;
   margin-bottom: 5px;
-  margin-left: 13px;
+  margin-left: 15px;
 }
 
 @media screen and (min-width: 1025px) {
@@ -429,20 +432,26 @@ h4 {
   .episode-image-holder {
     justify-content: flex-start;
     flex-direction: row;
+    margin-left: 10px;
   }
 
   .episode-image-holder > p {
-    margin-left: 20px;
+    margin-left: 50px;
   }
 
   .episode-button-container > button {
     width: 25%;
     height: 60px;
-    margin-left: 20px;
+    margin-left: 15px;
     margin-top: 20px;
   }
 
-  /* .episode-info {
-    margin: auto;
-  } */
+  .episode-info {
+    margin-left: 50px;
+    margin-right: 50px;
+  }
+
+  .episode-header {
+    margin-top: 50px;
+  }
 }

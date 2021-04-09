@@ -11,7 +11,7 @@ class EpisodeDetails extends React.Component {
       <h3 className="episode-details">{this.props.episode.name}</h3>
       <h4 className="episode-details">{this.props.episode.airdate}</h4>
       <div className="episode-image-holder">
-        <img src={this.props.episode.image.medium} alt="episode" />
+        <img src={this.props.episode.image.original} alt="episode" />
       </div>
       <div className="summary">
         <p>{filteredSummary}</p>

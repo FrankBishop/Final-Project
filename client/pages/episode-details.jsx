@@ -2,6 +2,11 @@ import React from 'react';
 
 class EpisodeDetails extends React.Component {
 
+  constructor(props) {
+    super(props);
+    this.AddToWatchlist = this.AddToWatchlist.bind(this);
+  }
+
   render() {
     const summary = this.props.episode.summary;
     const filteredSummary = summary.replace(/<[^>]+>/g, '');
@@ -15,10 +20,15 @@ class EpisodeDetails extends React.Component {
       </div>
       <div className="episode-button-container">
         <button>Log</button>
-        <button>Need To Watch</button>
+        <button id={this.props.episode.id} onClick={this.AddToWatchlist}>Need To Watch</button>
         <button>Mark as Watched</button>
       </div>
     </div>;
+  }
+
+  AddToWatchlist(event) {
+    const episodeId = event.target.getAttribute('id');
+    this.props.watchlist.push(episodeId);
   }
 }
 

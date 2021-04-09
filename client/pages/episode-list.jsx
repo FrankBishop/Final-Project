@@ -7,11 +7,12 @@ class EpisodeList extends React.Component {
     super(props);
     this.state = { episode: null };
     this.EpisodeInfo = this.EpisodeInfo.bind(this);
+    this.AddToWatchlist = this.AddToWatchlist.bind(this);
   }
 
   render() {
     if (this.state.episode !== null) {
-      return < EpisodeDetails episode={this.state.episode} />;
+      return < EpisodeDetails episode={this.state.episode} watchlist={this.props.watchlist} />;
     } else {
       const filteredEpisodes = this.props.show.filter(episode => episode.image !== null);
       const listResults = filteredEpisodes.map(episode =>
@@ -21,7 +22,7 @@ class EpisodeList extends React.Component {
           <ul className="episode-date" value={episode.airdate}> {episode.airdate} </ul>
           <div className="list-button-container">
             <button>Log</button>
-            <button>Need to Watch</button>
+            <button id={episode.id} onClick={this.AddToWatchlist}>Need to Watch</button>
           </div>
         </div>
       );
@@ -39,6 +40,11 @@ class EpisodeList extends React.Component {
       .then(result => {
         this.setState({ episode: result });
       });
+  }
+
+  AddToWatchlist(event) {
+    const episodeId = event.target.getAttribute('id');
+    this.props.watchlist.push(episodeId);
   }
 
 }

@@ -11,7 +11,7 @@ class ShowInfo extends React.Component {
 
   render() {
     if (this.state.episodes !== null) {
-      return < EpisodeList show={this.state.episodes} watchlist={this.props.watchlist} />;
+      return < EpisodeList show={this.state.episodes} watchlist={this.props.watchlist} showName={this.state.showName.name} />;
     } else {
       const summary = this.state.showName.summary;
       const filteredSummary = summary.replace(/<[^>]+>/g, '');

@@ -22,7 +22,7 @@ class EpisodeList extends React.Component {
           <ul className="episode-date" value={episode.airdate}> {episode.airdate} </ul>
           <div className="list-button-container">
             <button>Log</button>
-            <button id={episode.id} onClick={this.AddToWatchlist}>Need to Watch</button>
+            <button show={this.props.show.name} name={episode.name} season={episode.season} number={episode.number} image={episode.image.medium} onClick={this.AddToWatchlist}>Need to Watch</button>
           </div>
         </div>
       );
@@ -43,8 +43,19 @@ class EpisodeList extends React.Component {
   }
 
   AddToWatchlist(event) {
-    const episodeId = event.target.getAttribute('id');
-    this.props.watchlist.push(episodeId);
+    const show = this.props.showName;
+    const episodeName = event.target.getAttribute('name');
+    const season = event.target.getAttribute('season');
+    const number = event.target.getAttribute('number');
+    const image = event.target.getAttribute('image');
+    const episode = {
+      show: show,
+      episodeName: episodeName,
+      season: season,
+      number: number,
+      image: image
+    };
+    this.props.watchlist.push(episode);
   }
 
 }

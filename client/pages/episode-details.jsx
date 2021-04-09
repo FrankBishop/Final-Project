@@ -20,15 +20,26 @@ class EpisodeDetails extends React.Component {
       </div>
       <div className="episode-button-container">
         <button>Log</button>
-        <button id={this.props.episode.id} onClick={this.AddToWatchlist}>Need To Watch</button>
+        <button onClick={this.AddToWatchlist}>Need To Watch</button>
         <button>Mark as Watched</button>
       </div>
     </div>;
   }
 
   AddToWatchlist(event) {
-    const episodeId = event.target.getAttribute('id');
-    this.props.watchlist.push(episodeId);
+    const show = this.props.episode._embedded.show.name;
+    const episodeName = this.props.episode.name;
+    const season = this.props.episode.season;
+    const number = this.props.episode.number;
+    const image = this.props.episode.image.original;
+    const episode = {
+      show: show,
+      episodeName: episodeName,
+      season: season,
+      number: number,
+      image: image
+    };
+    this.props.watchlist.push(episode);
   }
 }
 

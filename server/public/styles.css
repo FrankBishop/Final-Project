@@ -234,11 +234,13 @@ h4 {
   display: flex;
   flex-wrap: wrap;
   width: 30%;
+  margin-top: 5px;
 }
 
 .episode-date {
   position: absolute;
   right: 10px;
+  margin-top: 5px;
 }
 
 .list-button-container {
@@ -260,6 +262,11 @@ h4 {
   border: none;
   border-radius: 5px;
   margin-right: 3px;
+}
+
+.episodes-list-header {
+  text-align: center;
+  margin-top: 10px;
 }
 
 @media screen and (min-width: 1025px) {

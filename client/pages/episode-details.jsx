@@ -1,4 +1,5 @@
 import React from 'react';
+import ls from 'local-storage';
 
 class EpisodeDetails extends React.Component {
 
@@ -40,6 +41,7 @@ class EpisodeDetails extends React.Component {
       image: image
     };
     this.props.watchlist.push(episode);
+    ls.set('watchlist', this.props.watchlist);
   }
 }
 

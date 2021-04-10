@@ -24,8 +24,6 @@ export default class Home extends React.Component {
 
         </footer>
       </div>;
-    } else if (this.props.watchlist.length > 0) {
-      return <h1>Temporary Watch List</h1>;
     } else {
       return <div>
         <header>

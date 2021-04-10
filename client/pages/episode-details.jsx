@@ -40,17 +40,18 @@ class EpisodeDetails extends React.Component {
       number: number,
       image: image
     };
+    this.props.AddToWatchlist(episode);
     // this.props.watchlist.push(episode);
     // ls.set('watchlist', this.props.watchlist);
     // addTodo(newTodo) {
-    fetch('/api/watchlists', {
-      method: 'POST',
-      body: JSON.stringify(episode),
-      headers: {
-        'Content-type': 'application/json'
-      }
-    })
-      .then(respone => console.log(respone))
+    // fetch('/api/watchlists', {
+    //   method: 'POST',
+    //   body: JSON.stringify(episode),
+    //   headers: {
+    //     'Content-type': 'application/json'
+    //   }
+    // })
+    //   .then(respone => console.log(respone))
     // .then(response => response.json())
     // .then(show => {
     //   const show = this.state.todos.concat(todo);
@@ -62,9 +63,7 @@ class EpisodeDetails extends React.Component {
   }
 }
 
-
 export default EpisodeDetails;
-
 
 // addTodo(newTodo) {
 //   fetch('/api/todos', {

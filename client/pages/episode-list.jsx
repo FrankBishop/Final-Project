@@ -13,7 +13,7 @@ class EpisodeList extends React.Component {
 
   render() {
     if (this.state.episode !== null) {
-      return < EpisodeDetails episode={this.state.episode} watchlist={this.props.watchlist} />;
+      return < EpisodeDetails episode={this.state.episode} watchlist={this.props.watchlist} AddToWatchlist={this.props.AddToWatchlist}/>;
     } else {
       const filteredEpisodes = this.props.show.filter(episode => episode.image !== null);
       const listResults = filteredEpisodes.map(episode =>
@@ -44,6 +44,7 @@ class EpisodeList extends React.Component {
   }
 
   AddToWatchlist(event) {
+    event.preventDefault();
     const show = this.props.showName;
     const episodeName = event.target.getAttribute('name');
     const season = event.target.getAttribute('season');
@@ -56,8 +57,9 @@ class EpisodeList extends React.Component {
       number: number,
       image: image
     };
-    this.props.watchlist.push(episode);
-    ls.set('watchlist', this.props.watchlist);
+    this.props.addToWatchlist(episode);
+    this.setState({ episode: episode });
+    // ls.set('watchlist', this.props.watchlist);
   }
 
 }

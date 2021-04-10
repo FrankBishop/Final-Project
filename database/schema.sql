@@ -6,8 +6,21 @@ drop schema "public" cascade;
 
 create schema "public";
 
-create table "watchlists" (
-  "userId"      integer not null,
+create table "watchlist" (
+  "entryId" serial,
   "show" text,
-  primary key ("userId")
+  "episode name" text,
+  "season" text,
+  "number" text,
+  "image" text,
+  "isWatched" boolean,
+  primary key ("entryId")
 );
+-- create table "todos" (
+--   "todoId"      serial,
+--   "task"        text           not null,
+--   "isCompleted" boolean        not null,
+--   "createdAt"   timestamptz(6) not null default now(),
+--   "updatedAt"   timestamptz(6) not null default now(),
+--   primary key ("todoId")
+-- );

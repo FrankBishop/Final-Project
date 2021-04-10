@@ -8,11 +8,29 @@ export default class App extends React.Component {
     this.state = { searchResults: [], watchlist: [] };
     this.SetSearchResults = this.SetSearchResults.bind(this);
     this.ShowWatchlist = this.ShowWatchlist.bind(this);
+    this.AddToWatchlist = this.AddToWatchlist.bind(this);
   }
 
   // componentDidMount() {
   //   this.setState({ watchlist: ls.get('watchlist') });
   // }
+  AddToWatchlist(episode) {
+    fetch('/api/watchlists', {
+      method: 'POST',
+      body: JSON.stringify(episode),
+      headers: {
+        'Content-type': 'application/json'
+      }
+    })
+      .then(response => response.json())
+      .then(episode => {
+        const watchlist = this.state.watchlist.concat(episode);
+        this.setState({ watchlist });
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  }
 
   SetSearchResults(results) {
     this.setState({ searchResults: results });
@@ -23,6 +41,6 @@ export default class App extends React.Component {
   }
 
   render() {
-    return <Home text="TV Diary" SetSearchResults= { this.SetSearchResults } searchResults = { this.state.searchResults } watchlist = {this.state.watchlist}/>;
+    return <Home text="TV Diary" SetSearchResults= { this.SetSearchResults } searchResults = { this.state.searchResults } watchlist = {this.state.watchlist} AddToWatchlist = {this.AddToWatchlist}/>;
   }
 }

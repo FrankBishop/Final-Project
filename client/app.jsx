@@ -1,6 +1,6 @@
 import React from 'react';
 import Home from './pages/home';
-import ls from 'local-storage';
+// import ls from 'local-storage';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -10,9 +10,9 @@ export default class App extends React.Component {
     this.ShowWatchlist = this.ShowWatchlist.bind(this);
   }
 
-  componentDidMount() {
-    this.setState({ watchlist: ls.get('watchlist') });
-  }
+  // componentDidMount() {
+  //   this.setState({ watchlist: ls.get('watchlist') });
+  // }
 
   SetSearchResults(results) {
     this.setState({ searchResults: results });

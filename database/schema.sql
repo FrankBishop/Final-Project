@@ -5,3 +5,9 @@ set client_min_messages to warning;
 drop schema "public" cascade;
 
 create schema "public";
+
+create table "watchlists" (
+  "userId"      integer not null,
+  "show" text,
+  primary key ("userId")
+);

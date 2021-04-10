@@ -1,6 +1,6 @@
 import React from 'react';
 import EpisodeDetails from './episode-details';
-import ls from 'local-storage';
+// import ls from 'local-storage';
 
 class EpisodeList extends React.Component {
 

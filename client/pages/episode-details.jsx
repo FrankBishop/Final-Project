@@ -1,5 +1,5 @@
 import React from 'react';
-import ls from 'local-storage';
+// import ls from 'local-storage';
 
 class EpisodeDetails extends React.Component {
 
@@ -16,7 +16,7 @@ class EpisodeDetails extends React.Component {
       <h3 className="episode-details">S{this.props.episode.season} E{this.props.episode.number} {this.props.episode.name}</h3>
       <h4 className="episode-details">{this.props.episode.airdate}</h4>
       <div className="episode-image-holder summary">
-          <img src={this.props.episode.image.original} alt="episode" />
+        <img src={this.props.episode.image.original} alt="episode" />
         <p>{filteredSummary}</p>
       </div>
       <div className="episode-button-container">
@@ -40,9 +40,46 @@ class EpisodeDetails extends React.Component {
       number: number,
       image: image
     };
-    this.props.watchlist.push(episode);
-    ls.set('watchlist', this.props.watchlist);
+    // this.props.watchlist.push(episode);
+    // ls.set('watchlist', this.props.watchlist);
+    // addTodo(newTodo) {
+    fetch('/api/watchlists', {
+      method: 'POST',
+      body: JSON.stringify(episode),
+      headers: {
+        'Content-type': 'application/json'
+      }
+    })
+      .then(respone => console.log(respone))
+    // .then(response => response.json())
+    // .then(show => {
+    //   const show = this.state.todos.concat(todo);
+    //   this.setState({ todos });
+    // })
+    // .catch(err => {
+    //   console.error(err);
+    // });
   }
 }
 
+
 export default EpisodeDetails;
+
+
+// addTodo(newTodo) {
+//   fetch('/api/todos', {
+//     method: 'POST',
+//     body: JSON.stringify(newTodo),
+//     headers: {
+//       'Content-type': 'application/json'
+//     }
+//   })
+//     .then(response => response.json())
+//     .then(todo => {
+//       const todos = this.state.todos.concat(todo);
+//       this.setState({ todos });
+//     })
+//     .catch(err => {
+//       console.error(err);
+//     });
+// }

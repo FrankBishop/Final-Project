@@ -1,7 +1,6 @@
 require('dotenv/config');
 const express = require('express');
 const staticMiddleware = require('./static-middleware');
-
 const app = express();
 
 // added db may need to remove
@@ -20,17 +19,11 @@ app.listen(process.env.PORT, () => {
   console.log(`express server listening on port ${process.env.PORT}`);
 });
 
-app.post('/api/watchlists', (req, res) => {
+app.post('/api/watchlist', (req, res) => {
   const { episode, isWatched = false } = req.body;
-  // if (!task || typeof isCompleted !== 'boolean') {
-  //   res.status(400).json({
-  //     error: 'task (string) and isCompleted (boolean) are required fields'
-  //   });
-  //   return;
-  // }
   const sql = `
-    insert into "watchlist" ("episode", "isWatched")
-    values ($1, $2)
+    insert into "watchlist" ("show", "episode name", "season", "number", "image", "isWatched")
+    values ($1, $2, $3, $4, $5, $6)
     returning *
   `;
   const params = [episode, isWatched];

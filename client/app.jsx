@@ -15,7 +15,7 @@ export default class App extends React.Component {
   //   this.setState({ watchlist: ls.get('watchlist') });
   // }
   AddToWatchlist(episode) {
-    fetch('/api/watchlists', {
+    fetch('/api/watchlist', {
       method: 'POST',
       body: JSON.stringify(episode),
       headers: {

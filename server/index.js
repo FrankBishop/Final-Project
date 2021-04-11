@@ -2,8 +2,6 @@ require('dotenv/config');
 const express = require('express');
 const staticMiddleware = require('./static-middleware');
 const app = express();
-
-// added db may need to remove
 const pg = require('pg');
 const db = new pg.Pool({
   connectionString: process.env.DATABASE_URL,
@@ -13,20 +11,21 @@ const db = new pg.Pool({
 });
 
 app.use(staticMiddleware);
+app.use(express.json());
 
 app.listen(process.env.PORT, () => {
   // eslint-disable-next-line no-console
   console.log(`express server listening on port ${process.env.PORT}`);
 });
 
-app.post('/api/watchlist', (req, res) => {
-  const { episode, isWatched = false } = req.body;
+app.post('/api/watchlist', (req, res, next) => {
+  const { show, episodeName, season, number, image, isWatched = false } = req.body;
   const sql = `
     insert into "watchlist" ("show", "episode name", "season", "number", "image", "isWatched")
     values ($1, $2, $3, $4, $5, $6)
     returning *
   `;
-  const params = [episode, isWatched];
+  const params = [show, episodeName, season, number, image, isWatched];
   db.query(sql, params)
     .then(result => {
       const [episode] = result.rows;
@@ -34,8 +33,5 @@ app.post('/api/watchlist', (req, res) => {
     })
     .catch(err => {
       console.error(err);
-      res.status(500).json({
-        error: 'an unexpected error occurred'
-      });
     });
 });

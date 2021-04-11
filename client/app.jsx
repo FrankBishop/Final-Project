@@ -1,6 +1,5 @@
 import React from 'react';
 import Home from './pages/home';
-// import ls from 'local-storage';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -11,9 +10,6 @@ export default class App extends React.Component {
     this.AddToWatchlist = this.AddToWatchlist.bind(this);
   }
 
-  // componentDidMount() {
-  //   this.setState({ watchlist: ls.get('watchlist') });
-  // }
   AddToWatchlist(episode) {
     fetch('/api/watchlist', {
       method: 'POST',

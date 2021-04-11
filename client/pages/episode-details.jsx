@@ -1,5 +1,4 @@
 import React from 'react';
-// import ls from 'local-storage';
 
 class EpisodeDetails extends React.Component {
 
@@ -41,44 +40,7 @@ class EpisodeDetails extends React.Component {
       image: image
     };
     this.props.AddToWatchlist(episode);
-    // this.props.watchlist.push(episode);
-    // ls.set('watchlist', this.props.watchlist);
-    // addTodo(newTodo) {
-    // fetch('/api/watchlists', {
-    //   method: 'POST',
-    //   body: JSON.stringify(episode),
-    //   headers: {
-    //     'Content-type': 'application/json'
-    //   }
-    // })
-    //   .then(respone => console.log(respone))
-    // .then(response => response.json())
-    // .then(show => {
-    //   const show = this.state.todos.concat(todo);
-    //   this.setState({ todos });
-    // })
-    // .catch(err => {
-    //   console.error(err);
-    // });
   }
 }
 
 export default EpisodeDetails;
-
-// addTodo(newTodo) {
-//   fetch('/api/todos', {
-//     method: 'POST',
-//     body: JSON.stringify(newTodo),
-//     headers: {
-//       'Content-type': 'application/json'
-//     }
-//   })
-//     .then(response => response.json())
-//     .then(todo => {
-//       const todos = this.state.todos.concat(todo);
-//       this.setState({ todos });
-//     })
-//     .catch(err => {
-//       console.error(err);
-//     });
-// }

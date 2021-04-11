@@ -1,6 +1,5 @@
 import React from 'react';
 import EpisodeDetails from './episode-details';
-// import ls from 'local-storage';
 
 class EpisodeList extends React.Component {
 
@@ -57,9 +56,7 @@ class EpisodeList extends React.Component {
       number: number,
       image: image
     };
-    this.props.addToWatchlist(episode);
-    this.setState({ episode: episode });
-    // ls.set('watchlist', this.props.watchlist);
+    this.props.AddToWatchlist(episode);
   }
 
 }

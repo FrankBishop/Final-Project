@@ -5,3 +5,14 @@ set client_min_messages to warning;
 drop schema "public" cascade;
 
 create schema "public";
+
+create table "watchlist" (
+  "entryId" serial,
+  "show" text,
+  "episode name" text,
+  "season" text,
+  "number" text,
+  "image" text,
+  "isWatched" boolean,
+  primary key ("entryId")
+);

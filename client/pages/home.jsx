@@ -18,7 +18,7 @@ export default class Home extends React.Component {
           <div className="search-form">
             <SearchForm onSubmit={this.props.SetSearchResults} />
           </div>
-          <SearchResults results={this.props.searchResults} show={this.props.ShowInfo} />
+          <SearchResults results={this.props.searchResults} show={this.props.ShowInfo} watchlist={this.props.watchlist} AddToWatchlist={this.props.AddToWatchlist}/>
         </main>
         <footer>
 

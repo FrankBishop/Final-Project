@@ -10,6 +10,19 @@ export default class App extends React.Component {
     this.AddToWatchlist = this.AddToWatchlist.bind(this);
   }
 
+  componentDidMount() {
+    this.getWatchlist();
+  }
+
+  getWatchlist() {
+    fetch('/api/watchlist')
+      .then(response => response.json())
+      .then(watchlist => this.setState({ watchlist }))
+      .catch(err => {
+        console.error(err);
+      });
+  }
+
   AddToWatchlist(episode) {
     fetch('/api/watchlist', {
       method: 'POST',

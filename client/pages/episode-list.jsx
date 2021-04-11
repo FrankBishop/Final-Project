@@ -12,7 +12,8 @@ class EpisodeList extends React.Component {
 
   render() {
     if (this.state.episode !== null) {
-      return < EpisodeDetails episode={this.state.episode} watchlist={this.props.watchlist} AddToWatchlist={this.props.AddToWatchlist}/>;
+      return < EpisodeDetails episode={this.state.episode} watchlist={this.props.watchlist} AddToWatchlist={this.props.AddToWatchlist}
+        menu={this.props.menu} menuOpen={this.props.menuOpen}/>;
     } else {
       const filteredEpisodes = this.props.show.filter(episode => episode.image !== null);
       const listResults = filteredEpisodes.map(episode =>

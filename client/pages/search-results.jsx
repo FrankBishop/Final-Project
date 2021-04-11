@@ -11,7 +11,7 @@ class SearchResults extends React.Component {
 
   render() {
     if (this.state.show !== null) {
-      return < ShowInfo show={this.state.show} watchlist={this.props.watchlist} AddToWatchlist={this.props.AddToWatchlist}/>;
+      return < ShowInfo show={this.state.show} watchlist={this.props.watchlist} AddToWatchlist={this.props.AddToWatchlist} menu={this.props.menu} menuOpen={this.props.menuOpen}/>;
     } else {
       const results = this.props.results;
       const filteredResults = results.filter(result => result.show.image != null);

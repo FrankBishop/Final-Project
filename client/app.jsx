@@ -4,10 +4,11 @@ import Home from './pages/home';
 export default class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { searchResults: [], watchlist: [] };
+    this.state = { searchResults: [], watchlist: [], menuOpen: false };
     this.SetSearchResults = this.SetSearchResults.bind(this);
     this.ShowWatchlist = this.ShowWatchlist.bind(this);
     this.AddToWatchlist = this.AddToWatchlist.bind(this);
+    this.OpenMenu = this.OpenMenu.bind(this);
   }
 
   componentDidMount() {
@@ -49,7 +50,13 @@ export default class App extends React.Component {
     this.setState({ watchlist: entries });
   }
 
+  OpenMenu() {
+    console.log('it clicks')
+    this.setState({ menuOpen: true });
+  }
+
   render() {
-    return <Home text="TV Diary" SetSearchResults= { this.SetSearchResults } searchResults = { this.state.searchResults } watchlist = {this.state.watchlist} AddToWatchlist = {this.AddToWatchlist}/>;
+    return <Home text="TV Diary" SetSearchResults={this.SetSearchResults} searchResults={this.state.searchResults} watchlist={this.state.watchlist}
+    AddToWatchlist={this.AddToWatchlist} menu={this.OpenMenu} menuOpen={this.state.menuOpen} />;
   }
 }

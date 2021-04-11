@@ -1,6 +1,7 @@
 import React from 'react';
 import SearchForm from './search';
 import SearchResults from './search-results';
+// import AppDrawer from './app-drawer.jsx';
 
 export default class Home extends React.Component {
 
@@ -8,7 +9,7 @@ export default class Home extends React.Component {
     if (this.props.searchResults.length > 0) {
       return <div>
         <header>
-          <i className="fas fa-tv fa-2x tv-icon"></i>
+          <i onClick={this.props.menu} className="fas fa-tv fa-2x tv-icon"></i>
           <h1> {this.props.text} </h1>
           <div className="search-form-header">
             <SearchForm onSubmit={this.props.SetSearchResults} />
@@ -18,7 +19,8 @@ export default class Home extends React.Component {
           <div className="search-form">
             <SearchForm onSubmit={this.props.SetSearchResults} />
           </div>
-          <SearchResults results={this.props.searchResults} show={this.props.ShowInfo} watchlist={this.props.watchlist} AddToWatchlist={this.props.AddToWatchlist}/>
+          <SearchResults results={this.props.searchResults} show={this.props.ShowInfo} watchlist={this.props.watchlist} AddToWatchlist={this.props.AddToWatchlist}
+            menu={this.props.menu} menuOpen={this.props.menuOpen} />
         </main>
         <footer>
 

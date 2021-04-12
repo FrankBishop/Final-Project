@@ -15,7 +15,7 @@ class EpisodeList extends React.Component {
     const filteredEpisodes = this.props.show.filter(episode => episode.image !== null);
     const listResults = filteredEpisodes.map(episode =>
       <div className="episodes-list" key={episode.id} id={episode.id}>
-        <img src={episode.image.medium} alt={episode.image.name} />
+        <img className="episodes-list-image" src={episode.image.medium} alt={episode.image.name} />
         <ul className="episode-title" value={episode.name} onClick={this.EpisodeInfo}>S{episode.season}E{episode.number} {episode.name}</ul>
         <ul className="episode-date" value={episode.airdate}> {episode.airdate} </ul>
         <div className="list-button-container">

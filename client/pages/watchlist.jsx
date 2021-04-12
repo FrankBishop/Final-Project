@@ -8,9 +8,9 @@ class Watchlist extends React.Component {
     const watchlistEntries = this.props.watchlist;
     const watchlistToRender = watchlistEntries.map(episode =>
       <div className="search-result" key={episode.entryId} id={episode.entryId} >
-        <img src={episode.image} alt={episode['episode name']} ></img>
+        <img className="episodes-list-image"src={episode.image} alt={episode['episode name']} ></img>
         <ul className="show" value={episode.show} > {episode.show} </ul>
-        <ul className="show" value={episode['episode name']} > S{episode.season}E{episode.number} {episode['episode name']} </ul>
+        <ul value={episode['episode name']} > S{episode.season}E{episode.number} {episode['episode name']} </ul>
         <div>
           <button>Log</button>
           <button>Delete</button>

@@ -101,7 +101,7 @@ h4 {
   align-items: center;
 }
 
-.search-result > img {
+.search-image {
   height: 125px;
 }
 
@@ -227,7 +227,7 @@ h4 {
   position: relative;
 }
 
-.episodes-list > img {
+.episodes-list-image {
   width: 150px;
 }
 
@@ -365,7 +365,7 @@ h4 {
     left: 10px;
   }
 
-  .search-result > img {
+  .search-image {
     height: 150px;
   }
 

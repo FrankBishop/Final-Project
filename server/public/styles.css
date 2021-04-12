@@ -331,6 +331,31 @@ h4 {
   z-index: 1;
 }
 
+.watchlist-result {
+  display: flex;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: #053f5e;
+  color: #ffd700;
+  font-family: 'roboto', sans-serif;
+  font-weight: 600;
+  align-items: flex-start;
+}
+
+.watch-show-title {
+  margin-left: 5px;
+  padding: 0;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.watch-episode-title {
+  margin-left: 5px;
+  padding: 0;
+  font-weight: 500;
+  font-size: 14px;
+}
+
 @media screen and (min-width: 1025px) {
   .image-holder-row > img {
     height: 300px;

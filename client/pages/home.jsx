@@ -1,7 +1,7 @@
 import React from 'react';
 import SearchForm from './search';
 import SearchResults from './search-results';
-// import AppDrawer from './app-drawer.jsx';
+import AppDrawer from '../app-drawer.jsx';
 
 export default class Home extends React.Component {
 
@@ -10,7 +10,10 @@ export default class Home extends React.Component {
       return <div>
         <header>
           <i onClick={this.props.menu} className="fas fa-tv fa-2x tv-icon"></i>
-          <h1> {this.props.text} </h1>
+          {/* <div>
+            <AppDrawer />
+          </div> */}
+          <h1 className="header-text"> {this.props.text} </h1>
           <div className="search-form-header">
             <SearchForm onSubmit={this.props.SetSearchResults} />
           </div>
@@ -26,11 +29,24 @@ export default class Home extends React.Component {
 
         </footer>
       </div>;
+    } else if (this.props.menuOpen === true) {
+      return <div>
+        <header>
+          <i onClick={this.props.menu} className="fas fa-tv fa-2x tv-icon"></i>
+          <h1 className="header-text"> {this.props.text} </h1>
+          <div className="search-form-header">
+            <SearchForm onSubmit={this.props.SetSearchResults} />
+          </div>;
+          </header>
+        <div>
+          <AppDrawer menu={this.props.menu} menuOpen={this.props.menuOpen} />
+        </div>
+      </div>;
     } else {
       return <div>
         <header>
-          <i className="fas fa-tv fa-2x tv-icon"></i>
-          <h1> {this.props.text} </h1>
+          <i onClick={this.props.menu} className="fas fa-tv fa-2x tv-icon"></i>
+          <h1 className="header-text"> {this.props.text} </h1>
           <div className="search-form-header">
             <SearchForm onSubmit={this.props.SetSearchResults} />
           </div>
@@ -39,7 +55,7 @@ export default class Home extends React.Component {
           <div className="search-form">
             <SearchForm onSubmit={this.props.SetSearchResults} />
           </div>
-          <h1 className="main-header">Popular Shows</h1>
+          <h1 className="main-header header-text">Popular Shows</h1>
           <div className="image-holder-row">
             <img src="/images/683813.jpg" alt="The Mandalorian" />
             <img src="/images/746929.jpg" alt="Superman and Lois" />

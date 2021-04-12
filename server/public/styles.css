@@ -33,7 +33,7 @@ footer {
   left: 8px;
 }
 
-h1 {
+.header-text {
   font-family: 'Work Sans', sans-serif;
   font-weight: 400;
   color: #ffd700;
@@ -316,6 +316,14 @@ h4 {
   margin-top: 5px;
   margin-bottom: 5px;
   margin-left: 15px;
+}
+
+.app-drawer {
+  background-color: #ffd700;
+  width: 50%;
+  height: 1000px;
+  font-family: 'Work Sans', sans-serif;
+  color: #053f5e;
 }
 
 @media screen and (min-width: 1025px) {

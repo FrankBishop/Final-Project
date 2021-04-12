@@ -1,34 +1,38 @@
 import React from 'react';
-// import AppDrawer from './app-drawer.jsx';
+import Home from './pages/home';
 
 class AppDrawer extends React.Component {
 
   constructor(props) {
     super(props);
-    // this.state = { menuOpen: false };
-    this.handleClick = this.handleClick.bind(this);
-    this.closeMenu = this.closeMenu.bind(this);
+    this.state = { menuOpen: true };
+    this.goHome = this.goHome.bind(this);
+    this.goToWatchlist = this.goToWatchlist.bind(this);
   }
 
   render() {
-    if (this.state.menuOpen === true) {
-      return <div className="background">
-        <div className="menu">
-          <h1>Menu</h1>
-          <h2 onClick={this.closeMenu}>About</h2>
-          <h2 onClick={this.closeMenu}>Get Started</h2>
-          <h2 onClick={this.closeMenu}>Sign In</h2>
+    if (this.props.menuOpen === true) {
+      return <div className="app-drawer">
+        <div>
+          <h1 onClick={this.goHome}>Home</h1>
+          <h1 onClick={this.goToWatchlist}>Watchlist</h1>
         </div>
       </div>;
+    } else {
+      return <Home menuOpen = {this.state.menuOpen} />;
+      // return <div>
+      //   <h1>This is a test</h1>
+      // </div>
     }
-    return <i className="fas fa-bars fa-2x" onClick={this.handleClick}></i>;
   }
 
-  handleClick() {
-    this.setState({ menuOpen: true });
+  goHome() {
+    console.log('Home');
+    this.setState({ menuOpen: false });
   }
 
-  closeMenu() {
+  goToWatchlist() {
+    console.log('Menu');
     this.setState({ menuOpen: false });
   }
 }

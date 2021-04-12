@@ -26,7 +26,7 @@ class ShowInfo extends React.Component {
         </div>
       );
       return <div className="show-info">
-        <h1 className="show-header">{this.state.showName.name}</h1>
+        <h1 className="show-header header-text">{this.state.showName.name}</h1>
         <h4 className="premiere-date">Premiere Date - {this.state.showName.premiered}</h4>
         <button className="episodes-link" onClick={this.EpisodeListings}>Episode List</button>
         <img className="show-image" src={this.state.showName.image.medium} alt={this.state.showName.name} ></img>

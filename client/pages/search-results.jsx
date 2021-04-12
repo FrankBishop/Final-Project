@@ -22,7 +22,7 @@ class SearchResults extends React.Component {
         </div>
       );
       return <div>
-        <h1 className="main-header">Search Results</h1>
+        <h1 className="main-header header-text">Search Results</h1>
         <ul className="list-results"> {listResults} </ul>
         </div>;
     }

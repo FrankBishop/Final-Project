@@ -28,7 +28,7 @@ class EpisodeList extends React.Component {
         </div>
       );
       return <div>
-        <h1 className="episodes-list-header">Episode List</h1>
+        <h1 className="episodes-list-header header-text">Episode List</h1>
         <ul className="list-results"> {listResults} </ul>
       </div>;
     }

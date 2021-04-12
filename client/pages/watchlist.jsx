@@ -5,6 +5,18 @@ import SearchForm from './search';
 class Watchlist extends React.Component {
 
   render() {
+    const watchlistEntries = this.props.watchlist;
+    const watchlistToRender = watchlistEntries.map(episode =>
+      <div className="search-result" key={episode.entryId} id={episode.entryId} >
+        <img src={episode.image} alt={episode['episode name']} ></img>
+        <ul className="show" value={episode.show} > {episode.show} </ul>
+        <ul className="show" value={episode['episode name']} > S{episode.season}E{episode.number} {episode['episode name']} </ul>
+        <div>
+          <button>Log</button>
+          <button>Delete</button>
+        </div>
+      </div>
+    );
     if (this.props.menuOpen === true) {
       return <div>
         <header>
@@ -19,7 +31,10 @@ class Watchlist extends React.Component {
             GoHome={this.props.GoHome} />
         </div>
         <main>
-          <h1>This is the Watchlist</h1>
+          <div>
+            <h1 className="main-header header-text">Watchlist</h1>
+            <ul className="list-results"> {watchlistToRender} </ul>
+          </div>;
         </main>
         <footer>
 
@@ -35,7 +50,10 @@ class Watchlist extends React.Component {
           </div>
         </header>
         <main>
-          <h1>This is the Watchlist</h1>
+          <div>
+            <h1 className="main-header header-text">Watchlist</h1>
+            <ul className="list-results"> {watchlistToRender} </ul>
+          </div>;
         </main>
         <footer>
 

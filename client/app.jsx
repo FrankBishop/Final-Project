@@ -66,7 +66,6 @@ export default class App extends React.Component {
   }
 
   GoHome() {
-    console.log('it goes home')
     this.setState({ watchlistOpen: false });
   }
 
@@ -79,7 +78,7 @@ export default class App extends React.Component {
       </div>;
     } else {
       return <Watchlist menu={this.OpenMenu} menuOpen={this.state.menuOpen === false} GoHome={this.GoHome} OpenWatchlist={this.OpenWatchlist}
-        isWatchlistOpen={this.state.watchlistOpen}/>;
+        isWatchlistOpen={this.state.watchlistOpen} watchlist={this.state.watchlist} />;
     }
   }
 }

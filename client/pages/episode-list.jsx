@@ -26,11 +26,11 @@ class EpisodeList extends React.Component {
     );
     if (this.state.episode !== null) {
       return < EpisodeDetails episode={this.state.episode} watchlist={this.props.watchlist} AddToWatchlist={this.props.AddToWatchlist}
-        menu={this.props.menu} menuOpen={this.props.menuOpen} />;
+        menu={this.props.menu} menuOpen={this.props.menuOpen} OpenWatchlist={this.props.OpenWatchlist} isWatchlistOpen={this.props.isWatchlistOpen} />;
     } else if (this.props.menuOpen === true) {
       return <div>
         <div>
-          <AppDrawer menu={this.props.menu} menuOpen={this.props.menuOpen} />
+          <AppDrawer menu={this.props.menu} menuOpen={this.props.menuOpen} OpenWatchlist={this.props.OpenWatchlist} isWatchlistOpen={this.props.isWatchlistOpen} />
         </div>
         <div>
           <h1 className="episodes-list-header header-text">Episode List</h1>

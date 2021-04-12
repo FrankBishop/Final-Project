@@ -20,7 +20,7 @@ export default class Home extends React.Component {
             <SearchForm onSubmit={this.props.SetSearchResults} />
           </div>
           <SearchResults results={this.props.searchResults} show={this.props.ShowInfo} watchlist={this.props.watchlist} AddToWatchlist={this.props.AddToWatchlist}
-            menu={this.props.menu} menuOpen={this.props.menuOpen} />
+            menu={this.props.menu} menuOpen={this.props.menuOpen} OpenWatchlist={this.props.OpenWatchlist} isWatchlistOpen={this.props.isWatchlistOpen}  />
         </main>
         <footer>
 
@@ -36,7 +36,7 @@ export default class Home extends React.Component {
           </div>;
           </header>
         <div>
-          <AppDrawer menu={this.props.menu} menuOpen={this.props.menuOpen} />
+          <AppDrawer menu={this.props.menu} menuOpen={this.props.menuOpen} OpenWatchlist={this.props.OpenWatchlist} isWatchlistOpen={this.props.isWatchlistOpen} />
         </div>
         <main>
           <div className="search-form">

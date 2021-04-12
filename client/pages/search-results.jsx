@@ -21,11 +21,12 @@ class SearchResults extends React.Component {
     );
     if (this.state.show !== null) {
       return < ShowInfo show={this.state.show} watchlist={this.props.watchlist} AddToWatchlist={this.props.AddToWatchlist} menu={this.props.menu}
-        menuOpen={this.props.menuOpen} OpenWatchlist={this.props.OpenWatchlist} isWatchlistOpen={this.props.isWatchlistOpen} />;
+        menuOpen={this.props.menuOpen} OpenWatchlist={this.props.OpenWatchlist} isWatchlistOpen={this.props.isWatchlistOpen} GoHome={this.props.GoHome}/>;
     } else if (this.props.menuOpen === true) {
       return <div>
         <div>
-          <AppDrawer menu={this.props.menu} menuOpen={this.props.menuOpen} OpenWatchlist={this.props.OpenWatchlist} isWatchlistOpen={this.props.isWatchlistOpen} />
+          <AppDrawer menu={this.props.menu} menuOpen={this.props.menuOpen} OpenWatchlist={this.props.OpenWatchlist} isWatchlistOpen={this.props.isWatchlistOpen}
+            GoHome={this.props.GoHome}/>
         </div>
         <div>
           <h1 className="main-header header-text">Search Results</h1>

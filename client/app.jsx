@@ -11,6 +11,7 @@ export default class App extends React.Component {
     this.AddToWatchlist = this.AddToWatchlist.bind(this);
     this.OpenMenu = this.OpenMenu.bind(this);
     this.OpenWatchlist = this.OpenWatchlist.bind(this);
+    this.GoHome = this.GoHome.bind(this);
   }
 
   componentDidMount() {
@@ -64,15 +65,21 @@ export default class App extends React.Component {
     this.setState({ watchlistOpen: true });
   }
 
+  GoHome() {
+    console.log('it goes home')
+    this.setState({ watchlistOpen: false });
+  }
+
   render() {
     if (this.state.watchlistOpen === false) {
       return <div>
         <Home text="TV Diary" SetSearchResults={this.SetSearchResults} searchResults={this.state.searchResults} watchlist={this.state.watchlist}
           AddToWatchlist={this.AddToWatchlist} menu={this.OpenMenu} menuOpen={this.state.menuOpen} OpenWatchlist={this.OpenWatchlist}
-          isWatchlistOpen={this.state.watchlistOpen} />
+          isWatchlistOpen={this.state.watchlistOpen} GoHome = {this.GoHome} />
       </div>;
     } else {
-      return <Watchlist />;
+      return <Watchlist menu={this.OpenMenu} menuOpen={this.state.menuOpen === false} GoHome={this.GoHome} OpenWatchlist={this.OpenWatchlist}
+        isWatchlistOpen={this.state.watchlistOpen}/>;
     }
   }
 }

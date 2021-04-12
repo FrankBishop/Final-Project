@@ -1,6 +1,5 @@
 import React from 'react';
 import Home from './pages/home';
-import AppDrawer from './app-drawer.jsx';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -53,22 +52,16 @@ export default class App extends React.Component {
 
   OpenMenu() {
     if (this.state.menuOpen === true) {
-      console.log('it is true');
       this.setState({ menuOpen: false });
     } else {
-      console.log('it is false');
       this.setState({ menuOpen: true });
     }
-    // this.render() {
-    //   <AppDrawer />
-    // }
   }
 
   render() {
     return <div>
       <Home text="TV Diary" SetSearchResults={this.SetSearchResults} searchResults={this.state.searchResults} watchlist={this.state.watchlist}
         AddToWatchlist={this.AddToWatchlist} menu={this.OpenMenu} menuOpen={this.state.menuOpen} />
-      {/* <AppDrawer menu={this.OpenMenu} menuOpen={this.state.menuOpen}/> */}
     </div>;
   }
 }

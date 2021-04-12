@@ -20,19 +20,14 @@ class AppDrawer extends React.Component {
       </div>;
     } else {
       return <Home menuOpen = {this.state.menuOpen} />;
-      // return <div>
-      //   <h1>This is a test</h1>
-      // </div>
     }
   }
 
   goHome() {
-    console.log('Home');
     this.setState({ menuOpen: false });
   }
 
   goToWatchlist() {
-    console.log('Menu');
     this.setState({ menuOpen: false });
   }
 }

@@ -11,21 +11,21 @@ class ShowInfo extends React.Component {
   }
 
   render() {
+    const summary = this.state.showName.summary;
+    const filteredSummary = summary.replace(/<[^>]+>/g, '');
+    const cast = this.state.showName._embedded.cast;
+    const filteredCast = cast.filter(result => result.person.image != null);
+    const listResults = filteredCast.map(result =>
+      <div className="cast-member" key={result.character.id}>
+        <img className="cast-image" src={result.person.image.medium} alt={result.person.name} />
+        <ul className="actor" value={result.person.name}> {result.person.name} </ul>
+        <ul className="character" value={result.character.name}> {result.character.name} </ul>
+      </div>
+    );
     if (this.state.episodes !== null) {
       return < EpisodeList show={this.state.episodes} watchlist={this.props.watchlist} showName={this.state.showName.name} AddToWatchlist={this.props.AddToWatchlist}
         menu={this.props.menu} menuOpen={this.props.menuOpen} />;
     } else if (this.props.menuOpen === true) {
-      const summary = this.state.showName.summary;
-      const filteredSummary = summary.replace(/<[^>]+>/g, '');
-      const cast = this.state.showName._embedded.cast;
-      const filteredCast = cast.filter(result => result.person.image != null);
-      const listResults = filteredCast.map(result =>
-        <div className="cast-member" key={result.character.id}>
-          <img className="cast-image" src={result.person.image.medium} alt={result.person.name} />
-          <ul className="actor" value={result.person.name}> {result.person.name} </ul>
-          <ul className="character" value={result.character.name}> {result.character.name} </ul>
-        </div>
-      );
       return <div>
         <div>
           <AppDrawer menu={this.props.menu} menuOpen={this.props.menuOpen} />
@@ -41,17 +41,6 @@ class ShowInfo extends React.Component {
         </div>;
         </div>;
     } else {
-      const summary = this.state.showName.summary;
-      const filteredSummary = summary.replace(/<[^>]+>/g, '');
-      const cast = this.state.showName._embedded.cast;
-      const filteredCast = cast.filter(result => result.person.image != null);
-      const listResults = filteredCast.map(result =>
-        <div className="cast-member" key={result.character.id}>
-          <img className="cast-image" src={result.person.image.medium} alt={result.person.name} />
-          <ul className="actor" value={result.person.name}> {result.person.name} </ul>
-          <ul className="character" value={result.character.name}> {result.character.name} </ul>
-        </div>
-      );
       return <div className="show-info">
         <h1 className="show-header header-text">{this.state.showName.name}</h1>
         <h4 className="premiere-date">Premiere Date - {this.state.showName.premiered}</h4>

@@ -12,22 +12,22 @@ class EpisodeList extends React.Component {
   }
 
   render() {
+    const filteredEpisodes = this.props.show.filter(episode => episode.image !== null);
+    const listResults = filteredEpisodes.map(episode =>
+      <div className="episodes-list" key={episode.id} id={episode.id}>
+        <img src={episode.image.medium} alt={episode.image.name} />
+        <ul className="episode-title" value={episode.name} onClick={this.EpisodeInfo}>S{episode.season}E{episode.number} {episode.name}</ul>
+        <ul className="episode-date" value={episode.airdate}> {episode.airdate} </ul>
+        <div className="list-button-container">
+          <button>Log</button>
+          <button show={this.props.show.name} name={episode.name} season={episode.season} number={episode.number} image={episode.image.medium} onClick={this.AddToWatchlist}>Need to Watch</button>
+        </div>
+      </div>
+    );
     if (this.state.episode !== null) {
       return < EpisodeDetails episode={this.state.episode} watchlist={this.props.watchlist} AddToWatchlist={this.props.AddToWatchlist}
         menu={this.props.menu} menuOpen={this.props.menuOpen} />;
     } else if (this.props.menuOpen === true) {
-      const filteredEpisodes = this.props.show.filter(episode => episode.image !== null);
-      const listResults = filteredEpisodes.map(episode =>
-        <div className="episodes-list" key={episode.id} id={episode.id}>
-          <img src={episode.image.medium} alt={episode.image.name} />
-          <ul className="episode-title" value={episode.name} onClick={this.EpisodeInfo}>S{episode.season}E{episode.number} {episode.name}</ul>
-          <ul className="episode-date" value={episode.airdate}> {episode.airdate} </ul>
-          <div className="list-button-container">
-            <button>Log</button>
-            <button show={this.props.show.name} name={episode.name} season={episode.season} number={episode.number} image={episode.image.medium} onClick={this.AddToWatchlist}>Need to Watch</button>
-          </div>
-        </div>
-      );
       return <div>
         <div>
           <AppDrawer menu={this.props.menu} menuOpen={this.props.menuOpen} />
@@ -38,18 +38,6 @@ class EpisodeList extends React.Component {
         </div>
       </div>;
     } else {
-      const filteredEpisodes = this.props.show.filter(episode => episode.image !== null);
-      const listResults = filteredEpisodes.map(episode =>
-        <div className="episodes-list" key={episode.id} id={episode.id}>
-          <img src={episode.image.medium} alt={episode.image.name} />
-          <ul className="episode-title" value={episode.name} onClick={this.EpisodeInfo}>S{episode.season}E{episode.number} {episode.name}</ul>
-          <ul className="episode-date" value={episode.airdate}> {episode.airdate} </ul>
-          <div className="list-button-container">
-            <button>Log</button>
-            <button show={this.props.show.name} name={episode.name} season={episode.season} number={episode.number} image={episode.image.medium} onClick={this.AddToWatchlist}>Need to Watch</button>
-          </div>
-        </div>
-      );
       return <div>
         <h1 className="episodes-list-header header-text">Episode List</h1>
         <ul className="list-results"> {listResults} </ul>

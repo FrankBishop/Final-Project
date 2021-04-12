@@ -9,9 +9,9 @@ class EpisodeDetails extends React.Component {
   }
 
   render() {
+    const summary = this.props.episode.summary;
+    const filteredSummary = summary.replace(/<[^>]+>/g, '');
     if (this.props.menuOpen === true) {
-      const summary = this.props.episode.summary;
-      const filteredSummary = summary.replace(/<[^>]+>/g, '');
       return <div>
         <div>
           <AppDrawer menu={this.props.menu} menuOpen={this.props.menuOpen} />
@@ -28,11 +28,8 @@ class EpisodeDetails extends React.Component {
           <button onClick={this.AddToWatchlist}>Need To Watch</button>
           <button>Mark as Watched</button>
         </div>
-      </div>
+      </div>;
     } else {
-
-      const summary = this.props.episode.summary;
-      const filteredSummary = summary.replace(/<[^>]+>/g, '');
       return <div className="episode-info">
         <h1 className="episode-header">{this.props.episode._embedded.show.name}</h1>
         <h3 className="episode-details">S{this.props.episode.season} E{this.props.episode.number} {this.props.episode.name}</h3>

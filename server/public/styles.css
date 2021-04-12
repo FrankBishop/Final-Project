@@ -1,6 +1,7 @@
 body {
   background-color: #115173;
   margin: 0 0;
+  position: relative;
 }
 
 header {
@@ -324,6 +325,10 @@ h4 {
   height: 1000px;
   font-family: 'Work Sans', sans-serif;
   color: #053f5e;
+  position: absolute;
+  top: 48;
+  left: 0;
+  z-index: 1;
 }
 
 @media screen and (min-width: 1025px) {

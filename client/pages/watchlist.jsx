@@ -12,10 +12,10 @@ class Watchlist extends React.Component {
         <div className="watchlist-episode-info">
           <ul className="watch-show-title" value={episode.show} > {episode.show}  </ul>
           <ul className="watch-episode-title" value={episode['episode name']} > S{episode.season}E{episode.number} {episode['episode name']} </ul>
-        </div>
-        <div>
-          <button>Log</button>
-          <button>Delete</button>
+          <div className="watchlist-button-container">
+            <button className="watchlist-log-button">Log</button>
+            <button className="watchlist-delete-button">Delete</button>
+          </div>
         </div>
       </div>
     );

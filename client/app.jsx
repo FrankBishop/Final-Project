@@ -1,5 +1,6 @@
 import React from 'react';
 import Home from './pages/home';
+import Watchlist from './pages/watchlist';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -64,10 +65,14 @@ export default class App extends React.Component {
   }
 
   render() {
-    return <div>
-      <Home text="TV Diary" SetSearchResults={this.SetSearchResults} searchResults={this.state.searchResults} watchlist={this.state.watchlist}
-        AddToWatchlist={this.AddToWatchlist} menu={this.OpenMenu} menuOpen={this.state.menuOpen} OpenWatchlist={this.OpenWatchlist}
-        isWatchlistOpen={this.state.watchlistOpen} />
-    </div>;
+    if (this.state.watchlistOpen === false) {
+      return <div>
+        <Home text="TV Diary" SetSearchResults={this.SetSearchResults} searchResults={this.state.searchResults} watchlist={this.state.watchlist}
+          AddToWatchlist={this.AddToWatchlist} menu={this.OpenMenu} menuOpen={this.state.menuOpen} OpenWatchlist={this.OpenWatchlist}
+          isWatchlistOpen={this.state.watchlistOpen} />
+      </div>;
+    } else {
+      return <Watchlist />;
+    }
   }
 }

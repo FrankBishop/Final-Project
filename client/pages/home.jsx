@@ -20,7 +20,7 @@ export default class Home extends React.Component {
             <SearchForm onSubmit={this.props.SetSearchResults} />
           </div>
           <SearchResults results={this.props.searchResults} show={this.props.ShowInfo} watchlist={this.props.watchlist} AddToWatchlist={this.props.AddToWatchlist}
-            menu={this.props.menu} menuOpen={this.props.menuOpen} OpenWatchlist={this.props.OpenWatchlist} isWatchlistOpen={this.props.isWatchlistOpen}  />
+            menu={this.props.menu} menuOpen={this.props.menuOpen} OpenWatchlist={this.props.OpenWatchlist} isWatchlistOpen={this.props.isWatchlistOpen} />
         </main>
         <footer>
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import Home from './pages/home';
+import Watchlist from './pages/watchlist';
 
 class AppDrawer extends React.Component {
 
@@ -7,7 +8,6 @@ class AppDrawer extends React.Component {
     super(props);
     this.state = { menuOpen: true };
     this.goHome = this.goHome.bind(this);
-    this.goToWatchlist = this.goToWatchlist.bind(this);
   }
 
   render() {
@@ -19,7 +19,7 @@ class AppDrawer extends React.Component {
         </div>
       </div>;
     } else {
-      return <Home menuOpen = {this.state.menuOpen} />;
+      return <Home menuOpen={this.state.menuOpen} />;
     }
   }
 
@@ -27,9 +27,6 @@ class AppDrawer extends React.Component {
     this.setState({ menuOpen: false });
   }
 
-  goToWatchlist() {
-    this.setState({ menuOpen: false });
-  }
 }
 
 export default AppDrawer;

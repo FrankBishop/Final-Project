@@ -18,6 +18,24 @@ app.listen(process.env.PORT, () => {
   console.log(`express server listening on port ${process.env.PORT}`);
 });
 
+app.get('/api/watchlist', (req, res) => {
+  const sql = `
+    select *
+      from "watchlist"
+     order by "entryId"
+  `;
+  db.query(sql)
+    .then(result => {
+      res.json(result.rows);
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({
+        error: 'an unexpected error occurred'
+      });
+    });
+});
+
 app.post('/api/watchlist', (req, res, next) => {
   const { show, episodeName, season, number, image, isWatched = false } = req.body;
   const sql = `

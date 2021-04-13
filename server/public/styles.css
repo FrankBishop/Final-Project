@@ -229,6 +229,8 @@ h4 {
 
 .episodes-list-image {
   width: 150px;
+  height: 140px;
+  object-fit: contain;
 }
 
 .episode-title {
@@ -321,21 +323,22 @@ h4 {
 
 .app-drawer {
   background-color: #ffd700;
-  width: 50%;
-  height: 1000px;
+  width: 300px;
+  min-height: 100vh;
   font-family: 'Work Sans', sans-serif;
   color: #053f5e;
   position: absolute;
   top: 48;
   left: 0;
   z-index: 1;
+  padding-left: 2rem;
 }
 
 .watchlist-result {
   display: flex;
   margin-top: 20px;
   margin-bottom: 20px;
-  height: 84px;
+  height: 140px;
   background-color: #053f5e;
   color: #ffd700;
   font-family: 'roboto', sans-serif;
@@ -537,5 +540,11 @@ h4 {
 
   .watch-show-title {
     font-size: 26px;
+  }
+
+  .episodes-list-image {
+    width: 250px;
+    height: 140px;
+    object-fit: contain;
   }
 }

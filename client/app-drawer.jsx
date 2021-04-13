@@ -1,5 +1,4 @@
 import React from 'react';
-import Home from './pages/home';
 
 class AppDrawer extends React.Component {
 
@@ -17,7 +16,13 @@ class AppDrawer extends React.Component {
         </div>
       </div>;
     } else {
-      return <Home menuOpen={this.state.menuOpen} />;
+      return <div className="hidden">
+        <div>
+          <h1 onClick={this.props.goHome}>Home</h1>
+          <h1 onClick={this.props.openWatchlist}>Watchlist</h1>
+        </div>
+      </div>;
+
     }
   }
 

@@ -20,7 +20,7 @@ class Watchlist extends React.Component {
         </div>
       </div>
     );
-    return <div>
+    return <div className="watchlist-body">
       <header>
         <i onClick={this.props.menu} className="fas fa-tv fa-2x tv-icon"></i>
         <h1 className="header-text"> TV Diary </h1>
@@ -29,6 +29,9 @@ class Watchlist extends React.Component {
         </div>
       </header>
       <main>
+        <div className="search-form">
+          <SearchForm onSubmit={this.props.setSearchResults} />
+        </div>
         <div>
           <h1 className="main-header header-text">Watchlist</h1>
           <ul className="list-results"> {watchlistToRender} </ul>

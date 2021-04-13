@@ -3,6 +3,11 @@ import SearchForm from './search';
 
 class Watchlist extends React.Component {
 
+  constructor(props) {
+    super(props);
+    this.deleteFromWatchlist = this.deleteFromWatchlist.bind(this);
+  }
+
   render() {
     const watchlistEntries = this.props.watchlist;
     const watchlistToRender = watchlistEntries.map(episode =>
@@ -15,7 +20,7 @@ class Watchlist extends React.Component {
           <ul className="watch-episode-title" value={episode['episode name']} > S{episode.season}E{episode.number} {episode['episode name']} </ul>
           <div className="watchlist-button-container">
             <button className="watchlist-log-button">Log</button>
-            <button className="watchlist-delete-button">Delete</button>
+            <button onClick = {this.deleteFromWatchlist} className="watchlist-delete-button">Delete</button>
           </div>
         </div>
       </div>
@@ -41,6 +46,10 @@ class Watchlist extends React.Component {
 
       </footer>
     </div>;
+  }
+
+  deleteFromWatchlist(event) {
+    console.log('it deletes')
   }
 }
 

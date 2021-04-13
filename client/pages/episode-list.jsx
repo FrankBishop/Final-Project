@@ -1,6 +1,5 @@
 import React from 'react';
 import EpisodeDetails from './episode-details';
-import AppDrawer from '../app-drawer.jsx';
 
 class EpisodeList extends React.Component {
 
@@ -16,7 +15,7 @@ class EpisodeList extends React.Component {
     const listResults = filteredEpisodes.map(episode =>
       <div className="episodes-list" key={episode.id} id={episode.id}>
         <img className="episodes-list-image" src={episode.image.medium} alt={episode.image.name} />
-        <ul className="episode-title" value={episode.name} onClick={this.EpisodeInfo}>S{episode.season}E{episode.number} {episode.name}</ul>
+        <ul className="episode-title" value={episode.name} onClick={this.episodeInfo}>S{episode.season}E{episode.number} {episode.name}</ul>
         <ul className="episode-date" value={episode.airdate}> {episode.airdate} </ul>
         <div className="list-button-container">
           <button>Log</button>
@@ -28,17 +27,6 @@ class EpisodeList extends React.Component {
       return < EpisodeDetails episode={this.state.episode} watchlist={this.props.watchlist} addToWatchlist={this.props.addToWatchlist}
         menu={this.props.menu} menuOpen={this.props.menuOpen} openWatchlist={this.props.openWatchlist} isWatchlistOpen={this.props.isWatchlistOpen}
         goHome={this.props.goHome} />;
-    } else if (this.props.menuOpen === true) {
-      return <div>
-        <div>
-          <AppDrawer menu={this.props.menu} menuOpen={this.props.menuOpen} openWatchlist={this.props.openWatchlist} isWatchlistOpen={this.props.isWatchlistOpen}
-            goHome={this.props.goHome}/>
-        </div>
-        <div>
-          <h1 className="episodes-list-header header-text">Episode List</h1>
-          <ul className="list-results"> {listResults} </ul>
-        </div>
-      </div>;
     } else {
       return <div>
         <h1 className="episodes-list-header header-text">Episode List</h1>

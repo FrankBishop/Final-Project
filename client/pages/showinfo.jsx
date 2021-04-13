@@ -1,6 +1,5 @@
 import React from 'react';
 import EpisodeList from './episode-list';
-import AppDrawer from '../app-drawer.jsx';
 
 class ShowInfo extends React.Component {
 
@@ -26,22 +25,6 @@ class ShowInfo extends React.Component {
       return < EpisodeList show={this.state.episodes} watchlist={this.props.watchlist} showName={this.state.showName.name} addToWatchlist={this.props.addToWatchlist}
         menu={this.props.menu} menuOpen={this.props.menuOpen} openWatchlist={this.props.openWatchlist} isWatchlistOpen={this.props.isWatchlistOpen}
         goHome={this.props.goHome} />;
-    } else if (this.props.menuOpen === true) {
-      return <div>
-        <div>
-          <AppDrawer menu={this.props.menu} menuOpen={this.props.menuOpen} openWatchlist={this.props.openWatchlist} isWatchlistOpen={this.props.isWatchlistOpen}
-            goHome={this.props.goHome} />
-        </div>
-        <div className="show-info">
-          <h1 className="show-header header-text">{this.state.showName.name}</h1>
-          <h4 className="premiere-date">Premiere Date - {this.state.showName.premiered}</h4>
-          <button className="episodes-link" onClick={this.episodeListings}>Episode List</button>
-          <img className="show-image" src={this.state.showName.image.medium} alt={this.state.showName.name} ></img>
-          <h3 className="summary-header">Summary</h3>
-          <div className="summary"> {filteredSummary}</div>
-          <ul className="cast-list">{listResults}</ul>
-        </div>;
-        </div>;
     } else {
       return <div className="show-info">
         <h1 className="show-header header-text">{this.state.showName.name}</h1>

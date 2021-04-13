@@ -1,6 +1,5 @@
 import React from 'react';
 import ShowInfo from './showinfo';
-import AppDrawer from '../app-drawer.jsx';
 
 class SearchResults extends React.Component {
 
@@ -22,17 +21,6 @@ class SearchResults extends React.Component {
     if (this.state.show !== null) {
       return < ShowInfo show={this.state.show} watchlist={this.props.watchlist} addToWatchlist={this.props.addToWatchlist} menu={this.props.menu}
         menuOpen={this.props.menuOpen} openWatchlist={this.props.openWatchlist} isWatchlistOpen={this.props.isWatchlistOpen} goHome={this.props.goHome}/>;
-    } else if (this.props.menuOpen === true) {
-      return <div>
-        <div>
-          <AppDrawer menu={this.props.menu} menuOpen={this.props.menuOpen} openWatchlist={this.props.openWatchlist} isWatchlistOpen={this.props.isWatchlistOpen}
-            goHome={this.props.goHome}/>
-        </div>
-        <div>
-          <h1 className="main-header header-text">Search Results</h1>
-          <ul className="list-results"> {listResults} </ul>
-        </div>;
-      </div>;
     } else {
       return <div>
         <h1 className="main-header header-text">Search Results</h1>

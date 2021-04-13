@@ -1,5 +1,4 @@
 import React from 'react';
-import AppDrawer from '../app-drawer.jsx';
 import SearchForm from './search';
 
 class Watchlist extends React.Component {
@@ -21,52 +20,24 @@ class Watchlist extends React.Component {
         </div>
       </div>
     );
-    if (this.props.menuOpen === true) {
-      return <div>
-        <header>
-          <i onClick={this.props.menu} className="fas fa-tv fa-2x tv-icon"></i>
-          <h1 className="header-text"> TV Diary </h1>
-          <div className="search-form-header">
-            <SearchForm onSubmit={this.props.SetSearchResults} />
-          </div>
-        </header>
-        <div>
-          <AppDrawer menu={this.props.menu} menuOpen={this.props.menuOpen} openWatchlist={this.props.openWatchlist} isWatchlistOpen={this.props.isWatchlistOpen}
-            goHome={this.props.goHome} />
+    return <div>
+      <header>
+        <i onClick={this.props.menu} className="fas fa-tv fa-2x tv-icon"></i>
+        <h1 className="header-text"> TV Diary </h1>
+        <div className="search-form-header">
+          <SearchForm onSubmit={this.props.SetSearchResults} />
         </div>
-        <main>
-          <div className="search-form">
-            <SearchForm onSubmit={this.props.setSearchResults} />
-          </div>
-          <div>
-            <h1 className="main-header header-text">Watchlist</h1>
-            <ul className="list-results"> {watchlistToRender} </ul>
-          </div>;
+      </header>
+      <main>
+        <div>
+          <h1 className="main-header header-text">Watchlist</h1>
+          <ul className="list-results"> {watchlistToRender} </ul>
+        </div>;
         </main>
-        <footer>
+      <footer>
 
-        </footer>
-      </div >;
-    } else {
-      return <div>
-        <header>
-          <i onClick={this.props.menu} className="fas fa-tv fa-2x tv-icon"></i>
-          <h1 className="header-text"> TV Diary </h1>
-          <div className="search-form-header">
-            <SearchForm onSubmit={this.props.SetSearchResults} />
-          </div>
-        </header>
-        <main>
-          <div>
-            <h1 className="main-header header-text">Watchlist</h1>
-            <ul className="list-results"> {watchlistToRender} </ul>
-          </div>;
-        </main>
-        <footer>
-
-        </footer>
-      </div >;
-    }
+      </footer>
+    </div>;
   }
 }
 

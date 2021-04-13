@@ -1,6 +1,7 @@
 import React from 'react';
 import Home from './pages/home';
 import Watchlist from './pages/watchlist';
+import AppDrawer from './app-drawer.jsx';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -62,19 +63,27 @@ export default class App extends React.Component {
   }
 
   openWatchlist() {
+    this.setState({ menuOpen: false });
     this.setState({ watchlistOpen: true });
   }
 
   goHome() {
+    this.setState({ menuOpen: false });
     this.setState({ watchlistOpen: false });
   }
 
   render() {
-    if (this.state.watchlistOpen === false) {
+    if (this.state.menuOpen === false && this.state.watchlistOpen === false) {
       return <div>
         <Home text="TV Diary" setSearchResults={this.setSearchResults} searchResults={this.state.searchResults} watchlist={this.state.watchlist}
           addToWatchlist={this.addToWatchlist} menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist}
-          isWatchlistOpen={this.state.watchlistOpen} goHome = {this.goHome} />
+          isWatchlistOpen={this.state.watchlistOpen} goHome={this.goHome} />
+      </div>;
+    } else if (this.state.menuOpen === true) {
+      return <div>
+        <AppDrawer setSearchResults={this.setSearchResults} searchResults={this.state.searchResults} watchlist={this.state.watchlist}
+          addToWatchlist={this.addToWatchlist} menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist}
+          isWatchlistOpen={this.state.watchlistOpen} goHome={this.goHome} />
       </div>;
     } else {
       return <Watchlist menu={this.openMenu} menuOpen={this.state.menuOpen === false} goHome={this.goHome} openWatchlist={this.openWatchlist}

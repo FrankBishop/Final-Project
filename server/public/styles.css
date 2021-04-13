@@ -234,7 +234,7 @@ h4 {
 .episodes-list-image {
   width: 150px;
   height: 140px;
-  object-fit: contain;
+  object-fit: cover;
 }
 
 .episode-title {
@@ -554,7 +554,6 @@ h4 {
   .episodes-list-image {
     width: 250px;
     height: 140px;
-    object-fit: contain;
   }
 
   .watchlist-episode-info {

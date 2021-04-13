@@ -12,8 +12,8 @@ class Watchlist extends React.Component {
           <img className="episodes-list-image" src={episode.image} alt={episode['episode name']} ></img>
         </div>
         <div className="watchlist-episode-info">
-          <ul className="watch-show-title" value={episode.show} > {episode.show}  </ul>
-          <ul className="watch-episode-title" value={episode['episode name']} > S{episode.season}E{episode.number} {episode['episode name']} </ul>
+            <ul className="watch-show-title" value={episode.show} > {episode.show}  </ul>
+            <ul className="watch-episode-title" value={episode['episode name']} > S{episode.season}E{episode.number} {episode['episode name']} </ul>
           <div className="watchlist-button-container">
             <button className="watchlist-log-button">Log</button>
             <button className="watchlist-delete-button">Delete</button>

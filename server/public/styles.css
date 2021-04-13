@@ -531,15 +531,11 @@ h4 {
     bottom: 0;
   }
 
-  /* .watchlist-result {
-    display: flex;
-    justify-content: center;
-  } */
-  .watch-show-title {
-    font-size: 26px;
+  .watch-episode-title {
+    font-size: 20px;
   }
 
-  .watch-episode-title {
-    font-size: 18px;
+  .watch-show-title {
+    font-size: 26px;
   }
 }

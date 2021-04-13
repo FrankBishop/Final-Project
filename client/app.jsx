@@ -74,7 +74,19 @@ export default class App extends React.Component {
   }
 
   deleteFromWatchlist(episode) {
-    console.log('it passed down', episode)
+    // console.log('it passed down', episode);
+    const deleteId = parseInt(episode, 10);
+    console.log(typeof deleteId);
+    fetch(`/api/watchlist/${deleteId}`, {
+      method: 'DELETE'
+    })
+      .then(episode => {
+        console.log(episode)
+        // const watchlist = this.state.watchlist.splice(episode, 1);
+      })
+      .catch(err => {
+        console.error(err);
+      });
   }
 
   render() {

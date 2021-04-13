@@ -331,8 +331,8 @@ h4 {
   min-height: 100vh;
   font-family: 'Work Sans', sans-serif;
   color: #053f5e;
-  position: absolute;
-  top: 48;
+  position: fixed;
+  top: 48px;
   left: 0;
   z-index: 1;
   padding-left: 2rem;
@@ -396,10 +396,6 @@ h4 {
   margin-top: 5px;
   margin-left: 5px;
 }
-
-/* .watchlist-body {
-  position: relative;
-} */
 
 @media screen and (min-width: 1025px) {
   .image-holder-row > img {
@@ -564,5 +560,9 @@ h4 {
   .watchlist-episode-info {
     margin-top: 14px;
     margin-left: 14px;
+  }
+
+  .app-drawer {
+    top: 79px;
   }
 }

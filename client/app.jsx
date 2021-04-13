@@ -78,17 +78,13 @@ export default class App extends React.Component {
         <Home text="TV Diary" setSearchResults={this.setSearchResults} searchResults={this.state.searchResults} watchlist={this.state.watchlist}
           addToWatchlist={this.addToWatchlist} menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist}
           isWatchlistOpen={this.state.watchlistOpen} goHome={this.goHome} />;
-          <AppDrawer setSearchResults={this.setSearchResults} searchResults={this.state.searchResults} watchlist={this.state.watchlist}
-          addToWatchlist={this.addToWatchlist} menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist}
-          isWatchlistOpen={this.state.watchlistOpen} goHome={this.goHome} />;
+        <AppDrawer menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist} goHome={this.goHome} />;
       </div>;
     } else {
       return <div>
         <Watchlist menu={this.openMenu} menuOpen={this.state.menuOpen === false} goHome={this.goHome} openWatchlist={this.openWatchlist}
           isWatchlistOpen={this.state.watchlistOpen} watchlist={this.state.watchlist} />;
-      <AppDrawer setSearchResults={this.setSearchResults} searchResults={this.state.searchResults} watchlist={this.state.watchlist}
-          addToWatchlist={this.addToWatchlist} menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist}
-          isWatchlistOpen={this.state.watchlistOpen} goHome={this.goHome} />;
+        <AppDrawer menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist} goHome={this.goHome} />;
         </div>;
     }
   }

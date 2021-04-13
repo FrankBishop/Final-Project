@@ -20,7 +20,7 @@ class Watchlist extends React.Component {
         </div>
       </div>
     );
-    return <div className="watchlist-body">
+    return <div>
       <header>
         <i onClick={this.props.menu} className="fas fa-tv fa-2x tv-icon"></i>
         <h1 className="header-text"> TV Diary </h1>

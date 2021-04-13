@@ -5,6 +5,7 @@ class Watchlist extends React.Component {
 
   constructor(props) {
     super(props);
+    this.state = { episode: null };
     this.deleteFromWatchlist = this.deleteFromWatchlist.bind(this);
   }
 
@@ -20,7 +21,7 @@ class Watchlist extends React.Component {
           <ul className="watch-episode-title" value={episode['episode name']} > S{episode.season}E{episode.number} {episode['episode name']} </ul>
           <div className="watchlist-button-container">
             <button className="watchlist-log-button">Log</button>
-            <button onClick = {this.deleteFromWatchlist} className="watchlist-delete-button">Delete</button>
+            <button onClick={this.deleteFromWatchlist} id={episode.entryId} className="watchlist-delete-button">Delete</button>
           </div>
         </div>
       </div>
@@ -49,7 +50,8 @@ class Watchlist extends React.Component {
   }
 
   deleteFromWatchlist(event) {
-    console.log('it deletes')
+    const deleteId = event.target.getAttribute('id');
+    this.props.deleteFromWatchlist(deleteId);
   }
 }
 

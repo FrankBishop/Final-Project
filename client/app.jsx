@@ -13,6 +13,7 @@ export default class App extends React.Component {
     this.openMenu = this.openMenu.bind(this);
     this.openWatchlist = this.openWatchlist.bind(this);
     this.goHome = this.goHome.bind(this);
+    this.deleteFromWatchlist = this.deleteFromWatchlist.bind(this);
   }
 
   componentDidMount() {
@@ -72,6 +73,10 @@ export default class App extends React.Component {
     this.setState({ watchlistOpen: false });
   }
 
+  deleteFromWatchlist(episode) {
+    console.log('it passed down', episode)
+  }
+
   render() {
     if (this.state.watchlistOpen === false) {
       return <div>
@@ -83,7 +88,7 @@ export default class App extends React.Component {
     } else {
       return <div>
         <Watchlist menu={this.openMenu} menuOpen={this.state.menuOpen === false} goHome={this.goHome} openWatchlist={this.openWatchlist}
-          isWatchlistOpen={this.state.watchlistOpen} watchlist={this.state.watchlist} />;
+          isWatchlistOpen={this.state.watchlistOpen} watchlist={this.state.watchlist} deleteFromWatchlist={this.deleteFromWatchlist} />;
         <AppDrawer menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist} goHome={this.goHome} />;
         </div>;
     }

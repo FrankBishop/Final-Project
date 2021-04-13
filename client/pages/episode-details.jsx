@@ -5,7 +5,7 @@ class EpisodeDetails extends React.Component {
 
   constructor(props) {
     super(props);
-    this.AddToWatchlist = this.AddToWatchlist.bind(this);
+    this.addToWatchlist = this.addToWatchlist.bind(this);
   }
 
   render() {
@@ -48,7 +48,7 @@ class EpisodeDetails extends React.Component {
     }
   }
 
-  AddToWatchlist(event) {
+  addToWatchlist(event) {
     const show = this.props.episode._embedded.show.name;
     const episodeName = this.props.episode.name;
     const season = this.props.episode.season;
@@ -61,7 +61,7 @@ class EpisodeDetails extends React.Component {
       number: number,
       image: image
     };
-    this.props.AddToWatchlist(episode);
+    this.props.addToWatchlist(episode);
   }
 }
 

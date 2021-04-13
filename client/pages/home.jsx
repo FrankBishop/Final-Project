@@ -12,16 +12,16 @@ export default class Home extends React.Component {
           <i onClick={this.props.menu} className="fas fa-tv fa-2x tv-icon"></i>
           <h1 className="header-text"> {this.props.text} </h1>
           <div className="search-form-header">
-            <SearchForm onSubmit={this.props.SetSearchResults} />
+            <SearchForm onSubmit={this.props.setSearchResults} />
           </div>
         </header>
         <main>
           <div className="search-form">
-            <SearchForm onSubmit={this.props.SetSearchResults} />
+            <SearchForm onSubmit={this.props.setSearchResults} />
           </div>
-          <SearchResults results={this.props.searchResults} show={this.props.ShowInfo} watchlist={this.props.watchlist} AddToWatchlist={this.props.AddToWatchlist}
-            menu={this.props.menu} menuOpen={this.props.menuOpen} OpenWatchlist={this.props.OpenWatchlist} isWatchlistOpen={this.props.isWatchlistOpen}
-            GoHome={this.props.GoHome} />
+          <SearchResults results={this.props.searchResults} show={this.props.showInfo} watchlist={this.props.watchlist} addToWatchlist={this.props.addToWatchlist}
+            menu={this.props.menu} menuOpen={this.props.menuOpen} openWatchlist={this.props.openWatchlist} isWatchlistOpen={this.props.isWatchlistOpen}
+            goHome={this.props.goHome} />
         </main>
         <footer>
 
@@ -33,16 +33,16 @@ export default class Home extends React.Component {
           <i onClick={this.props.menu} className="fas fa-tv fa-2x tv-icon"></i>
           <h1 className="header-text"> {this.props.text} </h1>
           <div className="search-form-header">
-            <SearchForm onSubmit={this.props.SetSearchResults} />
+            <SearchForm onSubmit={this.props.setSearchResults} />
           </div>;
           </header>
         <div>
-          <AppDrawer menu={this.props.menu} menuOpen={this.props.menuOpen} OpenWatchlist={this.props.OpenWatchlist} isWatchlistOpen={this.props.isWatchlistOpen}
-            GoHome={this.props.GoHome} />
+          <AppDrawer menu={this.props.menu} menuOpen={this.props.menuOpen} openWatchlist={this.props.openWatchlist} isWatchlistOpen={this.props.isWatchlistOpen}
+            goHome={this.props.goHome} />
         </div>
         <main>
           <div className="search-form">
-            <SearchForm onSubmit={this.props.SetSearchResults} />
+            <SearchForm onSubmit={this.props.setSearchResults} />
           </div>
           <h1 className="main-header header-text">Popular Shows</h1>
           <div className="image-holder-row">
@@ -64,12 +64,12 @@ export default class Home extends React.Component {
           <i onClick={this.props.menu} className="fas fa-tv fa-2x tv-icon"></i>
           <h1 className="header-text"> {this.props.text} </h1>
           <div className="search-form-header">
-            <SearchForm onSubmit={this.props.SetSearchResults} />
+            <SearchForm onSubmit={this.props.setSearchResults} />
           </div>
         </header>
         <main>
           <div className="search-form">
-            <SearchForm onSubmit={this.props.SetSearchResults} />
+            <SearchForm onSubmit={this.props.setSearchResults} />
           </div>
           <h1 className="main-header header-text">Popular Shows</h1>
           <div className="image-holder-row">

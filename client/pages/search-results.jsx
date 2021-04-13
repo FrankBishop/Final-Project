@@ -7,7 +7,7 @@ class SearchResults extends React.Component {
   constructor(props) {
     super(props);
     this.state = { show: null };
-    this.ShowInfo = this.ShowInfo.bind(this);
+    this.showInfo = this.showInfo.bind(this);
   }
 
   render() {
@@ -16,17 +16,17 @@ class SearchResults extends React.Component {
     const listResults = filteredResults.map(result =>
       <div className="search-result" key={result.show.id} id={result.show.id}>
         <img className="search-image" src={result.show.image.medium} alt={result.show.name} ></img>
-        <ul className="show" onClick={this.ShowInfo} value={result.show.name}> {result.show.name} </ul>
+        <ul className="show" onClick={this.showInfo} value={result.show.name}> {result.show.name} </ul>
       </div>
     );
     if (this.state.show !== null) {
-      return < ShowInfo show={this.state.show} watchlist={this.props.watchlist} AddToWatchlist={this.props.AddToWatchlist} menu={this.props.menu}
-        menuOpen={this.props.menuOpen} OpenWatchlist={this.props.OpenWatchlist} isWatchlistOpen={this.props.isWatchlistOpen} GoHome={this.props.GoHome}/>;
+      return < ShowInfo show={this.state.show} watchlist={this.props.watchlist} addToWatchlist={this.props.addToWatchlist} menu={this.props.menu}
+        menuOpen={this.props.menuOpen} openWatchlist={this.props.openWatchlist} isWatchlistOpen={this.props.isWatchlistOpen} goHome={this.props.goHome}/>;
     } else if (this.props.menuOpen === true) {
       return <div>
         <div>
-          <AppDrawer menu={this.props.menu} menuOpen={this.props.menuOpen} OpenWatchlist={this.props.OpenWatchlist} isWatchlistOpen={this.props.isWatchlistOpen}
-            GoHome={this.props.GoHome}/>
+          <AppDrawer menu={this.props.menu} menuOpen={this.props.menuOpen} openWatchlist={this.props.openWatchlist} isWatchlistOpen={this.props.isWatchlistOpen}
+            goHome={this.props.goHome}/>
         </div>
         <div>
           <h1 className="main-header header-text">Search Results</h1>
@@ -41,7 +41,7 @@ class SearchResults extends React.Component {
     }
   }
 
-  ShowInfo(event) {
+  showInfo(event) {
     const showId = event.target.parentElement.getAttribute('id');
     fetch('http://api.tvmaze.com/shows/' + showId + '?embed[]=episodes&embed[]=cast')
       .then(response => response.json())

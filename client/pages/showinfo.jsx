@@ -7,7 +7,7 @@ class ShowInfo extends React.Component {
   constructor(props) {
     super(props);
     this.state = { showName: this.props.show, episodes: null };
-    this.EpisodeListings = this.EpisodeListings.bind(this);
+    this.episodeListings = this.episodeListings.bind(this);
   }
 
   render() {
@@ -23,19 +23,19 @@ class ShowInfo extends React.Component {
       </div>
     );
     if (this.state.episodes !== null) {
-      return < EpisodeList show={this.state.episodes} watchlist={this.props.watchlist} showName={this.state.showName.name} AddToWatchlist={this.props.AddToWatchlist}
-        menu={this.props.menu} menuOpen={this.props.menuOpen} OpenWatchlist={this.props.OpenWatchlist} isWatchlistOpen={this.props.isWatchlistOpen}
-        GoHome={this.props.GoHome} />;
+      return < EpisodeList show={this.state.episodes} watchlist={this.props.watchlist} showName={this.state.showName.name} addToWatchlist={this.props.addToWatchlist}
+        menu={this.props.menu} menuOpen={this.props.menuOpen} openWatchlist={this.props.openWatchlist} isWatchlistOpen={this.props.isWatchlistOpen}
+        goHome={this.props.goHome} />;
     } else if (this.props.menuOpen === true) {
       return <div>
         <div>
-          <AppDrawer menu={this.props.menu} menuOpen={this.props.menuOpen} OpenWatchlist={this.props.OpenWatchlist} isWatchlistOpen={this.props.isWatchlistOpen}
-            GoHome={this.props.GoHome} />
+          <AppDrawer menu={this.props.menu} menuOpen={this.props.menuOpen} openWatchlist={this.props.openWatchlist} isWatchlistOpen={this.props.isWatchlistOpen}
+            goHome={this.props.goHome} />
         </div>
         <div className="show-info">
           <h1 className="show-header header-text">{this.state.showName.name}</h1>
           <h4 className="premiere-date">Premiere Date - {this.state.showName.premiered}</h4>
-          <button className="episodes-link" onClick={this.EpisodeListings}>Episode List</button>
+          <button className="episodes-link" onClick={this.episodeListings}>Episode List</button>
           <img className="show-image" src={this.state.showName.image.medium} alt={this.state.showName.name} ></img>
           <h3 className="summary-header">Summary</h3>
           <div className="summary"> {filteredSummary}</div>
@@ -46,7 +46,7 @@ class ShowInfo extends React.Component {
       return <div className="show-info">
         <h1 className="show-header header-text">{this.state.showName.name}</h1>
         <h4 className="premiere-date">Premiere Date - {this.state.showName.premiered}</h4>
-        <button className="episodes-link" onClick={this.EpisodeListings}>Episode List</button>
+        <button className="episodes-link" onClick={this.episodeListings}>Episode List</button>
         <img className="show-image" src={this.state.showName.image.medium} alt={this.state.showName.name} ></img>
         <h3 className="summary-header">Summary</h3>
         <div className="summary"> {filteredSummary}</div>
@@ -55,7 +55,7 @@ class ShowInfo extends React.Component {
     }
   }
 
-  EpisodeListings() {
+  episodeListings() {
     fetch('http://api.tvmaze.com/shows/' + this.state.showName.id + '/episodes')
       .then(response => response.json())
       .then(result => {

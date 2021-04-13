@@ -6,12 +6,12 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = { searchResults: [], watchlist: [], menuOpen: false, watchlistOpen: false };
-    this.SetSearchResults = this.SetSearchResults.bind(this);
-    this.ShowWatchlist = this.ShowWatchlist.bind(this);
-    this.AddToWatchlist = this.AddToWatchlist.bind(this);
-    this.OpenMenu = this.OpenMenu.bind(this);
-    this.OpenWatchlist = this.OpenWatchlist.bind(this);
-    this.GoHome = this.GoHome.bind(this);
+    this.setSearchResults = this.setSearchResults.bind(this);
+    this.showWatchlist = this.showWatchlist.bind(this);
+    this.addToWatchlist = this.addToWatchlist.bind(this);
+    this.openMenu = this.openMenu.bind(this);
+    this.openWatchlist = this.openWatchlist.bind(this);
+    this.goHome = this.goHome.bind(this);
   }
 
   componentDidMount() {
@@ -27,7 +27,7 @@ export default class App extends React.Component {
       });
   }
 
-  AddToWatchlist(episode) {
+  addToWatchlist(episode) {
     fetch('/api/watchlist', {
       method: 'POST',
       body: JSON.stringify(episode),
@@ -45,15 +45,15 @@ export default class App extends React.Component {
       });
   }
 
-  SetSearchResults(results) {
+  setSearchResults(results) {
     this.setState({ searchResults: results });
   }
 
-  ShowWatchlist(entries) {
+  showWatchlist(entries) {
     this.setState({ watchlist: entries });
   }
 
-  OpenMenu() {
+  openMenu() {
     if (this.state.menuOpen === true) {
       this.setState({ menuOpen: false });
     } else {
@@ -61,23 +61,23 @@ export default class App extends React.Component {
     }
   }
 
-  OpenWatchlist() {
+  openWatchlist() {
     this.setState({ watchlistOpen: true });
   }
 
-  GoHome() {
+  goHome() {
     this.setState({ watchlistOpen: false });
   }
 
   render() {
     if (this.state.watchlistOpen === false) {
       return <div>
-        <Home text="TV Diary" SetSearchResults={this.SetSearchResults} searchResults={this.state.searchResults} watchlist={this.state.watchlist}
-          AddToWatchlist={this.AddToWatchlist} menu={this.OpenMenu} menuOpen={this.state.menuOpen} OpenWatchlist={this.OpenWatchlist}
-          isWatchlistOpen={this.state.watchlistOpen} GoHome = {this.GoHome} />
+        <Home text="TV Diary" setSearchResults={this.setSearchResults} searchResults={this.state.searchResults} watchlist={this.state.watchlist}
+          addToWatchlist={this.addToWatchlist} menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist}
+          isWatchlistOpen={this.state.watchlistOpen} goHome = {this.goHome} />
       </div>;
     } else {
-      return <Watchlist menu={this.OpenMenu} menuOpen={this.state.menuOpen === false} GoHome={this.GoHome} OpenWatchlist={this.OpenWatchlist}
+      return <Watchlist menu={this.openMenu} menuOpen={this.state.menuOpen === false} goHome={this.goHome} openWatchlist={this.openWatchlist}
         isWatchlistOpen={this.state.watchlistOpen} watchlist={this.state.watchlist} />;
     }
   }

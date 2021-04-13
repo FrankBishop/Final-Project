@@ -12,8 +12,8 @@ class AppDrawer extends React.Component {
     if (this.props.menuOpen === true) {
       return <div className="app-drawer">
         <div>
-          <h1 onClick={this.props.GoHome}>Home</h1>
-          <h1 onClick={this.props.OpenWatchlist}>Watchlist</h1>
+          <h1 onClick={this.props.goHome}>Home</h1>
+          <h1 onClick={this.props.openWatchlist}>Watchlist</h1>
         </div>
       </div>;
     } else {

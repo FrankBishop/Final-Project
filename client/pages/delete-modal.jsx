@@ -16,9 +16,11 @@ class DeleteModal extends React.Component {
       </div>;
     } else {
       return <div className="delete-modal">
-        <h1>Delete Modal</h1>
-        <button onClick={this.deleteFromWatchlist}>Yes</button>
-        <button onClick={this.closeModal}>No</button>
+        <h2>Are you sure you want to delete this episode from your watchlist?</h2>
+        <div className="delete-modal-buttons">
+          <button onClick={this.deleteFromWatchlist} id={this.props.episodeToDelete} >Yes</button>
+          <button onClick={this.closeModal}>No</button>
+        </div>
       </div>;
     }
   }

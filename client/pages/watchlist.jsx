@@ -1,12 +1,12 @@
 import React from 'react';
 import SearchForm from './search';
-// import DeleteModal from './delete-modal';
+import DeleteModal from './delete-modal';
 
 class Watchlist extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = { openModal: false };
+    this.state = { openModal: false, episodeToDelete: null };
     this.openModal = this.openModal.bind(this);
     this.deleteFromWatchlist = this.deleteFromWatchlist.bind(this);
     this.closeModal = this.closeModal.bind(this);
@@ -40,13 +40,14 @@ class Watchlist extends React.Component {
         </header>
         <main>
           <div className="modal-container">
-            <div className="delete-modal">
+            {/* <div className="delete-modal">
               <h2>Are you sure you want to delete this episode from your watchlist?</h2>
               <div className="delete-modal-buttons">
-                <button onClick={this.deleteFromWatchlist}>Yes</button>
+                <button onClick={this.deleteFromWatchlist} className="yes" >Yes</button>
                 <button onClick={this.closeModal}>No</button>
               </div>
-            </div>;
+            </div>; */}
+            <DeleteModal episodeToDelete={this.state.episodeToDelete} deleteFromWatchlist={this.props.deleteFromWatchlist} />
           </div>
           <div className="search-form">
             <SearchForm onSubmit={this.props.setSearchResults} />
@@ -85,8 +86,10 @@ class Watchlist extends React.Component {
     }
   }
 
-  openModal() {
+  openModal(event) {
+    const deleteId = event.target.getAttribute('id');
     this.setState({ openModal: true });
+    this.setState({ episodeToDelete: deleteId });
   }
 
   deleteFromWatchlist(event) {

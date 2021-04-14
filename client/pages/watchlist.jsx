@@ -39,12 +39,16 @@ class Watchlist extends React.Component {
           </div>
         </header>
         <main>
-          <div className="delete-modal">
-            <h1>Delete Modal</h1>
-            <button onClick={this.deleteFromWatchlist}>Yes</button>
-            <button onClick={this.closeModal}>No</button>
-          </div>;
-        <div className="search-form">
+          <div className="modal-container">
+            <div className="delete-modal">
+              <h1>Delete Modal</h1>
+              <div className="modal-buttons">
+                <button onClick={this.deleteFromWatchlist}>Yes</button>
+                <button onClick={this.closeModal}>No</button>
+              </div>
+            </div>;
+          </div>
+          <div className="search-form">
             <SearchForm onSubmit={this.props.setSearchResults} />
           </div>
           <div>

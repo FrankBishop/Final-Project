@@ -29,6 +29,7 @@ class DeleteModal extends React.Component {
     this.setState({ modalOpen: false });
     const deleteId = event.target.getAttribute('id');
     this.props.deleteFromWatchlist(deleteId);
+    this.props.toggleModal();
   }
 
 }

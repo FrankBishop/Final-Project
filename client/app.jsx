@@ -2,7 +2,6 @@ import React from 'react';
 import Home from './pages/home';
 import Watchlist from './pages/watchlist';
 import AppDrawer from './app-drawer.jsx';
-import DeleteModal from './pages/delete-modal';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -80,19 +79,15 @@ export default class App extends React.Component {
       method: 'DELETE',
       body: JSON.stringify(episode)
     })
-      // .then(response => response.json())
       .then(episode => {
         let entryToDelete;
-        let watchlist = this.state.watchlist;
+        const watchlist = this.state.watchlist;
         for (let i = 0; i < watchlist.length; i++) {
           if (watchlist[i].entryId === deleteId) {
             entryToDelete = i;
           }
         }
-        console.log(entryToDelete);
-        const removeFromWatchlist = watchlist.splice(entryToDelete, 1);
-        console.log('remove', removeFromWatchlist)
-        console.log(watchlist)
+        watchlist.splice(entryToDelete, 1);
         this.setState({ watchlist });
       })
       .catch(err => {

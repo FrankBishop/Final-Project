@@ -89,6 +89,7 @@ class Watchlist extends React.Component {
   toggleModal() {
     if (this.state.openModal === true) {
       this.setState({ openModal: false });
+      this.setState({ episodeToDelete: null });
     } else {
       this.setState({ openModal: true });
     }

@@ -402,11 +402,6 @@ h4 {
   color: #ffd700;
   width: 300px;
   height: 300px;
-  position: fixed;
-  top: 256px;
-  bottom: 256px;
-  left: 37.5px;
-  right: 37.5px;
   z-index: 2;
   text-align: center;
   font-family: 'roboto', sans-serif;
@@ -420,7 +415,10 @@ h4 {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #053f5e70;
+  background-color: #11517370;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .delete-modal-buttons {
@@ -606,5 +604,15 @@ h4 {
 
   .app-drawer {
     top: 79px;
+  }
+
+  .delete-modal {
+    width: 500px;
+    height: 500px;
+    font-size: 28px;
+  }
+
+  .delete-modal-buttons {
+    margin-top: 175px;
   }
 }

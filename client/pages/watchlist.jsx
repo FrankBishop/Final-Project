@@ -8,7 +8,6 @@ class Watchlist extends React.Component {
     super(props);
     this.state = { openModal: false, episodeToDelete: null };
     this.openModal = this.openModal.bind(this);
-    // this.deleteFromWatchlist = this.deleteFromWatchlist.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
   }
 
@@ -94,16 +93,6 @@ class Watchlist extends React.Component {
       this.setState({ openModal: true });
     }
   }
-
-  // deleteFromWatchlist(event) {
-  //   this.setState({ openModal: false });
-  //   const deleteId = event.target.getAttribute('id');
-  //   this.props.deleteFromWatchlist(deleteId);
-  // }
-
-  // closeModal() {
-  //   this.setState({ openModal: false });
-  // }
 }
 
 export default Watchlist;

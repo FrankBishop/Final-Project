@@ -8,8 +8,8 @@ class Watchlist extends React.Component {
     super(props);
     this.state = { openModal: false, episodeToDelete: null };
     this.openModal = this.openModal.bind(this);
-    this.deleteFromWatchlist = this.deleteFromWatchlist.bind(this);
-    this.closeModal = this.closeModal.bind(this);
+    // this.deleteFromWatchlist = this.deleteFromWatchlist.bind(this);
+    this.toggleModal = this.toggleModal.bind(this);
   }
 
   render() {
@@ -39,16 +39,10 @@ class Watchlist extends React.Component {
           </div>
         </header>
         <main>
-          <div className="modal-container">
-            {/* <div className="delete-modal">
-              <h2>Are you sure you want to delete this episode from your watchlist?</h2>
-              <div className="delete-modal-buttons">
-                <button onClick={this.deleteFromWatchlist} className="yes" >Yes</button>
-                <button onClick={this.closeModal}>No</button>
-              </div>
-            </div>; */}
-            <DeleteModal episodeToDelete={this.state.episodeToDelete} deleteFromWatchlist={this.props.deleteFromWatchlist} />
-          </div>
+          {/* <div className="modal-container"> */}
+          <DeleteModal episodeToDelete={this.state.episodeToDelete} deleteFromWatchlist={this.props.deleteFromWatchlist} openModal={this.props.openModal}
+            toggleModal={this.toggleModal} />
+          {/* </div> */}
           <div className="search-form">
             <SearchForm onSubmit={this.props.setSearchResults} />
           </div>
@@ -92,15 +86,23 @@ class Watchlist extends React.Component {
     this.setState({ episodeToDelete: deleteId });
   }
 
-  deleteFromWatchlist(event) {
-    this.setState({ openModal: false });
-    const deleteId = event.target.getAttribute('id');
-    this.props.deleteFromWatchlist(deleteId);
+  toggleModal() {
+    if (this.state.openModal === true) {
+      this.setState({ openModal: false });
+    } else {
+      this.setState({ openModal: true });
+    }
   }
 
-  closeModal() {
-    this.setState({ openModal: false });
-  }
+  // deleteFromWatchlist(event) {
+  //   this.setState({ openModal: false });
+  //   const deleteId = event.target.getAttribute('id');
+  //   this.props.deleteFromWatchlist(deleteId);
+  // }
+
+  // closeModal() {
+  //   this.setState({ openModal: false });
+  // }
 }
 
 export default Watchlist;

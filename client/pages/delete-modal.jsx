@@ -6,7 +6,6 @@ class DeleteModal extends React.Component {
     super(props);
     this.state = { modalOpen: true };
     this.deleteFromWatchlist = this.deleteFromWatchlist.bind(this);
-    // this.closeModal = this.closeModal.bind(this);
   }
 
   render() {
@@ -19,7 +18,6 @@ class DeleteModal extends React.Component {
           <h2>Are you sure you want to delete this episode from your watchlist?</h2>
           <div className="delete-modal-buttons">
             <button onClick={this.deleteFromWatchlist} id={this.props.episodeToDelete} >Yes</button>
-            {/* <button onClick={this.closeModal}>No</button> */}
             <button onClick={this.props.toggleModal}>No</button>
           </div>
         </div>
@@ -33,9 +31,6 @@ class DeleteModal extends React.Component {
     this.props.deleteFromWatchlist(deleteId);
   }
 
-  // closeModal() {
-  //   this.setState({ modalOpen: false });
-  // }
 }
 
 export default DeleteModal;

@@ -77,11 +77,22 @@ export default class App extends React.Component {
   deleteFromWatchlist(episode) {
     const deleteId = parseInt(episode, 10);
     fetch(`/api/watchlist/${deleteId}`, {
-      method: 'DELETE'
+      method: 'DELETE',
+      body: JSON.stringify(episode)
     })
-      .then(response => response.json())
+      // .then(response => response.json())
       .then(episode => {
-        const watchlist = this.state.watchlist.splice(episode, 1);
+        let entryToDelete;
+        let watchlist = this.state.watchlist;
+        for (let i = 0; i < watchlist.length; i++) {
+          if (watchlist[i].entryId === deleteId) {
+            entryToDelete = i;
+          }
+        }
+        console.log(entryToDelete);
+        const removeFromWatchlist = watchlist.splice(entryToDelete, 1);
+        console.log('remove', removeFromWatchlist)
+        console.log(watchlist)
         this.setState({ watchlist });
       })
       .catch(err => {

@@ -81,7 +81,7 @@ export default class App extends React.Component {
     })
       .then(episode => {
         let entryToDelete;
-        const watchlist = this.state.watchlist;
+        const watchlist = this.state.watchlist.slice();
         for (let i = 0; i < watchlist.length; i++) {
           if (watchlist[i].entryId === deleteId) {
             entryToDelete = i;

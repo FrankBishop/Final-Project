@@ -38,10 +38,8 @@ class Watchlist extends React.Component {
           </div>
         </header>
         <main>
-          {/* <div className="modal-container"> */}
           <DeleteModal episodeToDelete={this.state.episodeToDelete} deleteFromWatchlist={this.props.deleteFromWatchlist} openModal={this.props.openModal}
             toggleModal={this.toggleModal} />
-          {/* </div> */}
           <div className="search-form">
             <SearchForm onSubmit={this.props.setSearchResults} />
           </div>

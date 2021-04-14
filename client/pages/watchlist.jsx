@@ -1,12 +1,15 @@
 import React from 'react';
 import SearchForm from './search';
+// import DeleteModal from './delete-modal';
 
 class Watchlist extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = { episode: null };
+    this.state = { openModal: false };
+    this.openModal = this.openModal.bind(this);
     this.deleteFromWatchlist = this.deleteFromWatchlist.bind(this);
+    this.closeModal = this.closeModal.bind(this);
   }
 
   render() {
@@ -21,37 +24,75 @@ class Watchlist extends React.Component {
           <ul className="watch-episode-title" value={episode['episode name']} > S{episode.season}E{episode.number} {episode['episode name']} </ul>
           <div className="watchlist-button-container">
             <button className="watchlist-log-button">Log</button>
-            <button onClick={this.deleteFromWatchlist} id={episode.entryId} className="watchlist-delete-button">Delete</button>
+            <button onClick={this.openModal} id={episode.entryId} className="watchlist-delete-button">Delete</button>
           </div>
         </div>
       </div>
     );
-    return <div>
-      <header>
-        <i onClick={this.props.menu} className="fas fa-tv fa-2x tv-icon"></i>
-        <h1 className="header-text"> TV Diary </h1>
-        <div className="search-form-header">
-          <SearchForm onSubmit={this.props.SetSearchResults} />
-        </div>
-      </header>
-      <main>
+    if (this.state.openModal === true) {
+      return <div>
+        <header>
+          <i onClick={this.props.menu} className="fas fa-tv fa-2x tv-icon"></i>
+          <h1 className="header-text"> TV Diary </h1>
+          <div className="search-form-header">
+            <SearchForm onSubmit={this.props.SetSearchResults} />
+          </div>
+        </header>
+        <main>
+          <div className="delete-modal">
+            <h1>Delete Modal</h1>
+            <button onClick={this.deleteFromWatchlist}>Yes</button>
+            <button onClick={this.closeModal}>No</button>
+          </div>;
         <div className="search-form">
-          <SearchForm onSubmit={this.props.setSearchResults} />
-        </div>
-        <div>
-          <h1 className="main-header header-text">Watchlist</h1>
-          <ul className="list-results"> {watchlistToRender} </ul>
-        </div>;
+            <SearchForm onSubmit={this.props.setSearchResults} />
+          </div>
+          <div>
+            <h1 className="main-header header-text">Watchlist</h1>
+            <ul className="list-results"> {watchlistToRender} </ul>
+          </div>;
         </main>
-      <footer>
+        <footer>
 
-      </footer>
-    </div>;
+        </footer>
+      </div>;
+    } else {
+      return <div>
+        <header>
+          <i onClick={this.props.menu} className="fas fa-tv fa-2x tv-icon"></i>
+          <h1 className="header-text"> TV Diary </h1>
+          <div className="search-form-header">
+            <SearchForm onSubmit={this.props.SetSearchResults} />
+          </div>
+        </header>
+        <main>
+          <div className="search-form">
+            <SearchForm onSubmit={this.props.setSearchResults} />
+          </div>
+          <div>
+            <h1 className="main-header header-text">Watchlist</h1>
+            <ul className="list-results"> {watchlistToRender} </ul>
+          </div>;
+        </main>
+        <footer>
+
+        </footer>
+      </div>;
+    }
+  }
+
+  openModal() {
+    this.setState({ openModal: true });
   }
 
   deleteFromWatchlist(event) {
+    this.setState({ openModal: false });
     const deleteId = event.target.getAttribute('id');
     this.props.deleteFromWatchlist(deleteId);
+  }
+
+  closeModal() {
+    this.setState({ openModal: false });
   }
 }
 

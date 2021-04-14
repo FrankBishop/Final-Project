@@ -55,9 +55,7 @@ app.post('/api/watchlist', (req, res, next) => {
 });
 
 app.delete('/api/watchlist/:deleteId', (req, res) => {
-  console.log('this runs')
   const deleteId = parseInt(req.params.deleteId, 10);
-  console.log('delete', deleteId)
   if (!Number.isInteger(deleteId) || deleteId <= 0) {
     res.status(400).json({
       error: '"deleteId" must be a positive integer'

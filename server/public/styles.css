@@ -409,6 +409,7 @@ h4 {
   right: 37.5px;
   z-index: 2;
   text-align: center;
+  font-family: 'roboto', sans-serif;
 }
 
 .modal-container {
@@ -420,6 +421,23 @@ h4 {
   right: 0;
   bottom: 0;
   background-color: #053f5e70;
+}
+
+.delete-modal-buttons {
+  margin-top: 100px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.delete-modal-buttons > button {
+  width: 30%;
+  background-color: #ffd700;
+  height: 50px;
+  font-family: 'roboto', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
 }
 
 @media screen and (min-width: 1025px) {

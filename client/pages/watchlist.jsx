@@ -41,8 +41,8 @@ class Watchlist extends React.Component {
         <main>
           <div className="modal-container">
             <div className="delete-modal">
-              <h1>Delete Modal</h1>
-              <div className="modal-buttons">
+              <h2>Are you sure you want to delete this episode from your watchlist?</h2>
+              <div className="delete-modal-buttons">
                 <button onClick={this.deleteFromWatchlist}>Yes</button>
                 <button onClick={this.closeModal}>No</button>
               </div>

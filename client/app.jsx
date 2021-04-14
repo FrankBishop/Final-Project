@@ -13,6 +13,7 @@ export default class App extends React.Component {
     this.openMenu = this.openMenu.bind(this);
     this.openWatchlist = this.openWatchlist.bind(this);
     this.goHome = this.goHome.bind(this);
+    this.deleteFromWatchlist = this.deleteFromWatchlist.bind(this);
   }
 
   componentDidMount() {
@@ -72,6 +73,28 @@ export default class App extends React.Component {
     this.setState({ watchlistOpen: false });
   }
 
+  deleteFromWatchlist(episode) {
+    const deleteId = parseInt(episode, 10);
+    fetch(`/api/watchlist/${deleteId}`, {
+      method: 'DELETE',
+      body: JSON.stringify(episode)
+    })
+      .then(episode => {
+        let entryToDelete;
+        const watchlist = this.state.watchlist.slice();
+        for (let i = 0; i < watchlist.length; i++) {
+          if (watchlist[i].entryId === deleteId) {
+            entryToDelete = i;
+          }
+        }
+        watchlist.splice(entryToDelete, 1);
+        this.setState({ watchlist });
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  }
+
   render() {
     if (this.state.watchlistOpen === false) {
       return <div>
@@ -83,7 +106,7 @@ export default class App extends React.Component {
     } else {
       return <div>
         <Watchlist menu={this.openMenu} menuOpen={this.state.menuOpen === false} goHome={this.goHome} openWatchlist={this.openWatchlist}
-          isWatchlistOpen={this.state.watchlistOpen} watchlist={this.state.watchlist} />;
+          isWatchlistOpen={this.state.watchlistOpen} watchlist={this.state.watchlist} deleteFromWatchlist={this.deleteFromWatchlist} />;
         <AppDrawer menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist} goHome={this.goHome} />;
         </div>;
     }

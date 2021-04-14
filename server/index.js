@@ -53,3 +53,36 @@ app.post('/api/watchlist', (req, res, next) => {
       console.error(err);
     });
 });
+
+app.delete('/api/watchlist/:deleteId', (req, res) => {
+  const deleteId = parseInt(req.params.deleteId, 10);
+  if (!Number.isInteger(deleteId) || deleteId <= 0) {
+    res.status(400).json({
+      error: '"deleteId" must be a positive integer'
+    });
+    return;
+  }
+  const sql = `
+    delete from "watchlist"
+    where "entryId" =  $1
+    returning *;
+  `;
+  const params = [deleteId];
+  db.query(sql, params)
+    .then(result => {
+      const deleteId = result.rows[0];
+      if (!deleteId) {
+        res.status(404).json({
+          error: `Cannot find item with "deleteId" ${deleteId}`
+        });
+      } else {
+        res.status(204).json(deleteId);
+      }
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({
+        error: 'An unexpected error occurred.'
+      });
+    });
+});

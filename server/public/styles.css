@@ -427,7 +427,8 @@ h4 {
   justify-content: space-around;
 }
 
-.delete-modal-buttons > button {
+.delete-modal-buttons > button,
+.log-modal-buttons > button {
   width: 30%;
   background-color: #ffd700;
   height: 50px;
@@ -437,6 +438,19 @@ h4 {
   border: none;
   border-radius: 5px;
 }
+
+.star-container {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+}
+
+.log-modal-buttons {
+  margin-top: 25px;
+  display: flex;
+  justify-content: space-around;
+}
+
 
 @media screen and (min-width: 1025px) {
   .image-holder-row > img {

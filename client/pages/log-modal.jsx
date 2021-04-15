@@ -7,6 +7,7 @@ class LogModal extends React.Component {
     super(props);
     this.state = { modalOpen: true, rating: null };
     this.ratingChanged = this.ratingChanged.bind(this);
+    this.saveToLog = this.saveToLog.bind(this);
   }
 
   render() {
@@ -18,11 +19,10 @@ class LogModal extends React.Component {
         <div className="delete-modal">
           <h2>How do you rate this episode?</h2>
           <div className="star-container">
-            {/* <StarRatings onChange={this.ratingChanged}/> */}
             <ReactStars count={5} onChange={this.ratingChanged} size={60} color2={'#ffd700'} value={this.state.rating} />
           </div>
           <div className="log-modal-buttons">
-            <button>Save To Log</button>
+            <button onClick={this.saveToLog}>Save To Log</button>
             <button onClick={this.props.toggleModal}>Cancel</button>
           </div>
         </div>
@@ -33,6 +33,13 @@ class LogModal extends React.Component {
   ratingChanged(newRating) {
     this.setState({ rating: newRating });
   }
+
+  saveToLog(event) {
+    console.log(event.target)
+  }
 }
 
 export default LogModal;
+
+//set star rating, and episode info into an object that will be put in a POST request
+//pass down props for episode info

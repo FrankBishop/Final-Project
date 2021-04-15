@@ -66,6 +66,7 @@ export default class App extends React.Component {
   openWatchlist() {
     this.setState({ menuOpen: false });
     this.setState({ watchlistOpen: true });
+    this.setState({ searchResults: [] });
   }
 
   goHome() {
@@ -97,7 +98,7 @@ export default class App extends React.Component {
   }
 
   render() {
-    if (this.state.watchlistOpen === false) {
+    if (this.state.watchlistOpen === false || this.state.searchResults.length > 0) {
       return <div>
         <Home text="TV Diary" setSearchResults={this.setSearchResults} searchResults={this.state.searchResults} watchlist={this.state.watchlist}
           addToWatchlist={this.addToWatchlist} menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist}
@@ -106,7 +107,7 @@ export default class App extends React.Component {
       </div>;
     } else {
       return <div>
-        <Watchlist menu={this.openMenu} menuOpen={this.state.menuOpen === false} goHome={this.goHome} openWatchlist={this.openWatchlist}
+        <Watchlist menu={this.openMenu} setSearchResults={this.setSearchResults} searchResults={this.state.searchResults} menuOpen={this.state.menuOpen === false} goHome={this.goHome} openWatchlist={this.openWatchlist}
           isWatchlistOpen={this.state.watchlistOpen} watchlist={this.state.watchlist} deleteFromWatchlist={this.deleteFromWatchlist} />;
         <AppDrawer menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist} goHome={this.goHome} />;
         </div>;

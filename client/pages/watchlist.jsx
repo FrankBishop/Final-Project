@@ -28,7 +28,29 @@ class Watchlist extends React.Component {
         </div>
       </div>
     );
-    if (this.state.openModal === true) {
+    if (this.props.watchlist.length === 0) {
+      return <div>
+        <header>
+          <i onClick={this.props.menu} className="fas fa-tv fa-2x tv-icon"></i>
+          <h1 className="header-text"> TV Diary </h1>
+          <div className="search-form-header">
+            <SearchForm onSubmit={this.props.SetSearchResults} />
+          </div>
+        </header>
+        <main>
+          <div className="search-form">
+            <SearchForm onSubmit={this.props.setSearchResults} />
+          </div>
+          <div>
+            <h1 className="main-header header-text">Watchlist</h1>
+            <h2 className="main-header header-text"> Your Watchlist is Empty</h2>
+          </div>;
+        </main>
+        <footer>
+
+        </footer>
+      </div>;
+    } else if (this.state.openModal === true) {
       return <div>
         <header>
           <i onClick={this.props.menu} className="fas fa-tv fa-2x tv-icon"></i>

@@ -20,7 +20,7 @@ class EpisodeDetails extends React.Component {
       </div>
       <div className="episode-button-container">
         <button>Log</button>
-        <button onClick={this.AddToWatchlist}>Need To Watch</button>
+        <button onClick={this.addToWatchlist}>Need To Watch</button>
         <button>Mark as Watched</button>
       </div>
     </div>;

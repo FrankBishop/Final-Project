@@ -35,7 +35,16 @@ class LogModal extends React.Component {
   }
 
   saveToLog(event) {
-    console.log(event.target)
+    const log = {
+      date: new Date().toLocaleDateString(),
+      showName: this.props.showName,
+      season: this.props.season,
+      number: this.props.number,
+      episodeName: this.props.name,
+      rating: this.state.rating
+    };
+    this.props.toggleModal();
+    this.props.saveToLog(log);
   }
 }
 
@@ -43,3 +52,4 @@ export default LogModal;
 
 //set star rating, and episode info into an object that will be put in a POST request
 //pass down props for episode info
+//hover over buttons

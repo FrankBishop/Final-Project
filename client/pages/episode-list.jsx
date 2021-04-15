@@ -26,7 +26,7 @@ class EpisodeList extends React.Component {
     if (this.state.episode !== null) {
       return < EpisodeDetails episode={this.state.episode} watchlist={this.props.watchlist} addToWatchlist={this.props.addToWatchlist}
         menu={this.props.menu} menuOpen={this.props.menuOpen} openWatchlist={this.props.openWatchlist} isWatchlistOpen={this.props.isWatchlistOpen}
-        goHome={this.props.goHome} />;
+        goHome={this.props.goHome} saveToLog={this.props.saveToLog} />;
     } else {
       return <div>
         <h1 className="episodes-list-header header-text">Episode List</h1>

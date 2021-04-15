@@ -37,7 +37,7 @@ class EpisodeList extends React.Component {
 
   episodeInfo(event) {
     const episodeId = event.target.parentElement.getAttribute('id');
-    fetch('http://api.tvmaze.com/episodes/' + episodeId + '?embed=show')
+    fetch('https://api.tvmaze.com/episodes/' + episodeId + '?embed=show')
       .then(response => response.json())
       .then(result => {
         this.setState({ episode: result });

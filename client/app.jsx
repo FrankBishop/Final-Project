@@ -98,8 +98,24 @@ export default class App extends React.Component {
       });
   }
 
-  saveToLog(log) {
-    console.log('it went up', log)
+  saveToLog(entry) {
+    console.log('it went up', entry);
+    fetch('/api/log', {
+      method: 'POST',
+      body: JSON.stringify(entry),
+      headers: {
+        'Content-type': 'application/json'
+      }
+    })
+      .then(response => response.json())
+      .then(episode => {
+        let log = this.state.log;
+        log = this.state.log.concat(log);
+        this.setState({ log });
+      })
+      .catch(err => {
+        console.error(err);
+      });
   }
 
   render() {

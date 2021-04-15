@@ -41,7 +41,8 @@ class LogModal extends React.Component {
       season: this.props.season,
       number: this.props.number,
       episodeName: this.props.name,
-      rating: this.state.rating
+      rating: this.state.rating,
+      image: this.props.image
     };
     this.props.toggleModal();
     this.props.saveToLog(log);

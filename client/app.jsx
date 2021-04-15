@@ -71,6 +71,7 @@ export default class App extends React.Component {
   goHome() {
     this.setState({ menuOpen: false });
     this.setState({ watchlistOpen: false });
+    this.setState({ searchResults: [] });
   }
 
   deleteFromWatchlist(episode) {

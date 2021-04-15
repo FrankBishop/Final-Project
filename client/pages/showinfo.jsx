@@ -39,7 +39,7 @@ class ShowInfo extends React.Component {
   }
 
   episodeListings() {
-    fetch('http://api.tvmaze.com/shows/' + this.state.showName.id + '/episodes')
+    fetch('https://api.tvmaze.com/shows/' + this.state.showName.id + '/episodes')
       .then(response => response.json())
       .then(result => {
         this.setState({ episodes: result });

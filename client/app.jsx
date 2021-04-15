@@ -99,7 +99,6 @@ export default class App extends React.Component {
   }
 
   saveToLog(entry) {
-    console.log('it went up', entry);
     fetch('/api/log', {
       method: 'POST',
       body: JSON.stringify(entry),

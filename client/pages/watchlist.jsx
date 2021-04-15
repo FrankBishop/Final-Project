@@ -1,14 +1,17 @@
 import React from 'react';
 import SearchForm from './search';
 import DeleteModal from './delete-modal';
+import LogModal from './log-modal';
 
 class Watchlist extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = { openModal: false, episodeToDelete: null };
+    this.state = { openModal: false, episodeToDelete: null, logModalOpen: false };
     this.openModal = this.openModal.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
+    this.openLogModal = this.openLogModal.bind(this);
+    this.toggleLogModal = this.toggleLogModal.bind(this);
   }
 
   render() {
@@ -22,7 +25,7 @@ class Watchlist extends React.Component {
           <ul className="watch-show-title" value={episode.show} > {episode.show}  </ul>
           <ul className="watch-episode-title" value={episode['episode name']} > S{episode.season}E{episode.number} {episode['episode name']} </ul>
           <div className="watchlist-button-container">
-            <button className="watchlist-log-button">Log</button>
+            <button className="watchlist-log-button" onClick={this.openLogModal}>Log</button>
             <button onClick={this.openModal} id={episode.entryId} className="watchlist-delete-button">Delete</button>
           </div>
         </div>
@@ -74,6 +77,29 @@ class Watchlist extends React.Component {
 
         </footer>
       </div>;
+    } else if (this.state.logModalOpen === true) {
+      return <div>
+        <header>
+          <i onClick={this.props.menu} className="fas fa-tv fa-2x tv-icon"></i>
+          <h1 className="header-text"> TV Diary </h1>
+          <div className="search-form-header">
+            <SearchForm onSubmit={this.props.SetSearchResults} />
+          </div>
+        </header>
+        <main>
+          <LogModal toggleModal = {this.toggleLogModal} />
+          <div className="search-form">
+            <SearchForm onSubmit={this.props.setSearchResults} />
+          </div>
+          <div>
+            <h1 className="main-header header-text">Watchlist</h1>
+            <ul className="list-results"> {watchlistToRender} </ul>
+          </div>;
+        </main>
+        <footer>
+
+        </footer>
+      </div>;
     } else {
       return <div>
         <header>
@@ -111,6 +137,19 @@ class Watchlist extends React.Component {
       this.setState({ episodeToDelete: null });
     } else {
       this.setState({ openModal: true });
+    }
+  }
+
+  openLogModal() {
+    this.setState({ logModalOpen: true });
+  }
+
+  toggleLogModal() {
+    if (this.state.logModalOpen === true) {
+      this.setState({ logModalOpen: false });
+      this.setState({ episodeToDelete: null });
+    } else {
+      this.setState({ logModalOpen: true });
     }
   }
 }

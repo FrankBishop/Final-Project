@@ -1,5 +1,4 @@
 import React from 'react';
-import ShowInfo from './showinfo';
 import SearchForm from './search';
 
 class SearchResults extends React.Component {
@@ -19,11 +18,6 @@ class SearchResults extends React.Component {
         <ul className="show" onClick={this.showInfo} value={result.show.name}> {result.show.name} </ul>
       </div>
     );
-    // if (this.state.show !== null) {
-    //   return <ShowInfo show={this.state.show} watchlist={this.props.watchlist} addToWatchlist={this.props.addToWatchlist} menu={this.props.menu}
-    //     menuOpen={this.props.menuOpen} openWatchlist={this.props.openWatchlist} isWatchlistOpen={this.props.isWatchlistOpen} goHome={this.props.goHome}
-    //     saveToLog={this.props.saveToLog} results={this.props.results} />;
-    // } else {
     return <div>
       <header>
         <i onClick={this.props.menu} className="fas fa-tv fa-2x tv-icon"></i>

@@ -1,5 +1,6 @@
 import React from 'react';
 import LogModal from './log-modal';
+import SearchForm from './search';
 
 class EpisodeDetails extends React.Component {
 
@@ -12,34 +13,52 @@ class EpisodeDetails extends React.Component {
   }
 
   render() {
-    const summary = this.props.episode.summary;
+    const summary = this.props.showEpisode.summary;
     const filteredSummary = summary.replace(/<[^>]+>/g, '');
-    return <div className="episode-info">
-      {this.state.logModalOpen === true &&
-        <LogModal toggleModal={this.toggleModal} showName={this.props.episode._embedded.show.name} season={this.props.episode.season}
-          number={this.props.episode.number} name={this.props.episode.name} saveToLog={this.props.saveToLog} image={this.props.episode.image.original} />
-      }
-      <h1 className="episode-header">{this.props.episode._embedded.show.name}</h1>
-      <h3 className="episode-details">S{this.props.episode.season} E{this.props.episode.number} {this.props.episode.name}</h3>
-      <h4 className="episode-details">{this.props.episode.airdate}</h4>
-      <div className="episode-image-holder summary">
-        <img src={this.props.episode.image.original} alt="episode" />
-        <p>{filteredSummary}</p>
-      </div>
-      <div className="episode-button-container">
-        <button onClick={this.openModal}>Log</button>
-        <button onClick={this.addToWatchlist}>Need To Watch</button>
-        <button>Mark as Watched</button>
-      </div>
+    return <div>
+      <header>
+        <i onClick={this.props.menu} className="fas fa-tv fa-2x tv-icon"></i>
+        <h1 className="header-text"> TV Diary </h1>
+        <div className="search-form-header">
+          <SearchForm onSubmit={this.props.setSearchResults} />
+        </div>
+      </header>
+      <main>
+        <div className="search-form">
+          <SearchForm onSubmit={this.props.setSearchResults} />
+        </div>
+
+        <div className="episode-info">
+          {this.state.logModalOpen === true &&
+            <LogModal toggleModal={this.toggleModal} showName={this.props.showEpisode._embedded.show.name} season={this.props.showEpisode.season}
+              number={this.props.showEpisode.number} name={this.props.showEpisode.name} saveToLog={this.props.saveToLog} image={this.props.showEpisode.image.original} />
+          }
+          <h1 className="episode-header">{this.props.showEpisode._embedded.show.name}</h1>
+          <h3 className="episode-details">S{this.props.showEpisode.season} E{this.props.showEpisode.number} {this.props.showEpisode.name}</h3>
+          <h4 className="episode-details">{this.props.showEpisode.airdate}</h4>
+          <div className="episode-image-holder summary">
+            <img src={this.props.showEpisode.image.original} alt="episode" />
+            <p>{filteredSummary}</p>
+          </div>
+          <div className="episode-button-container">
+            <button onClick={this.openModal}>Log</button>
+            <button onClick={this.addToWatchlist}>Need To Watch</button>
+            <button>Mark as Watched</button>
+          </div>
+        </div>
+      </main>
+      <footer>
+
+      </footer>
     </div>;
   }
 
   addToWatchlist(event) {
-    const show = this.props.episode._embedded.show.name;
-    const episodeName = this.props.episode.name;
-    const season = this.props.episode.season;
-    const number = this.props.episode.number;
-    const image = this.props.episode.image.original;
+    const show = this.props.showEpisode._embedded.show.name;
+    const episodeName = this.props.showEpisode.name;
+    const season = this.props.showEpisode.season;
+    const number = this.props.showEpisode.number;
+    const image = this.props.showEpisode.image.original;
     const episode = {
       show: show,
       episodeName: episodeName,

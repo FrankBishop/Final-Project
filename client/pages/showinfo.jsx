@@ -22,11 +22,6 @@ class ShowInfo extends React.Component {
         <ul className="character" value={result.character.name}> {result.character.name} </ul>
       </div>
     );
-    if (this.state.episodes !== null) {
-      return < EpisodeList show={this.state.episodes} watchlist={this.props.watchlist} showName={this.state.showName.name} addToWatchlist={this.props.addToWatchlist}
-        menu={this.props.menu} menuOpen={this.props.menuOpen} openWatchlist={this.props.openWatchlist} isWatchlistOpen={this.props.isWatchlistOpen}
-        goHome={this.props.goHome} saveToLog={this.props.saveToLog} />;
-    } else {
       return <div>
         <header>
           <i onClick={this.props.menu} className="fas fa-tv fa-2x tv-icon"></i>
@@ -54,7 +49,7 @@ class ShowInfo extends React.Component {
         </footer>
       </div>;
     }
-  }
+  
 
   episodeListings() {
     fetch('https://api.tvmaze.com/shows/' + this.state.showName.id + '/episodes')

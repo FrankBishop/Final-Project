@@ -1,5 +1,4 @@
 import React from 'react';
-import EpisodeDetails from './episode-details';
 import LogModal from './log-modal';
 import SearchForm from './search';
 
@@ -29,11 +28,6 @@ class EpisodeList extends React.Component {
         </div>
       </div>
     );
-    // if (this.state.episode !== null) {
-    //   return < EpisodeDetails episode={this.state.episode} watchlist={this.props.watchlist} addToWatchlist={this.props.addToWatchlist}
-    //     menu={this.props.menu} menuOpen={this.props.menuOpen} openWatchlist={this.props.openWatchlist} isWatchlistOpen={this.props.isWatchlistOpen}
-    //     goHome={this.props.goHome} saveToLog={this.props.saveToLog} />;
-    // } else {
     return <div>
       <header>
         <i onClick={this.props.menu} className="fas fa-tv fa-2x tv-icon"></i>
@@ -59,13 +53,12 @@ class EpisodeList extends React.Component {
     </div >;
   }
 
-
   episodeInfo(event) {
     const episodeId = event.target.parentElement.getAttribute('id');
     fetch('https://api.tvmaze.com/episodes/' + episodeId + '?embed=show')
       .then(response => response.json())
       .then(result => {
-        this.setState({ episode: result });
+        this.props.showEpisode(result);
       });
   }
 

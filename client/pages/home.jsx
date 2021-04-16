@@ -1,29 +1,9 @@
 import React from 'react';
 import SearchForm from './search';
-import SearchResults from './search-results';
 
 export default class Home extends React.Component {
 
   render() {
-    // if (this.props.searchResults.length > 0) {
-    //   return <div>
-    //     <header>
-    //       <i onClick={this.props.menu} className="fas fa-tv fa-2x tv-icon"></i>
-    //       <h1 className="header-text"> {this.props.text} </h1>
-    //       <div className="search-form-header">
-    //         <SearchForm onSubmit={this.props.setSearchResults} />
-    //       </div>
-    //     </header>
-    //     <main>
-    //       <div className="search-form">
-    //         <SearchForm onSubmit={this.props.setSearchResults} />
-    //       </div>
-    //       <SearchResults results={this.props.searchResults} show={this.props.showInfo} watchlist={this.props.watchlist} addToWatchlist={this.props.addToWatchlist}
-    //         menu={this.props.menu} menuOpen={this.props.menuOpen} openWatchlist={this.props.openWatchlist} isWatchlistOpen={this.props.isWatchlistOpen}
-    //         goHome={this.props.goHome} saveToLog={this.props.saveToLog} />
-    //       </main>
-    //   </div>;
-    // } else {
     return <div>
       <header>
         <i onClick={this.props.menu} className="fas fa-tv fa-2x tv-icon"></i>

@@ -1,5 +1,6 @@
 import React from 'react';
 import EpisodeList from './episode-list';
+import SearchForm from './search';
 
 class ShowInfo extends React.Component {
 
@@ -26,24 +27,41 @@ class ShowInfo extends React.Component {
         menu={this.props.menu} menuOpen={this.props.menuOpen} openWatchlist={this.props.openWatchlist} isWatchlistOpen={this.props.isWatchlistOpen}
         goHome={this.props.goHome} saveToLog={this.props.saveToLog} />;
     } else {
-      return <div className="show-info">
-        <h1 className="show-header header-text">{this.state.showName.name}</h1>
-        <h4 className="premiere-date">Premiere Date - {this.state.showName.premiered}</h4>
-        <button className="episodes-link" onClick={this.episodeListings}>Episode List</button>
-        <img className="show-image" src={this.state.showName.image.medium} alt={this.state.showName.name} ></img>
-        <h3 className="summary-header">Summary</h3>
-        <div className="summary"> {filteredSummary}</div>
-        <ul className="cast-list">{listResults}</ul>
+      return <div>
+        <header>
+          <i onClick={this.props.menu} className="fas fa-tv fa-2x tv-icon"></i>
+          <h1 className="header-text"> {this.props.text} </h1>
+          <div className="search-form-header">
+            <SearchForm onSubmit={this.props.setSearchResults} />
+          </div>
+        </header>
+        <main>
+          <div className="search-form">
+            <SearchForm onSubmit={this.props.setSearchResults} />
+          </div>
+          <div className="show-info">
+            <h1 className="show-header header-text">{this.state.showName.name}</h1>
+            <h4 className="premiere-date">Premiere Date - {this.state.showName.premiered}</h4>
+            <button className="episodes-link" onClick={this.episodeListings}>Episode List</button>
+            <img className="show-image" src={this.state.showName.image.medium} alt={this.state.showName.name} ></img>
+            <h3 className="summary-header">Summary</h3>
+            <div className="summary"> {filteredSummary}</div>
+            <ul className="cast-list">{listResults}</ul>
+          </div>
+        </main>
+        <footer>
+
+        </footer>
       </div>;
     }
   }
 
   episodeListings() {
-    fetch('https://api.tvmaze.com/shows/' + this.state.showName.id + '/episodes')
-      .then(response => response.json())
-      .then(result => {
-        this.setState({ episodes: result });
-      });
+          fetch('https://api.tvmaze.com/shows/' + this.state.showName.id + '/episodes')
+            .then(response => response.json())
+            .then(result => {
+              this.setState({ episodes: result });
+            });
   }
 }
 

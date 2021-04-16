@@ -4,11 +4,12 @@ import Watchlist from './pages/watchlist';
 import Diary from './pages/diary';
 import AppDrawer from './app-drawer.jsx';
 import SearchResults from './pages/search-results';
+import ShowInfo from './pages/showinfo';
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { searchResults: [], watchlist: [], menuOpen: false, watchlistOpen: false, log: [], logOpen: false };
+    this.state = { searchResults: [], watchlist: [], menuOpen: false, watchlistOpen: false, log: [], logOpen: false, show: null };
     this.setSearchResults = this.setSearchResults.bind(this);
     this.showWatchlist = this.showWatchlist.bind(this);
     this.addToWatchlist = this.addToWatchlist.bind(this);
@@ -19,6 +20,7 @@ export default class App extends React.Component {
     this.saveToLog = this.saveToLog.bind(this);
     this.getLog = this.getLog.bind(this);
     this.openLog = this.openLog.bind(this);
+    this.setShow = this.setShow.bind(this);
   }
 
   componentDidMount() {
@@ -60,6 +62,11 @@ export default class App extends React.Component {
       .catch(err => {
         console.error(err);
       });
+  }
+
+  setShow(show) {
+    this.setState({ show });
+    this.setState({ searchResults: [] });
   }
 
   setSearchResults(results) {
@@ -141,7 +148,7 @@ export default class App extends React.Component {
   }
 
   render() {
-    if (this.state.watchlistOpen === false && this.state.logOpen === false && this.state.searchResults.length === 0) {
+    if (this.state.watchlistOpen === false && this.state.logOpen === false && this.state.searchResults.length === 0 && this.state.show === null) {
       return <div>
         <Home text="TV Diary" setSearchResults={this.setSearchResults} searchResults={this.state.searchResults} watchlist={this.state.watchlist}
           addToWatchlist={this.addToWatchlist} menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist}
@@ -152,13 +159,13 @@ export default class App extends React.Component {
       return <div>
         <SearchResults text="TV Diary" setSearchResults={this.setSearchResults} results={this.state.searchResults} watchlist={this.state.watchlist}
           addToWatchlist={this.addToWatchlist} menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist}
-          isWatchlistOpen={this.state.watchlistOpen} goHome={this.goHome} saveToLog={this.saveToLog} openLog={this.openLog} />
+          isWatchlistOpen={this.state.watchlistOpen} goHome={this.goHome} saveToLog={this.saveToLog} openLog={this.openLog} setShow={this.setShow} />
         <AppDrawer menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist} goHome={this.goHome} openLog={this.openLog} />;
       </div>;
     } else if (this.state.logOpen === true) {
       return <div>
         <Diary menu={this.openMenu} setSearchResults={this.setSearchResults} searchResults={this.state.searchResults} menuOpen={this.state.menuOpen === false} goHome={this.goHome} openWatchlist={this.openWatchlist}
-          isWatchlistOpen={this.state.watchlistOpen} watchlist={this.state.watchlist} deleteFromWatchlist={this.deleteFromWatchlist} saveToLog={this.saveToLog} openLog={this.openLog} log={this.state.log}/>
+          isWatchlistOpen={this.state.watchlistOpen} watchlist={this.state.watchlist} deleteFromWatchlist={this.deleteFromWatchlist} saveToLog={this.saveToLog} openLog={this.openLog} log={this.state.log} />
         <AppDrawer menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist} goHome={this.goHome} openLog={this.openLog} />;
       </div>;
     } else if (this.state.watchlistOpen === true) {
@@ -167,11 +174,11 @@ export default class App extends React.Component {
           isWatchlistOpen={this.state.watchlistOpen} watchlist={this.state.watchlist} deleteFromWatchlist={this.deleteFromWatchlist} saveToLog={this.saveToLog} openLog={this.openLog} />;
         <AppDrawer menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist} goHome={this.goHome} openLog={this.openLog} />;
         </div>;
-    } else {
+    } else if (this.state.show !== null) {
       return <div>
-        <Home text="TV Diary" setSearchResults={this.setSearchResults} searchResults={this.state.searchResults} watchlist={this.state.watchlist}
+        <ShowInfo text="TV Diary" setSearchResults={this.setSearchResults} searchResults={this.state.searchResults} watchlist={this.state.watchlist}
           addToWatchlist={this.addToWatchlist} menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist}
-          isWatchlistOpen={this.state.watchlistOpen} goHome={this.goHome} saveToLog={this.saveToLog} openLog={this.openLog} />;
+          isWatchlistOpen={this.state.watchlistOpen} goHome={this.goHome} saveToLog={this.saveToLog} openLog={this.openLog} show={this.state.show} />;
         <AppDrawer menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist} goHome={this.goHome} openLog={this.openLog} />;
       </div>;
     }

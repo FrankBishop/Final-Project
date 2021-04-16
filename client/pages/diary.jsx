@@ -7,11 +7,6 @@ class Diary extends React.Component {
   constructor(props) {
     super(props);
     this.state = { openModal: false, episodeToDelete: null, logModalOpen: false, episodeToLog: null };
-    this.openModal = this.openModal.bind(this);
-    this.toggleModal = this.toggleModal.bind(this);
-    this.openLogModal = this.openLogModal.bind(this);
-    this.toggleLogModal = this.toggleLogModal.bind(this);
-    this.episodeToLog = this.episodeToLog.bind(this);
   }
 
   render() {
@@ -27,8 +22,8 @@ class Diary extends React.Component {
         </div>
         <div className="diary-rating">
           <ul className="log-date"> {episode.date}  </ul>
-          <ReactStars className="stars-mobile" count={5} size={25} color2={'#ffd700'} value={episode.rating} edit={false} />
-          <ReactStars className="stars-desktop" count={5} size={50} color2={'#ffd700'} value={episode.rating} edit={false} />
+          <ReactStars className="stars-mobile" count={5} size={25} color2={'#ffd700'} value={Number(episode.rating)} edit={false} />
+          <ReactStars className="stars-desktop" count={5} size={50} color2={'#ffd700'} value={Number(episode.rating)} edit={false} />
         </div>
       </div>
     );
@@ -53,56 +48,6 @@ class Diary extends React.Component {
 
       </footer>
     </div>;
-  }
-
-  openModal(event) {
-    const deleteId = event.target.getAttribute('id');
-    this.setState({ openModal: true });
-    this.setState({ episodeToDelete: deleteId });
-  }
-
-  toggleModal() {
-    if (this.state.openModal === true) {
-      this.setState({ openModal: false });
-      this.setState({ episodeToDelete: null });
-    } else {
-      this.setState({ openModal: true });
-    }
-  }
-
-  openLogModal(event) {
-    this.setState({ logModalOpen: true });
-    const showName = event.target.getAttribute('show');
-    const episodeName = event.target.getAttribute('name');
-    const season = event.target.getAttribute('season');
-    const number = event.target.getAttribute('number');
-    const image = event.target.getAttribute('image');
-    const episode = {
-      showName: showName,
-      season: season,
-      number: number,
-      name: episodeName,
-      image: image
-    };
-    this.setState({ episodeToLog: episode });
-  }
-
-  toggleLogModal() {
-    if (this.state.logModalOpen === true) {
-      this.setState({ logModalOpen: false });
-      this.setState({ episodeToDelete: null });
-    } else {
-      this.setState({ logModalOpen: true });
-    }
-  }
-
-  episodeToLog() {
-    const episodeId = event.target.parentElement.getAttribute('id');
-    fetch('https://api.tvmaze.com/episodes/' + episodeId + '?embed=show')
-      .then(response => response.json())
-      .then(result => {
-        this.setState({ episode: result });
-      });
   }
 }
 

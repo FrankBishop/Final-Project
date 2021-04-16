@@ -131,7 +131,7 @@ export default class App extends React.Component {
       .then(response => response.json())
       .then(episode => {
         let log = this.state.log;
-        log = this.state.log.concat(log);
+        log = this.state.log.concat(episode);
         this.setState({ log });
       })
       .catch(err => {

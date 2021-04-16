@@ -26,7 +26,7 @@ class Diary extends React.Component {
           <ul className="watch-episode-title" value={episode['episode name']} > S{episode.season}E{episode.number} {episode['episode name']} </ul>
         </div>
         <div className="diary-rating">
-          <ul> {episode.date}  </ul>
+          <ul className="log-date"> {episode.date}  </ul>
           <ReactStars count={5} size={25} color2={'#ffd700'} value={episode.rating} />
         </div>
       </div>

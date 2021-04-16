@@ -453,10 +453,22 @@ h4 {
 
 .diary-episode-info {
   width: 25%;
+  margin-top: 5px;
 }
 
 .diary-rating {
   width: 33%;
+  margin-right: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 140px;
+  align-items: center;
+}
+
+.log-date {
+  font-size: 14px;
+  padding: 0;
 }
 
 @media screen and (min-width: 1025px) {

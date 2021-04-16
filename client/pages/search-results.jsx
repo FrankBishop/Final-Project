@@ -1,5 +1,6 @@
 import React from 'react';
 import ShowInfo from './showinfo';
+import SearchForm from './search';
 
 class SearchResults extends React.Component {
 
@@ -24,9 +25,24 @@ class SearchResults extends React.Component {
         saveToLog={this.props.saveToLog} results={this.props.results} />;
     } else {
       return <div>
+        <header>
+          <i onClick={this.props.menu} className="fas fa-tv fa-2x tv-icon"></i>
+          <h1 className="header-text"> {this.props.text} </h1>
+          <div className="search-form-header">
+            <SearchForm onSubmit={this.props.setSearchResults} />
+          </div>
+        </header>
+        <main>
+          <div className="search-form">
+            <SearchForm onSubmit={this.props.setSearchResults} />
+          </div>
         <h1 className="main-header header-text">Search Results</h1>
         <ul className="list-results"> {listResults} </ul>
-      </div>;
+       </main>
+        <footer>
+
+        </footer>
+    </div>;
     }
   }
 

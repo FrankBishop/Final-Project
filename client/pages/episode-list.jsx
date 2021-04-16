@@ -14,7 +14,6 @@ class EpisodeList extends React.Component {
     this.episodeToLog = this.episodeToLog.bind(this);
   }
 
-
   render() {
     const filteredEpisodes = this.props.show.filter(episode => episode.image !== null);
     const listResults = filteredEpisodes.map(episode =>

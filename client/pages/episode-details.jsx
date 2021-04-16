@@ -1,11 +1,11 @@
 import React from 'react';
-import LogModal from './log-modal'
+import LogModal from './log-modal';
 
 class EpisodeDetails extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = { logModalOpen: false }
+    this.state = { logModalOpen: false };
     this.addToWatchlist = this.addToWatchlist.bind(this);
     this.openModal = this.openModal.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
@@ -25,7 +25,7 @@ class EpisodeDetails extends React.Component {
         </div>
         <div className="episode-button-container">
           <button onClick={this.openModal}>Log</button>
-          <button onClick={this.AddToWatchlist}>Need To Watch</button>
+          <button onClick={this.addToWatchlist}>Need To Watch</button>
           <button>Mark as Watched</button>
         </div>
       </div>;
@@ -42,7 +42,7 @@ class EpisodeDetails extends React.Component {
         </div>
         <div className="episode-button-container">
           <button onClick={this.openModal}>Log</button>
-          <button onClick={this.AddToWatchlist}>Need To Watch</button>
+          <button onClick={this.addToWatchlist}>Need To Watch</button>
           <button>Mark as Watched</button>
         </div>
       </div>;

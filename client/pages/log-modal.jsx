@@ -44,14 +44,9 @@ class LogModal extends React.Component {
       rating: this.state.rating,
       image: this.props.image
     };
-    console.log('running from log modal', log)
     this.props.toggleModal();
     this.props.saveToLog(log);
   }
 }
 
 export default LogModal;
-
-//set star rating, and episode info into an object that will be put in a POST request
-//pass down props for episode info
-//hover over buttons

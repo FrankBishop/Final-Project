@@ -88,7 +88,7 @@ app.delete('/api/watchlist/:deleteId', (req, res) => {
 });
 
 app.post('/api/log', (req, res, next) => {
-  const { date, showName, episodeName, season, number, image, rating} = req.body;
+  const { date, showName, episodeName, season, number, image, rating } = req.body;
   const sql = `
     insert into "log" ("date", "show", "episode name", "season", "number", "image", "rating")
     values ($1, $2, $3, $4, $5, $6, $7)

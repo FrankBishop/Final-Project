@@ -57,11 +57,11 @@ class ShowInfo extends React.Component {
   }
 
   episodeListings() {
-          fetch('https://api.tvmaze.com/shows/' + this.state.showName.id + '/episodes')
-            .then(response => response.json())
-            .then(result => {
-              this.setState({ episodes: result });
-            });
+    fetch('https://api.tvmaze.com/shows/' + this.state.showName.id + '/episodes')
+      .then(response => response.json())
+      .then(result => {
+        this.props.episodes(result);
+      });
   }
 }
 

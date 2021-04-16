@@ -14,39 +14,24 @@ class EpisodeDetails extends React.Component {
   render() {
     const summary = this.props.episode.summary;
     const filteredSummary = summary.replace(/<[^>]+>/g, '');
-    if (this.state.logModalOpen === false) {
-      return <div className="episode-info">
-        <h1 className="episode-header">{this.props.episode._embedded.show.name}</h1>
-        <h3 className="episode-details">S{this.props.episode.season} E{this.props.episode.number} {this.props.episode.name}</h3>
-        <h4 className="episode-details">{this.props.episode.airdate}</h4>
-        <div className="episode-image-holder summary">
-          <img src={this.props.episode.image.original} alt="episode" />
-          <p>{filteredSummary}</p>
-        </div>
-        <div className="episode-button-container">
-          <button onClick={this.openModal}>Log</button>
-          <button onClick={this.addToWatchlist}>Need To Watch</button>
-          <button>Mark as Watched</button>
-        </div>
-      </div>;
-    } else {
-      return <div className="episode-info">
+    return <div className="episode-info">
+      {this.state.logModalOpen === true &&
         <LogModal toggleModal={this.toggleModal} showName={this.props.episode._embedded.show.name} season={this.props.episode.season}
           number={this.props.episode.number} name={this.props.episode.name} saveToLog={this.props.saveToLog} image={this.props.episode.image.original} />
-        <h1 className="episode-header">{this.props.episode._embedded.show.name}</h1>
-        <h3 className="episode-details">S{this.props.episode.season} E{this.props.episode.number} {this.props.episode.name}</h3>
-        <h4 className="episode-details">{this.props.episode.airdate}</h4>
-        <div className="episode-image-holder summary">
-          <img src={this.props.episode.image.original} alt="episode" />
-          <p>{filteredSummary}</p>
-        </div>
-        <div className="episode-button-container">
-          <button onClick={this.openModal}>Log</button>
-          <button onClick={this.addToWatchlist}>Need To Watch</button>
-          <button>Mark as Watched</button>
-        </div>
-      </div>;
-    }
+      }
+      <h1 className="episode-header">{this.props.episode._embedded.show.name}</h1>
+      <h3 className="episode-details">S{this.props.episode.season} E{this.props.episode.number} {this.props.episode.name}</h3>
+      <h4 className="episode-details">{this.props.episode.airdate}</h4>
+      <div className="episode-image-holder summary">
+        <img src={this.props.episode.image.original} alt="episode" />
+        <p>{filteredSummary}</p>
+      </div>
+      <div className="episode-button-container">
+        <button onClick={this.openModal}>Log</button>
+        <button onClick={this.addToWatchlist}>Need To Watch</button>
+        <button>Mark as Watched</button>
+      </div>
+    </div>;
   }
 
   addToWatchlist(event) {

@@ -39,7 +39,7 @@ class Watchlist extends React.Component {
           <i onClick={this.props.menu} className="fas fa-tv fa-2x tv-icon"></i>
           <h1 className="header-text"> TV Diary </h1>
           <div className="search-form-header">
-            <SearchForm onSubmit={this.props.SetSearchResults} />
+            <SearchForm onSubmit={this.props.setSearchResults} />
           </div>
         </header>
         <main>
@@ -55,64 +55,24 @@ class Watchlist extends React.Component {
 
         </footer>
       </div>;
-    } else if (this.state.openModal === true) {
-      return <div>
-        <header>
-          <i onClick={this.props.menu} className="fas fa-tv fa-2x tv-icon"></i>
-          <h1 className="header-text"> TV Diary </h1>
-          <div className="search-form-header">
-            <SearchForm onSubmit={this.props.SetSearchResults} />
-          </div>
-        </header>
-        <main>
-          <DeleteModal episodeToDelete={this.state.episodeToDelete} deleteFromWatchlist={this.props.deleteFromWatchlist} openModal={this.props.openModal}
-            toggleModal={this.toggleModal} />
-          <div className="search-form">
-            <SearchForm onSubmit={this.props.setSearchResults} />
-          </div>
-          <div>
-            <h1 className="main-header header-text">Watchlist</h1>
-            <ul className="list-results"> {watchlistToRender} </ul>
-          </div>;
-        </main>
-        <footer>
-
-        </footer>
-      </div>;
-    } else if (this.state.logModalOpen === true) {
-      return <div>
-        <header>
-          <i onClick={this.props.menu} className="fas fa-tv fa-2x tv-icon"></i>
-          <h1 className="header-text"> TV Diary </h1>
-          <div className="search-form-header">
-            <SearchForm onSubmit={this.props.SetSearchResults} />
-          </div>
-        </header>
-        <main>
-          <LogModal toggleModal={this.toggleLogModal} showName={this.state.episodeToLog.showName} season={this.state.episodeToLog.season}
-            number={this.state.episodeToLog.number} name={this.state.episodeToLog.name} saveToLog={this.props.saveToLog} image={this.state.episodeToLog.image} />
-          <div className="search-form">
-            <SearchForm onSubmit={this.props.setSearchResults} />
-          </div>
-          <div>
-            <h1 className="main-header header-text">Watchlist</h1>
-            <ul className="list-results"> {watchlistToRender} </ul>
-          </div>;
-        </main>
-        <footer>
-
-        </footer>
-      </div>;
     } else {
       return <div>
         <header>
           <i onClick={this.props.menu} className="fas fa-tv fa-2x tv-icon"></i>
           <h1 className="header-text"> TV Diary </h1>
           <div className="search-form-header">
-            <SearchForm onSubmit={this.props.SetSearchResults} />
+            <SearchForm onSubmit={this.props.setSearchResults} />
           </div>
         </header>
         <main>
+          {this.state.logModalOpen === true &&
+            <LogModal toggleModal={this.toggleLogModal} showName={this.state.episodeToLog.showName} season={this.state.episodeToLog.season}
+              number={this.state.episodeToLog.number} name={this.state.episodeToLog.name} saveToLog={this.props.saveToLog} image={this.state.episodeToLog.image} />
+          }
+          {this.state.openModal === true &&
+            <DeleteModal episodeToDelete={this.state.episodeToDelete} deleteFromWatchlist={this.props.deleteFromWatchlist} openModal={this.props.openModal}
+              toggleModal={this.toggleModal} />
+          }
           <div className="search-form">
             <SearchForm onSubmit={this.props.setSearchResults} />
           </div>

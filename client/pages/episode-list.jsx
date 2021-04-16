@@ -28,21 +28,16 @@ class EpisodeList extends React.Component {
         </div>
       </div>
     );
-    if (this.state.logModalOpen === true) {
-      return <div>
-        <LogModal toggleModal={this.toggleLogModal} showName={this.state.episodeToLog.showName} season={this.state.episodeToLog.season}
-          number={this.state.episodeToLog.number} name={this.state.episodeToLog.name} saveToLog={this.props.saveToLog} image={this.state.episodeToLog.image} />
-
-        <h1 className="episodes-list-header header-text">Episode List</h1>
-        <ul className="list-results"> {listResults} </ul>
-      </div>;
-
-    } else if (this.state.episode !== null) {
+    if (this.state.episode !== null) {
       return < EpisodeDetails episode={this.state.episode} watchlist={this.props.watchlist} addToWatchlist={this.props.addToWatchlist}
         menu={this.props.menu} menuOpen={this.props.menuOpen} openWatchlist={this.props.openWatchlist} isWatchlistOpen={this.props.isWatchlistOpen}
         goHome={this.props.goHome} saveToLog={this.props.saveToLog} />;
     } else {
       return <div>
+        {this.state.logModalOpen === true &&
+          <LogModal toggleModal={this.toggleLogModal} showName={this.state.episodeToLog.showName} season={this.state.episodeToLog.season}
+            number={this.state.episodeToLog.number} name={this.state.episodeToLog.name} saveToLog={this.props.saveToLog} image={this.state.episodeToLog.image} />
+        }
         <h1 className="episodes-list-header header-text">Episode List</h1>
         <ul className="list-results"> {listResults} </ul>
       </div>;

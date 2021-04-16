@@ -11,7 +11,7 @@ class Diary extends React.Component {
 
   render() {
     const diaryEntries = this.props.log;
-    const diaryToRender = diaryEntries.map(episode =>
+    const diaryToRender = diaryEntries.slice(0).reverse().map(episode =>
       <div className="watchlist-result" key={episode.logId} id={episode.logId} >
         <div className="watchlist-image-holder">
           <img className="episodes-list-image" src={episode.image} alt={episode['episode name']} ></img>

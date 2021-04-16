@@ -12,6 +12,7 @@ class Watchlist extends React.Component {
     this.toggleModal = this.toggleModal.bind(this);
     this.openLogModal = this.openLogModal.bind(this);
     this.toggleLogModal = this.toggleLogModal.bind(this);
+    this.episodeToLog = this.episodeToLog.bind(this);
   }
 
   render() {
@@ -156,7 +157,6 @@ class Watchlist extends React.Component {
       name: episodeName,
       image: image
     };
-    console.log(episode)
     this.setState({ episodeToLog: episode });
   }
 

@@ -24,7 +24,7 @@ class ShowInfo extends React.Component {
     if (this.state.episodes !== null) {
       return < EpisodeList show={this.state.episodes} watchlist={this.props.watchlist} showName={this.state.showName.name} addToWatchlist={this.props.addToWatchlist}
         menu={this.props.menu} menuOpen={this.props.menuOpen} openWatchlist={this.props.openWatchlist} isWatchlistOpen={this.props.isWatchlistOpen}
-        goHome={this.props.goHome} />;
+        goHome={this.props.goHome} saveToLog={this.props.saveToLog} />;
     } else {
       return <div className="show-info">
         <h1 className="show-header header-text">{this.state.showName.name}</h1>

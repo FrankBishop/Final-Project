@@ -16,3 +16,15 @@ create table "watchlist" (
   "isWatched" boolean,
   primary key ("entryId")
 );
+
+create table "log" (
+  "logId" serial,
+  "show" text,
+  "episode name" text,
+  "season" text,
+  "number" text,
+  "image" text,
+  "date" text,
+  "rating" text,
+  primary key("logId")
+)

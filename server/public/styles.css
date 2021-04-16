@@ -451,6 +451,31 @@ h4 {
   justify-content: space-around;
 }
 
+.diary-episode-info {
+  width: 25%;
+  margin-top: 5px;
+}
+
+.diary-rating {
+  width: 33%;
+  margin-right: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 130px;
+  align-items: flex-end;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.log-date {
+  font-size: 14px;
+  padding: 0;
+}
+
+.stars-desktop {
+  display: none;
+}
 
 @media screen and (min-width: 1025px) {
   .image-holder-row > img {
@@ -628,5 +653,21 @@ h4 {
 
   .delete-modal-buttons {
     margin-top: 175px;
+  }
+
+  .diary-rating {
+    width: 60%;
+  }
+
+  .stars-mobile {
+    display: none;
+  }
+
+  .stars-desktop {
+    display: inline;
+  }
+
+  .log-date {
+    font-size: 20px;
   }
 }

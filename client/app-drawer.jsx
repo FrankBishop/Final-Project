@@ -12,6 +12,7 @@ class AppDrawer extends React.Component {
       return <div className="app-drawer">
         <div>
           <h1 onClick={this.props.goHome}>Home</h1>
+          <h1 onClick={this.props.openLog}>Diary</h1>
           <h1 onClick={this.props.openWatchlist}>Watchlist</h1>
         </div>
       </div>;
@@ -19,6 +20,7 @@ class AppDrawer extends React.Component {
       return <div className="hidden">
         <div>
           <h1 onClick={this.props.goHome}>Home</h1>
+          <h1 onClick={this.props.openLog}>Diary</h1>
           <h1 onClick={this.props.openWatchlist}>Watchlist</h1>
         </div>
       </div>;

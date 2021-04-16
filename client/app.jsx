@@ -1,12 +1,13 @@
 import React from 'react';
 import Home from './pages/home';
 import Watchlist from './pages/watchlist';
+import Diary from './pages/diary';
 import AppDrawer from './app-drawer.jsx';
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { searchResults: [], watchlist: [], menuOpen: false, watchlistOpen: false, log: [] };
+    this.state = { searchResults: [], watchlist: [], menuOpen: false, watchlistOpen: false, log: [], logOpen: false };
     this.setSearchResults = this.setSearchResults.bind(this);
     this.showWatchlist = this.showWatchlist.bind(this);
     this.addToWatchlist = this.addToWatchlist.bind(this);
@@ -15,16 +16,28 @@ export default class App extends React.Component {
     this.goHome = this.goHome.bind(this);
     this.deleteFromWatchlist = this.deleteFromWatchlist.bind(this);
     this.saveToLog = this.saveToLog.bind(this);
+    this.getLog = this.getLog.bind(this);
+    this.openLog = this.openLog.bind(this);
   }
 
   componentDidMount() {
     this.getWatchlist();
+    this.getLog();
   }
 
   getWatchlist() {
     fetch('/api/watchlist')
       .then(response => response.json())
       .then(watchlist => this.setState({ watchlist }))
+      .catch(err => {
+        console.error(err);
+      });
+  }
+
+  getLog() {
+    fetch('/api/log')
+      .then(response => response.json())
+      .then(log => this.setState({ log }))
       .catch(err => {
         console.error(err);
       });
@@ -68,12 +81,21 @@ export default class App extends React.Component {
     this.setState({ menuOpen: false });
     this.setState({ watchlistOpen: true });
     this.setState({ searchResults: [] });
+    this.setState({ logOpen: false });
+  }
+
+  openLog() {
+    this.setState({ watchlistOpen: false });
+    this.setState({ menuOpen: false });
+    this.setState({ logOpen: true });
+    this.setState({ searchResults: [] });
   }
 
   goHome() {
     this.setState({ menuOpen: false });
     this.setState({ watchlistOpen: false });
     this.setState({ searchResults: [] });
+    this.setState({ logOpen: false });
   }
 
   deleteFromWatchlist(episode) {
@@ -109,7 +131,7 @@ export default class App extends React.Component {
       .then(response => response.json())
       .then(episode => {
         let log = this.state.log;
-        log = this.state.log.concat(log);
+        log = this.state.log.concat(episode);
         this.setState({ log });
       })
       .catch(err => {
@@ -118,18 +140,31 @@ export default class App extends React.Component {
   }
 
   render() {
-    if (this.state.watchlistOpen === false || this.state.searchResults.length > 0) {
+    if (this.state.watchlistOpen === false && this.state.logOpen === false) {
       return <div>
         <Home text="TV Diary" setSearchResults={this.setSearchResults} searchResults={this.state.searchResults} watchlist={this.state.watchlist}
           addToWatchlist={this.addToWatchlist} menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist}
-          isWatchlistOpen={this.state.watchlistOpen} goHome={this.goHome} saveToLog={this.saveToLog} />;
-        <AppDrawer menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist} goHome={this.goHome} />;
+          isWatchlistOpen={this.state.watchlistOpen} goHome={this.goHome} saveToLog={this.saveToLog} openLog={this.openLog} />;
+        <AppDrawer menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist} goHome={this.goHome} openLog={this.openLog} />;
+      </div>;
+    } else if (this.state.searchResults.length > 0) {
+      return <div>
+        <Home text="TV Diary" setSearchResults={this.setSearchResults} searchResults={this.state.searchResults} watchlist={this.state.watchlist}
+          addToWatchlist={this.addToWatchlist} menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist}
+          isWatchlistOpen={this.state.watchlistOpen} goHome={this.goHome} saveToLog={this.saveToLog} openLog={this.openLog} />;
+        <AppDrawer menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist} goHome={this.goHome} openLog={this.openLog} />;
+      </div>;
+    } else if (this.state.logOpen === true) {
+      return <div>
+        <Diary menu={this.openMenu} setSearchResults={this.setSearchResults} searchResults={this.state.searchResults} menuOpen={this.state.menuOpen === false} goHome={this.goHome} openWatchlist={this.openWatchlist}
+          isWatchlistOpen={this.state.watchlistOpen} watchlist={this.state.watchlist} deleteFromWatchlist={this.deleteFromWatchlist} saveToLog={this.saveToLog} openLog={this.openLog} log={this.state.log}/>
+        <AppDrawer menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist} goHome={this.goHome} openLog={this.openLog} />;
       </div>;
     } else {
       return <div>
         <Watchlist menu={this.openMenu} setSearchResults={this.setSearchResults} searchResults={this.state.searchResults} menuOpen={this.state.menuOpen === false} goHome={this.goHome} openWatchlist={this.openWatchlist}
-          isWatchlistOpen={this.state.watchlistOpen} watchlist={this.state.watchlist} deleteFromWatchlist={this.deleteFromWatchlist} saveToLog={this.saveToLog} />;
-        <AppDrawer menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist} goHome={this.goHome} />;
+          isWatchlistOpen={this.state.watchlistOpen} watchlist={this.state.watchlist} deleteFromWatchlist={this.deleteFromWatchlist} saveToLog={this.saveToLog} openLog={this.openLog} />;
+        <AppDrawer menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist} goHome={this.goHome} openLog={this.openLog} />;
         </div>;
     }
   }

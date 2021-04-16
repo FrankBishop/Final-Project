@@ -85,7 +85,7 @@ export default class App extends React.Component {
   }
 
   openLog() {
-    console.log('it opens the log');
+    this.setState({ watchlistOpen: false });
     this.setState({ menuOpen: false });
     this.setState({ logOpen: true });
     this.setState({ searchResults: [] });
@@ -157,7 +157,7 @@ export default class App extends React.Component {
     } else if (this.state.logOpen === true) {
       return <div>
         <Diary menu={this.openMenu} setSearchResults={this.setSearchResults} searchResults={this.state.searchResults} menuOpen={this.state.menuOpen === false} goHome={this.goHome} openWatchlist={this.openWatchlist}
-          isWatchlistOpen={this.state.watchlistOpen} watchlist={this.state.watchlist} deleteFromWatchlist={this.deleteFromWatchlist} saveToLog={this.saveToLog} openLog={this.openLog}/>
+          isWatchlistOpen={this.state.watchlistOpen} watchlist={this.state.watchlist} deleteFromWatchlist={this.deleteFromWatchlist} saveToLog={this.saveToLog} openLog={this.openLog} log={this.state.log}/>
         <AppDrawer menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist} goHome={this.goHome} openLog={this.openLog} />;
       </div>;
     } else {

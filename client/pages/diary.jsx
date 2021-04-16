@@ -15,23 +15,23 @@ class Diary extends React.Component {
   }
 
   render() {
-    // const watchlistEntries = this.props.watchlist;
-    // const watchlistToRender = watchlistEntries.map(episode =>
-    //   <div className="watchlist-result" key={episode.entryId} id={episode.entryId} >
-    //     <div className="watchlist-image-holder">
-    //       <img className="episodes-list-image" src={episode.image} alt={episode['episode name']} ></img>
-    //     </div>
-    //     <div className="watchlist-episode-info">
-    //       <ul className="watch-show-title" value={episode.show} > {episode.show}  </ul>
-    //       <ul className="watch-episode-title" value={episode['episode name']} > S{episode.season}E{episode.number} {episode['episode name']} </ul>
-    //       <div className="watchlist-button-container">
-    //         <button className="watchlist-log-button" onClick={this.openLogModal} show={episode.show} name={episode['episode name']}
-    //           season={episode.season} number={episode.number} image={episode.image}>Log</button>
-    //         <button onClick={this.openModal} id={episode.entryId} className="watchlist-delete-button">Delete</button>
-    //       </div>
-    //     </div>
-    //   </div>
-    // );
+    const diaryEntries = this.props.log;
+    const diaryToRender = diaryEntries.map(episode =>
+      <div className="watchlist-result" key={episode.entryId} id={episode.entryId} >
+        <div className="watchlist-image-holder">
+          <img className="episodes-list-image" src={episode.image} alt={episode['episode name']} ></img>
+        </div>
+        <div className="watchlist-episode-info">
+          <ul className="watch-show-title" value={episode.show} > {episode.show}  </ul>
+          <ul className="watch-episode-title" value={episode['episode name']} > S{episode.season}E{episode.number} {episode['episode name']} </ul>
+          <div className="watchlist-button-container">
+            <button className="watchlist-log-button" onClick={this.openLogModal} show={episode.show} name={episode['episode name']}
+              season={episode.season} number={episode.number} image={episode.image}>Log</button>
+            <button onClick={this.openModal} id={episode.entryId} className="watchlist-delete-button">Delete</button>
+          </div>
+        </div>
+      </div>
+    );
     return <div>
       <header>
         <i onClick={this.props.menu} className="fas fa-tv fa-2x tv-icon"></i>
@@ -41,8 +41,17 @@ class Diary extends React.Component {
         </div>
       </header>
       <main>
-      <h1>This is the diary</h1>
-      </main>
+        <div className="search-form">
+          <SearchForm onSubmit={this.props.setSearchResults} />
+        </div>
+        <div>
+          <h1 className="main-header header-text">Diary</h1>
+          <ul className="list-results"> {diaryToRender} </ul>
+        </div>;
+        </main>
+      <footer>
+
+      </footer>
     </div>;
   }
 

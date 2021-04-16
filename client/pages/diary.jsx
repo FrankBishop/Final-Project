@@ -1,6 +1,6 @@
 import React from 'react';
 import SearchForm from './search';
-import LogModal from './log-modal';
+import ReactStars from 'react-stars';
 
 class Diary extends React.Component {
 
@@ -17,18 +17,17 @@ class Diary extends React.Component {
   render() {
     const diaryEntries = this.props.log;
     const diaryToRender = diaryEntries.map(episode =>
-      <div className="watchlist-result" key={episode.entryId} id={episode.entryId} >
+      <div className="watchlist-result" key={episode.logId} id={episode.logId} >
         <div className="watchlist-image-holder">
           <img className="episodes-list-image" src={episode.image} alt={episode['episode name']} ></img>
         </div>
-        <div className="watchlist-episode-info">
+        <div className="diary-episode-info">
           <ul className="watch-show-title" value={episode.show} > {episode.show}  </ul>
           <ul className="watch-episode-title" value={episode['episode name']} > S{episode.season}E{episode.number} {episode['episode name']} </ul>
-          <div className="watchlist-button-container">
-            <button className="watchlist-log-button" onClick={this.openLogModal} show={episode.show} name={episode['episode name']}
-              season={episode.season} number={episode.number} image={episode.image}>Log</button>
-            <button onClick={this.openModal} id={episode.entryId} className="watchlist-delete-button">Delete</button>
-          </div>
+        </div>
+        <div className="diary-rating">
+          <ul> {episode.date}  </ul>
+          <ReactStars count={5} size={25} color2={'#ffd700'} value={episode.rating} />
         </div>
       </div>
     );

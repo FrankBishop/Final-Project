@@ -461,9 +461,11 @@ h4 {
   margin-right: 5px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  height: 140px;
-  align-items: center;
+  justify-content: space-between;
+  height: 130px;
+  align-items: flex-end;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 .log-date {

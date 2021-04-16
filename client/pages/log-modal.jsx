@@ -44,6 +44,7 @@ class LogModal extends React.Component {
       rating: this.state.rating,
       image: this.props.image
     };
+    console.log('running from log modal', log)
     this.props.toggleModal();
     this.props.saveToLog(log);
   }

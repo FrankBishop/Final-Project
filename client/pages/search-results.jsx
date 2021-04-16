@@ -19,9 +19,9 @@ class SearchResults extends React.Component {
       </div>
     );
     if (this.state.show !== null) {
-      return < ShowInfo show={this.state.show} watchlist={this.props.watchlist} addToWatchlist={this.props.addToWatchlist} menu={this.props.menu}
+      return <ShowInfo show={this.state.show} watchlist={this.props.watchlist} addToWatchlist={this.props.addToWatchlist} menu={this.props.menu}
         menuOpen={this.props.menuOpen} openWatchlist={this.props.openWatchlist} isWatchlistOpen={this.props.isWatchlistOpen} goHome={this.props.goHome}
-        saveToLog={this.props.saveToLog} />;
+        saveToLog={this.props.saveToLog} results={this.props.results} />;
     } else {
       return <div>
         <h1 className="main-header header-text">Search Results</h1>

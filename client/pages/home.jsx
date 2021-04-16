@@ -20,11 +20,8 @@ export default class Home extends React.Component {
           </div>
           <SearchResults results={this.props.searchResults} show={this.props.showInfo} watchlist={this.props.watchlist} addToWatchlist={this.props.addToWatchlist}
             menu={this.props.menu} menuOpen={this.props.menuOpen} openWatchlist={this.props.openWatchlist} isWatchlistOpen={this.props.isWatchlistOpen}
-            goHome={this.props.goHome} saveToLog={this.props.saveToLog}/>
-        </main>
-        <footer>
-
-        </footer>
+            goHome={this.props.goHome} saveToLog={this.props.saveToLog} />
+          </main>
       </div>;
     } else {
       return <div>

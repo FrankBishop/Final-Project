@@ -15,16 +15,27 @@ export default class App extends React.Component {
     this.goHome = this.goHome.bind(this);
     this.deleteFromWatchlist = this.deleteFromWatchlist.bind(this);
     this.saveToLog = this.saveToLog.bind(this);
+    this.getLog = this.getLog.bind(this);
   }
 
   componentDidMount() {
     this.getWatchlist();
+    this.getLog();
   }
 
   getWatchlist() {
     fetch('/api/watchlist')
       .then(response => response.json())
       .then(watchlist => this.setState({ watchlist }))
+      .catch(err => {
+        console.error(err);
+      });
+  }
+
+  getLog() {
+    fetch('/api/log')
+      .then(response => response.json())
+      .then(log => this.setState({ log }))
       .catch(err => {
         console.error(err);
       });

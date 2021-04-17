@@ -5,13 +5,35 @@ class SignUp extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = { username: null, password: null };
+    this.state = { username: null, password: null, registered: false };
     this.startSignUp = this.startSignUp.bind(this);
     this.setUsername = this.setUsername.bind(this);
     this.setPassword = this.setPassword.bind(this);
   }
 
   render() {
+    if (this.state.registered === true) {
+      return <div>
+        <header>
+          <i onClick={this.props.menu} className="fas fa-tv fa-2x tv-icon"></i>
+          <h1 className="header-text"> TV Diary </h1>
+          <div className="search-form-header">
+            <SearchForm onSubmit={this.props.setSearchResults} />
+          </div>
+        </header>
+        <main>
+          <div className="search-form">
+            <SearchForm onSubmit={this.props.setSearchResults} />
+          </div>
+          <div className="registration">
+            <h1 className="registration-header">Congrats you are registered</h1>
+          </div>
+        </main>
+        <footer>
+
+        </footer>
+      </div>;
+    }
     return <div>
       <header>
         <i onClick={this.props.menu} className="fas fa-tv fa-2x tv-icon"></i>
@@ -54,13 +76,12 @@ class SignUp extends React.Component {
 
   startSignUp() {
     event.preventDefault();
-    console.log(this.state.username);
-    console.log(this.state.password);
     const user = {
       username: this.state.username,
       password: this.state.password
     };
     this.props.signUp(user);
+    this.setState({ registered: true });
   }
 }
 

@@ -30,6 +30,7 @@ export default class App extends React.Component {
     this.setEpisodes = this.setEpisodes.bind(this);
     this.setShowEpisode = this.setShowEpisode.bind(this);
     this.goToSignUp = this.goToSignUp.bind(this);
+    this.signUp = this.signUp.bind(this);
   }
 
   componentDidMount() {
@@ -184,8 +185,19 @@ export default class App extends React.Component {
     this.setState({ menuOpen: false });
   }
 
-  signUp() {
-    console.log('this button works');
+  signUp(user) {
+    console.log('this button works', user);
+    fetch('/api/users', {
+      method: 'POST',
+      body: JSON.stringify(user),
+      headers: {
+        'Content-type': 'application/json'
+      }
+    })
+      .then(response => response.json())
+      .catch(err => {
+        console.error(err);
+      });
   }
 
   render() {
@@ -234,7 +246,7 @@ export default class App extends React.Component {
       </div>;
     } else if (this.state.signUp === true) {
       return <div>
-        <SignUp menu={this.openMenu} menuOpen={this.state.menuOpen} signUp={this.props.signUp} goHome={this.goHome} />;
+        <SignUp menu={this.openMenu} menuOpen={this.state.menuOpen} signUp={this.signUp} goHome={this.goHome} />;
       <AppDrawer menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist} goHome={this.goHome} openLog={this.openLog} signUp={this.goToSignUp} />;
       </div>;
     } else {

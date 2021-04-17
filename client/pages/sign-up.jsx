@@ -56,6 +56,11 @@ class SignUp extends React.Component {
     event.preventDefault();
     console.log(this.state.username);
     console.log(this.state.password);
+    const user = {
+      username: this.state.username,
+      password: this.state.password
+    };
+    this.props.signUp(user);
   }
 }
 

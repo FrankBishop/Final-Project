@@ -27,4 +27,13 @@ create table "log" (
   "date" text,
   "rating" text,
   primary key("logId")
-)
+);
+
+create table "users" (
+  "userId"         serial,
+  "username"       text           not null,
+  "hashedPassword" text           not null,
+  "createdAt"      timestamptz(6) not null default now(),
+  primary key ("userId"),
+  unique ("username")
+);

@@ -1,6 +1,6 @@
 import React from 'react';
-import EpisodeDetails from './episode-details';
 import LogModal from './log-modal';
+import SearchForm from './search';
 
 class EpisodeList extends React.Component {
 
@@ -15,7 +15,7 @@ class EpisodeList extends React.Component {
   }
 
   render() {
-    const filteredEpisodes = this.props.show.filter(episode => episode.image !== null);
+    const filteredEpisodes = this.props.episodesList.filter(episode => episode.image !== null);
     const listResults = filteredEpisodes.map(episode =>
       <div className="episodes-list" key={episode.id} id={episode.id}>
         <img className="episodes-list-image" src={episode.image.medium} alt={episode.image.name} />
@@ -24,24 +24,33 @@ class EpisodeList extends React.Component {
         <div className="list-button-container">
           <button onClick={this.openLogModal} show={this.props.showName} name={episode.name} season={episode.season} number={episode.number}
             image={episode.image.original}>Log</button>
-          <button show={this.props.show.name} name={episode.name} season={episode.season} number={episode.number} image={episode.image.medium} onClick={this.addToWatchlist}>Need to Watch</button>
+          <button show={this.props.episodesList.name} name={episode.name} season={episode.season} number={episode.number} image={episode.image.medium} onClick={this.addToWatchlist}>Need to Watch</button>
         </div>
       </div>
     );
-    if (this.state.episode !== null) {
-      return < EpisodeDetails episode={this.state.episode} watchlist={this.props.watchlist} addToWatchlist={this.props.addToWatchlist}
-        menu={this.props.menu} menuOpen={this.props.menuOpen} openWatchlist={this.props.openWatchlist} isWatchlistOpen={this.props.isWatchlistOpen}
-        goHome={this.props.goHome} saveToLog={this.props.saveToLog} />;
-    } else {
-      return <div>
+    return <div>
+      <header>
+        <i onClick={this.props.menu} className="fas fa-tv fa-2x tv-icon"></i>
+        <h1 className="header-text"> TV Diary </h1>
+        <div className="search-form-header">
+          <SearchForm onSubmit={this.props.setSearchResults} />
+        </div>
+      </header>
+      <main>
+        <div className="search-form">
+          <SearchForm onSubmit={this.props.setSearchResults} />
+        </div>
         {this.state.logModalOpen === true &&
           <LogModal toggleModal={this.toggleLogModal} showName={this.state.episodeToLog.showName} season={this.state.episodeToLog.season}
             number={this.state.episodeToLog.number} name={this.state.episodeToLog.name} saveToLog={this.props.saveToLog} image={this.state.episodeToLog.image} />
         }
         <h1 className="episodes-list-header header-text">Episode List</h1>
         <ul className="list-results"> {listResults} </ul>
-      </div>;
-    }
+      </main>
+      <footer>
+
+      </footer>
+    </div >;
   }
 
   episodeInfo(event) {
@@ -49,7 +58,7 @@ class EpisodeList extends React.Component {
     fetch('https://api.tvmaze.com/episodes/' + episodeId + '?embed=show')
       .then(response => response.json())
       .then(result => {
-        this.setState({ episode: result });
+        this.props.showEpisode(result);
       });
   }
 

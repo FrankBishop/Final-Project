@@ -1,5 +1,5 @@
 import React from 'react';
-import ShowInfo from './showinfo';
+import SearchForm from './search';
 
 class SearchResults extends React.Component {
 
@@ -18,16 +18,25 @@ class SearchResults extends React.Component {
         <ul className="show" onClick={this.showInfo} value={result.show.name}> {result.show.name} </ul>
       </div>
     );
-    if (this.state.show !== null) {
-      return < ShowInfo show={this.state.show} watchlist={this.props.watchlist} addToWatchlist={this.props.addToWatchlist} menu={this.props.menu}
-        menuOpen={this.props.menuOpen} openWatchlist={this.props.openWatchlist} isWatchlistOpen={this.props.isWatchlistOpen} goHome={this.props.goHome}
-        saveToLog={this.props.saveToLog} />;
-    } else {
-      return <div>
+    return <div>
+      <header>
+        <i onClick={this.props.menu} className="fas fa-tv fa-2x tv-icon"></i>
+        <h1 className="header-text"> {this.props.text} </h1>
+        <div className="search-form-header">
+          <SearchForm onSubmit={this.props.setSearchResults} />
+        </div>
+      </header>
+      <main>
+        <div className="search-form">
+          <SearchForm onSubmit={this.props.setSearchResults} />
+        </div>
         <h1 className="main-header header-text">Search Results</h1>
         <ul className="list-results"> {listResults} </ul>
-      </div>;
-    }
+      </main>
+      <footer>
+
+      </footer>
+    </div>;
   }
 
   showInfo(event) {
@@ -35,7 +44,7 @@ class SearchResults extends React.Component {
     fetch('https://api.tvmaze.com/shows/' + showId + '?embed[]=episodes&embed[]=cast')
       .then(response => response.json())
       .then(result => {
-        this.setState({ show: result });
+        this.props.setShow(result);
       });
   }
 }

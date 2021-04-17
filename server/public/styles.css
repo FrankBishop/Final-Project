@@ -477,6 +477,47 @@ h4 {
   display: none;
 }
 
+.registration {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 125px;
+
+  /* background-color: #053f5e; */
+}
+
+.registration-header {
+  text-align: center;
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 400;
+  color: #ffd700;
+}
+
+.registration-fields {
+  font-family: 'roboto', sans-serif;
+  font-weight: 400;
+  color: #ffd700;
+}
+
+.registration-button-holder {
+  margin-top: 50px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.registration-button-holder > button {
+  width: 40%;
+  background-color: #ffd700;
+  height: 40px;
+  font-family: 'roboto', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  margin-right: 3px;
+}
+
 @media screen and (min-width: 1025px) {
   .image-holder-row > img {
     height: 300px;

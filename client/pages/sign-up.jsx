@@ -21,22 +21,24 @@ class SignUp extends React.Component {
         <div className="search-form">
           <SearchForm onSubmit={this.props.setSearchResults} />
         </div>
-        <div>
-          <h1>Register</h1>;
-           <form>
-            <h2>Username</h2>
+        <div className="registration">
+          <h1 className="registration-header">Register</h1>
+          <form>
+            <h2 className="registration-fields">Username</h2>
             <input type="text" id="username" name="username"></input>
-              <h2>Password</h2>
-              <input type="password" id="password" name="password" minlength="8" required></input>
-                <button>Cancel</button>
-                <button>Sign Up</button>
+            <h2 className="registration-fields">Password</h2>
+            <input type="password" id="password" name="password" minLength="8" required></input>
+            <div className="registration-button-holder">
+              <button>Cancel</button>
+              <button>Sign Up</button>
+            </div>
           </form>
         </div>;
         </main>
-          <footer>
+      <footer>
 
-          </footer>
-        </div>;
+      </footer>
+    </div>;
   }
 }
 

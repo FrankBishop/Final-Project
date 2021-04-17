@@ -27,6 +27,7 @@ class SignUp extends React.Component {
           </div>
           <div className="registration">
             <h1 className="registration-header">Congrats you are registered</h1>
+            <h2 className="registration-header">Click the TV in the top left to navigate the site</h2>
           </div>
         </main>
         <footer>

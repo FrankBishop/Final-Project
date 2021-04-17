@@ -104,6 +104,9 @@ export default class App extends React.Component {
     this.setState({ watchlistOpen: true });
     this.setState({ searchResults: [] });
     this.setState({ logOpen: false });
+    this.setState({ show: null });
+    this.setState({ episodes: [] });
+    this.setState({ showEpisode: null });
   }
 
   openLog() {
@@ -111,6 +114,9 @@ export default class App extends React.Component {
     this.setState({ menuOpen: false });
     this.setState({ logOpen: true });
     this.setState({ searchResults: [] });
+    this.setState({ show: null });
+    this.setState({ episodes: [] });
+    this.setState({ showEpisode: null });
   }
 
   goHome() {
@@ -118,6 +124,9 @@ export default class App extends React.Component {
     this.setState({ watchlistOpen: false });
     this.setState({ searchResults: [] });
     this.setState({ logOpen: false });
+    this.setState({ show: null });
+    this.setState({ episodes: [] });
+    this.setState({ showEpisode: null });
   }
 
   deleteFromWatchlist(episode) {

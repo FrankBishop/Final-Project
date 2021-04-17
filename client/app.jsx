@@ -184,6 +184,10 @@ export default class App extends React.Component {
     this.setState({ menuOpen: false });
   }
 
+  signUp() {
+    console.log('this button works');
+  }
+
   render() {
     if (this.state.watchlistOpen === false && this.state.logOpen === false && this.state.searchResults.length === 0 && this.state.show === null &&
       this.state.episodes.length === 0 && this.state.showEpisode === null && this.state.signUp === false) {
@@ -230,7 +234,7 @@ export default class App extends React.Component {
       </div>;
     } else if (this.state.signUp === true) {
       return <div>
-        <SignUp menu={this.openMenu} menuOpen={this.state.menuOpen} />;
+        <SignUp menu={this.openMenu} menuOpen={this.state.menuOpen} signUp={this.props.signUp} goHome={this.goHome} />;
       <AppDrawer menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist} goHome={this.goHome} openLog={this.openLog} signUp={this.goToSignUp} />;
       </div>;
     } else {

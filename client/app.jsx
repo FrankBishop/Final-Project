@@ -13,8 +13,7 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchResults: [], watchlist: [], menuOpen: false, watchlistOpen: false, log: [], logOpen: false, show: null, episodes: [], showEpisode: null,
-      signUp: false
+      searchResults: [], watchlist: [], menuOpen: false, watchlistOpen: false, log: [], logOpen: false, show: null, episodes: [], showEpisode: null, signUp: false, signedIn: false
     };
     this.setSearchResults = this.setSearchResults.bind(this);
     this.showWatchlist = this.showWatchlist.bind(this);
@@ -180,13 +179,11 @@ export default class App extends React.Component {
   }
 
   goToSignUp() {
-    console.log('it signs up');
     this.setState({ signUp: true });
     this.setState({ menuOpen: false });
   }
 
   signUp(user) {
-    console.log('this button works', user);
     fetch('/api/users', {
       method: 'POST',
       body: JSON.stringify(user),
@@ -195,6 +192,7 @@ export default class App extends React.Component {
       }
     })
       .then(response => response.json())
+      .then(user => this.setState({ signedIn: true }))
       .catch(err => {
         console.error(err);
       });

@@ -14,6 +14,7 @@ class AppDrawer extends React.Component {
           <h1 onClick={this.props.goHome}>Home</h1>
           <h1 onClick={this.props.openLog}>Diary</h1>
           <h1 onClick={this.props.openWatchlist}>Watchlist</h1>
+          <h1 onClick={this.props.signUp}>Sign Up</h1>
         </div>
       </div>;
     } else {
@@ -22,6 +23,7 @@ class AppDrawer extends React.Component {
           <h1 onClick={this.props.goHome}>Home</h1>
           <h1 onClick={this.props.openLog}>Diary</h1>
           <h1 onClick={this.props.openWatchlist}>Watchlist</h1>
+          <h1 onClick={this.props.signUp}>Sign Up</h1>
         </div>
       </div>;
 

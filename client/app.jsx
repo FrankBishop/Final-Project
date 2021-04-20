@@ -90,6 +90,7 @@ export default class App extends React.Component {
   }
 
   setSearchResults(results) {
+    this.setState({ logOpen: false });
     this.setState({ searchResults: results });
   }
 
@@ -224,7 +225,7 @@ export default class App extends React.Component {
     } else if (this.state.watchlistOpen === true) {
       return <div>
         <Watchlist menu={this.openMenu} setSearchResults={this.setSearchResults} searchResults={this.state.searchResults} menuOpen={this.state.menuOpen === false} goHome={this.goHome} openWatchlist={this.openWatchlist}
-          isWatchlistOpen={this.state.watchlistOpen} watchlist={this.state.watchlist} deleteFromWatchlist={this.deleteFromWatchlist} saveToLog={this.saveToLog} openLog={this.openLog} showName={this.state.showName}  />;
+          isWatchlistOpen={this.state.watchlistOpen} watchlist={this.state.watchlist} deleteFromWatchlist={this.deleteFromWatchlist} saveToLog={this.saveToLog} openLog={this.openLog} showName={this.state.showName} />;
         <AppDrawer menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist} goHome={this.goHome} openLog={this.openLog} signUp={this.goToSignUp} />;
         </div>;
     } else if (this.state.show !== null) {

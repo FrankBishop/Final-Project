@@ -50,13 +50,10 @@ class ShowInfo extends React.Component {
   }
 
   episodeListings() {
-    console.log(this.state.showName)
     fetch('https://api.tvmaze.com/shows/' + this.state.showName.id + '/episodes')
       .then(response => response.json())
       .then(result => {
-        console.log(result)
         this.props.episodes(result);
-        // this.props.setShow(this.props.show.name);
       });
   }
 }

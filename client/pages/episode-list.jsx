@@ -24,7 +24,7 @@ class EpisodeList extends React.Component {
         <div className="list-button-container">
           <button onClick={this.openLogModal} show={this.props.showName} name={episode.name} season={episode.season} number={episode.number}
             image={episode.image.original}>Log</button>
-          <button show={this.props.episodesList.name} name={episode.name} season={episode.season} number={episode.number} image={episode.image.medium} onClick={this.addToWatchlist}>Need to Watch</button>
+          <button show={this.props.showName} name={episode.name} season={episode.season} number={episode.number} image={episode.image.medium} onClick={this.addToWatchlist}>Need to Watch</button>
         </div>
       </div>
     );
@@ -64,7 +64,7 @@ class EpisodeList extends React.Component {
 
   addToWatchlist(event) {
     event.preventDefault();
-    const show = this.props.showName;
+    const show = event.target.getAttribute('show');
     const episodeName = event.target.getAttribute('name');
     const season = event.target.getAttribute('season');
     const number = event.target.getAttribute('number');

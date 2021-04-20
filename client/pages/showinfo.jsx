@@ -10,7 +10,7 @@ class ShowInfo extends React.Component {
   }
 
   render() {
-    const summary = this.state.showName.summary;
+    const summary = this.props.show.summary;
     const filteredSummary = summary.replace(/<[^>]+>/g, '');
     const cast = this.state.showName._embedded.cast;
     const filteredCast = cast.filter(result => result.person.image != null);

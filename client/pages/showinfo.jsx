@@ -10,7 +10,7 @@ class ShowInfo extends React.Component {
   }
 
   render() {
-    const summary = this.state.showName.summary;
+    const summary = this.props.show.summary;
     const filteredSummary = summary.replace(/<[^>]+>/g, '');
     const cast = this.state.showName._embedded.cast;
     const filteredCast = cast.filter(result => result.person.image != null);
@@ -50,10 +50,13 @@ class ShowInfo extends React.Component {
   }
 
   episodeListings() {
+    console.log(this.state.showName)
     fetch('https://api.tvmaze.com/shows/' + this.state.showName.id + '/episodes')
       .then(response => response.json())
       .then(result => {
+        console.log(result)
         this.props.episodes(result);
+        // this.props.setShow(this.props.show.name);
       });
   }
 }

@@ -32,6 +32,7 @@ export default class App extends React.Component {
     this.goToSignUp = this.goToSignUp.bind(this);
     this.signUp = this.signUp.bind(this);
     this.goToSignIn = this.goToSignIn.bind(this);
+    this.signIn = this.signIn.bind(this);
   }
 
   componentDidMount() {
@@ -208,6 +209,10 @@ export default class App extends React.Component {
     this.setState({ menuOpen: false });
   }
 
+  signIn(user) {
+    console.log(user)
+  }
+
   render() {
     if (this.state.watchlistOpen === false && this.state.logOpen === false && this.state.searchResults.length === 0 && this.state.show === null &&
       this.state.episodes.length === 0 && this.state.showEpisode === null && this.state.signUp === false && this.state.signIn === false) {
@@ -266,7 +271,7 @@ export default class App extends React.Component {
       </div>;
     } else if (this.state.signIn === true) {
       return <div>
-      <SignIn menu={this.openMenu} menuOpen={this.state.menuOpen} signUp={this.signUp} goHome={this.goHome} />;
+      <SignIn menu={this.openMenu} menuOpen={this.state.menuOpen} signUp={this.signUp} goHome={this.goHome} signIn={this.signIn} />;
       <AppDrawer menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist} goHome={this.goHome} openLog={this.openLog} signUp={this.goToSignUp}
           signIn={this.goToSignIn} />;
       </div>;

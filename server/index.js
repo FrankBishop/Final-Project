@@ -4,8 +4,8 @@ const staticMiddleware = require('./static-middleware');
 const app = express();
 const argon2 = require('argon2');
 const pg = require('pg');
-const ClientError = require('./client-error');
-const jwt = require('jsonwebtoken');
+// const ClientError = require('./client-error');
+const jwt = require('jsonwebtoken');  // eslint-disable-line
 const db = new pg.Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: {

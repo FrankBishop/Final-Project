@@ -6,7 +6,7 @@ class SignIn extends React.Component {
   constructor(props) {
     super(props);
     this.state = { username: null, password: null, registered: false };
-    this.startSignUp = this.startSignUp.bind(this);
+    this.startSignIn = this.startSignIn.bind(this);
     this.setUsername = this.setUsername.bind(this);
     this.setPassword = this.setPassword.bind(this);
   }
@@ -56,7 +56,7 @@ class SignIn extends React.Component {
             <input type="password" id="password" name="password" minLength="8" required onChange={this.setPassword}></input>
             <div className="registration-button-holder">
               <button onClick={this.props.goHome}>Cancel</button>
-              <button onClick={this.startSignUp}>Sign Up</button>
+              <button onClick={this.startSignIn}>Sign In</button>
             </div>
           </form>
         </div>;
@@ -75,13 +75,13 @@ class SignIn extends React.Component {
     this.setState({ password: event.target.value });
   }
 
-  startSignUp() {
+  startSignIn() {
     event.preventDefault();
     const user = {
       username: this.state.username,
       password: this.state.password
     };
-    this.props.signUp(user);
+    this.props.signIn(user);
     this.setState({ registered: true });
   }
 }

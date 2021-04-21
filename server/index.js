@@ -4,6 +4,8 @@ const staticMiddleware = require('./static-middleware');
 const app = express();
 const argon2 = require('argon2');
 const pg = require('pg');
+const ClientError = require('./client-error');
+const jwt = require('jsonwebtoken');
 const db = new pg.Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: {
@@ -148,3 +150,45 @@ app.post('/api/users', (req, res, next) => {
     })
     .catch(err => next(err));
 });
+
+// app.post('/api/users', (req, res, next) => {
+//   const { username, password } = req.body;
+//   if (!username || !password) {
+//     throw new ClientError(401, 'invalid login');
+//   }
+//   const sql = `
+//     select "userId",
+//            "hashedPassword"
+//       from "users"
+//      where "username" = $1;
+//   `;
+//   const params = [username];
+//   db.query(sql, params)
+//     .then(result => {
+//       const userInfo = result.rows[0];
+//       if (!userInfo) {
+//         throw new ClientError(401, 'invalid login');
+//       } else {
+//         argon2
+//           .verify(userInfo.hashedPassword, password)
+//           .then(isMatching => {
+//             if (!isMatching) {
+//               throw new ClientError(401, 'invalid login');
+//             } else {
+//               const payload = {
+//                 userId: userInfo.userId,
+//                 username: username
+//               };
+//               const token = jwt.sign(payload, process.env.TOKEN_SECRET);
+//               const response = {
+//                 token: token,
+//                 user: payload
+//               };
+//               res.json(response);
+//             }
+//           })
+//           .catch(err => next(err));
+//       }
+//     })
+//     .catch(err => next(err));
+// });

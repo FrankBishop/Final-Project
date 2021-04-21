@@ -5,14 +5,14 @@ class SignIn extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = { username: null, password: null, registered: false };
+    this.state = { username: null, password: null, signedIn: false };
     this.startSignIn = this.startSignIn.bind(this);
     this.setUsername = this.setUsername.bind(this);
     this.setPassword = this.setPassword.bind(this);
   }
 
   render() {
-    if (this.state.registered === true) {
+    if (this.state.signedIn === true) {
       return <div>
         <header>
           <i onClick={this.props.menu} className="fas fa-tv fa-2x tv-icon"></i>
@@ -26,7 +26,7 @@ class SignIn extends React.Component {
             <SearchForm onSubmit={this.props.setSearchResults} />
           </div>
           <div className="registration">
-            <h1 className="registration-header">Congrats you are registered</h1>
+            <h1 className="registration-header">Congrats you are signed in</h1>
             <h2 className="registration-header">Click the TV in the top left to navigate the site</h2>
           </div>
         </main>
@@ -82,7 +82,7 @@ class SignIn extends React.Component {
       password: this.state.password
     };
     this.props.signIn(user);
-    this.setState({ registered: true });
+    this.setState({ signedIn: true });
   }
 }
 

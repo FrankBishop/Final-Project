@@ -190,7 +190,7 @@ export default class App extends React.Component {
   }
 
   signUp(user) {
-    fetch('/api/users', {
+    fetch('/api/users/sign-up', {
       method: 'POST',
       body: JSON.stringify(user),
       headers: {
@@ -210,7 +210,18 @@ export default class App extends React.Component {
   }
 
   signIn(user) {
-    console.log(user)
+    fetch('/api/users/sign-in', {
+      method: 'POST',
+      body: JSON.stringify(user),
+      headers: {
+        'Content-type': 'application/json'
+      }
+    })
+      .then(response => response.json())
+      .then(user => this.setState({ signedIn: true }))
+      .catch(err => {
+        console.error(err);
+      });
   }
 
   render() {

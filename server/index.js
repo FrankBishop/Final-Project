@@ -40,10 +40,12 @@ app.get('/api/watchlist', (req, res) => {
 });
 
 app.get('/api/log', (req, res) => {
+  // console.log('req.user', req)
+  // const {user} = req.body;
+  //  where "userId" = '1'
   const sql = `
     select *
       from "log"
-     where "userId" = '1'
      order by "logId"
   `;
   db.query(sql)

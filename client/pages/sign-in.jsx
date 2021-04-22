@@ -27,7 +27,7 @@ class SignIn extends React.Component {
           </div>
           {this.props.logonFailed === true &&
             <div className="registration">
-              <h2 className="registration-header">Incorrect Usnername or Password</h2>
+              <h2 className="registration-header">Incorrect Username or Password</h2>
             </div>
           }
           {this.props.logonFailed === false &&

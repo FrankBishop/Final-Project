@@ -31,7 +31,8 @@ class EpisodeDetails extends React.Component {
         <div className="episode-info">
           {this.state.logModalOpen === true &&
             <LogModal toggleModal={this.toggleModal} showName={this.props.showEpisode._embedded.show.name} season={this.props.showEpisode.season}
-              number={this.props.showEpisode.number} name={this.props.showEpisode.name} saveToLog={this.props.saveToLog} image={this.props.showEpisode.image.original} />
+              number={this.props.showEpisode.number} name={this.props.showEpisode.name} saveToLog={this.props.saveToLog} image={this.props.showEpisode.image.original}
+              userId={this.props.user} />
           }
           <h1 className="episode-header">{this.props.showEpisode._embedded.show.name}</h1>
           <h3 className="episode-details">S{this.props.showEpisode.season} E{this.props.showEpisode.number} {this.props.showEpisode.name}</h3>

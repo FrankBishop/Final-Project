@@ -8,6 +8,7 @@ create schema "public";
 
 create table "watchlist" (
   "entryId" serial,
+  "userId" text,
   "show" text,
   "episode name" text,
   "season" text,
@@ -19,6 +20,7 @@ create table "watchlist" (
 
 create table "log" (
   "logId" serial,
+  "userId" text,
   "show" text,
   "episode name" text,
   "season" text,

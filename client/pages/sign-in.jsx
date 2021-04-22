@@ -27,7 +27,17 @@ class SignIn extends React.Component {
           </div>
           {this.props.logonFailed === true &&
             <div className="registration">
-              <h2 className="registration-header">Incorrect Usnername or Password</h2>
+              <h1 className="registration-header">Incorrect Username and Password</h1>
+              <form>
+                <h2 className="registration-fields">Username</h2>
+                <input type="text" id="username" name="username" onChange={this.setUsername}></input>
+                <h2 className="registration-fields">Password</h2>
+                <input type="password" id="password" name="password" minLength="8" required onChange={this.setPassword}></input>
+                <div className="registration-button-holder">
+                  <button onClick={this.props.goHome}>Cancel</button>
+                  <button onClick={this.startSignIn}>Sign In</button>
+                </div>
+              </form>
             </div>
           }
           {this.props.logonFailed === false &&

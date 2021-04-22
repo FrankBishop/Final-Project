@@ -47,7 +47,11 @@ export default class App extends React.Component {
 
   getWatchlist(userId) {
     const user = parseInt(userId, 10);
-    fetch(`/api/watchlist/${user}`)
+    fetch(`/api/watchlist/${user}`, {
+      headers: {
+        'X-Access-Token': localStorage.getItem('token')
+      }
+    })
       .then(response => response.json())
       .then(watchlist => this.setState({ watchlist }))
       .catch(err => {
@@ -57,7 +61,11 @@ export default class App extends React.Component {
 
   getLog(userId) {
     const user = parseInt(userId, 10);
-    fetch(`/api/log/${user}`)
+    fetch(`/api/log/${user}`, {
+      headers: {
+        'X-Access-Token': localStorage.getItem('token')
+      }
+    })
       .then(response => response.json())
       .then(log => this.setState({ log }))
       .catch(err => {
@@ -70,7 +78,8 @@ export default class App extends React.Component {
       method: 'POST',
       body: JSON.stringify(episode),
       headers: {
-        'Content-type': 'application/json'
+        'Content-type': 'application/json',
+        'X-Access-Token': localStorage.getItem('token')
       }
     })
       .then(response => response.json())
@@ -156,7 +165,10 @@ export default class App extends React.Component {
     const deleteId = parseInt(episode, 10);
     fetch(`/api/watchlist/${deleteId}`, {
       method: 'DELETE',
-      body: JSON.stringify(episode)
+      body: JSON.stringify(episode),
+      headers: {
+        'X-Access-Token': localStorage.getItem('token')
+      }
     })
       .then(episode => {
         let entryToDelete;
@@ -179,7 +191,8 @@ export default class App extends React.Component {
       method: 'POST',
       body: JSON.stringify(entry),
       headers: {
-        'Content-type': 'application/json'
+        'Content-type': 'application/json',
+        'X-Access-Token': localStorage.getItem('token')
       }
     })
       .then(response => response.json())
@@ -210,7 +223,8 @@ export default class App extends React.Component {
       method: 'POST',
       body: JSON.stringify(user),
       headers: {
-        'Content-type': 'application/json'
+        'Content-type': 'application/json',
+        'X-Access-Token': localStorage.getItem('token')
       }
     })
       .then(response => response.json())
@@ -237,7 +251,8 @@ export default class App extends React.Component {
       method: 'POST',
       body: JSON.stringify(user),
       headers: {
-        'Content-type': 'application/json'
+        'Content-type': 'application/json',
+        'X-Access-Token': localStorage.getItem('token')
       }
     })
       .then(response => response.json())
@@ -245,6 +260,8 @@ export default class App extends React.Component {
         this.setState({ logonFailed: false });
         this.setState({ user: user.user.userId });
         this.setState({ signedIn: true });
+        JSON.stringify(user);
+        localStorage.setItem('token', user.token);
       })
       .catch(err => {
         this.setState({ logonFailed: true });

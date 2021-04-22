@@ -22,7 +22,7 @@ class AppDrawer extends React.Component {
           }
           {
             this.props.user !== null &&
-            <h1> Sign Out</h1>
+            <h1 onClick={this.props.signOut}> Sign Out</h1>
           }
         </div >
       </div >;

@@ -38,9 +38,7 @@ export default class App extends React.Component {
 
   componentDidUpdate() {
     if (this.state.signedIn === true) {
-      // console.log({ user });
       const userId = this.state.user;
-      console.log(userId);
       this.getWatchlist(userId);
       this.getLog(userId);
       this.setState({ signedIn: false });
@@ -57,8 +55,9 @@ export default class App extends React.Component {
       });
   }
 
-  getLog() {
-    fetch('/api/log')
+  getLog(userId) {
+    const user = parseInt(userId, 10);
+    fetch(`/api/log/${user}`)
       .then(response => response.json())
       .then(log => this.setState({ log }))
       .catch(err => {

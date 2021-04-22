@@ -43,6 +43,7 @@ app.get('/api/log', (req, res) => {
   const sql = `
     select *
       from "log"
+     where "userId" = '1'
      order by "logId"
   `;
   db.query(sql)

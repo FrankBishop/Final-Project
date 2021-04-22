@@ -4,8 +4,8 @@ const staticMiddleware = require('./static-middleware');
 const app = express();
 const argon2 = require('argon2');
 const pg = require('pg');
-// const ClientError = require('./client-error');
-const jwt = require('jsonwebtoken');  // eslint-disable-line
+const ClientError = require('./client-error');
+const jwt = require('jsonwebtoken');
 const db = new pg.Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: {
@@ -152,11 +152,9 @@ app.post('/api/users/sign-up', (req, res, next) => {
 });
 
 app.post('/api/users/sign-in', (req, res, next) => {
-  console.log('this runs');
   const { username, password } = req.body;
   if (!username || !password) {
-    console.log('it broke 1')
-    // throw new ClientError(401, 'invalid login');
+    throw new ClientError(401, 'invalid login');
   }
   const sql = `
     select "userId",
@@ -169,15 +167,13 @@ app.post('/api/users/sign-in', (req, res, next) => {
     .then(result => {
       const userInfo = result.rows[0];
       if (!userInfo) {
-        console.log('it broke 2')
-        // throw new ClientError(401, 'invalid login');
+        throw new ClientError(401, 'invalid login');
       } else {
         argon2
           .verify(userInfo.hashedPassword, password)
           .then(isMatching => {
             if (!isMatching) {
-              console.log('it broke 3')
-              // throw new ClientError(401, 'invalid login');
+              throw new ClientError(401, 'invalid login');
             } else {
               const payload = {
                 userId: userInfo.userId,
@@ -189,7 +185,6 @@ app.post('/api/users/sign-in', (req, res, next) => {
                 user: payload
               };
               res.json(response);
-              console.log('made it to the end', response);
             }
           })
           .catch(err => next(err));

@@ -61,13 +61,13 @@ app.get('/api/log', (req, res) => {
 });
 
 app.post('/api/watchlist', (req, res, next) => {
-  const { show, episodeName, season, number, image, isWatched = false } = req.body;
+  const { userId, show, episodeName, season, number, image, isWatched = false } = req.body;
   const sql = `
-    insert into "watchlist" ("show", "episode name", "season", "number", "image", "isWatched")
-    values ($1, $2, $3, $4, $5, $6)
+    insert into "watchlist" ("userId", "show", "episode name", "season", "number", "image", "isWatched")
+    values ($1, $2, $3, $4, $5, $6, $7)
     returning *
   `;
-  const params = [show, episodeName, season, number, image, isWatched];
+  const params = [userId, show, episodeName, season, number, image, isWatched];
   db.query(sql, params)
     .then(result => {
       const [episode] = result.rows;

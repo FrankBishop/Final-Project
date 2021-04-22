@@ -65,12 +65,14 @@ class EpisodeList extends React.Component {
 
   addToWatchlist(event) {
     event.preventDefault();
+    const userId = this.props.user;
     const show = event.target.getAttribute('show');
     const episodeName = event.target.getAttribute('name');
     const season = event.target.getAttribute('season');
     const number = event.target.getAttribute('number');
     const image = event.target.getAttribute('image');
     const episode = {
+      userId: userId,
       show: show,
       episodeName: episodeName,
       season: season,

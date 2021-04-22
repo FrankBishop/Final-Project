@@ -36,7 +36,6 @@ class LogModal extends React.Component {
 
   saveToLog(event) {
     const log = {
-      userId: this.props.userId,
       date: new Date().toLocaleDateString(),
       showName: this.props.showName,
       season: this.props.season,

@@ -134,7 +134,8 @@ app.get('/api/log/:user', (req, res) => {
 });
 
 app.post('/api/watchlist', (req, res, next) => {
-  const { userId, show, episodeName, season, number, image, isWatched = false } = req.body;
+  const userId = req.user.userId;
+  const { show, episodeName, season, number, image, isWatched = false } = req.body;
   const sql = `
     insert into "watchlist" ("userId", "show", "episode name", "season", "number", "image", "isWatched")
     values ($1, $2, $3, $4, $5, $6, $7)
@@ -185,7 +186,8 @@ app.delete('/api/watchlist/:deleteId', (req, res) => {
 });
 
 app.post('/api/log', (req, res, next) => {
-  const { userId, date, showName, episodeName, season, number, image, rating } = req.body;
+  const userId = req.user.userId;
+  const { date, showName, episodeName, season, number, image, rating } = req.body;
   const sql = `
     insert into "log" ("userId", "date", "show", "episode name", "season", "number", "image", "rating")
     values ($1, $2, $3, $4, $5, $6, $7, $8)

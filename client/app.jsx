@@ -38,14 +38,18 @@ export default class App extends React.Component {
 
   componentDidUpdate() {
     if (this.state.signedIn === true) {
-      this.getWatchlist();
-      this.getLog();
+      this.getWatchlist(this.state.user);
+      this.getLog(this.state.user);
       this.setState({ signedIn: false });
     }
   }
 
-  getWatchlist() {
-    fetch('/api/watchlist')
+  getWatchlist(userId) {
+    const user = parseInt(userId, 10);
+    fetch(`/api/watchlist/${user}`, {
+      method: 'GET'
+      // body: JSON.stringify(user)
+    })
       .then(response => response.json())
       .then(watchlist => this.setState({ watchlist }))
       .catch(err => {

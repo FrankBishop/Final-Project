@@ -21,7 +21,7 @@ app.listen(process.env.PORT, () => {
   console.log(`express server listening on port ${process.env.PORT}`);
 });
 
-app.get('/api/watchlist', (req, res) => {
+app.get('/api/watchlist/:user', (req, res) => {
   const sql = `
     select *
       from "watchlist"
@@ -40,7 +40,7 @@ app.get('/api/watchlist', (req, res) => {
 });
 
 app.get('/api/log', (req, res) => {
-  // console.log('req.user', req)
+  console.log('req.user', req.body.user)
   // const {user} = req.body;
   //  where "userId" = '1'
   const sql = `

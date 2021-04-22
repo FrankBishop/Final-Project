@@ -36,9 +36,12 @@ export default class App extends React.Component {
     this.signOut = this.signOut.bind(this);
   }
 
-  componentDidMount() {
-    this.getWatchlist();
-    this.getLog();
+  componentDidUpdate() {
+    if (this.state.signedIn === true) {
+      this.getWatchlist();
+      this.getLog();
+      this.setState({ signedIn: false });
+    }
   }
 
   getWatchlist() {
@@ -237,6 +240,7 @@ export default class App extends React.Component {
       .then(response => response.json())
       .then(user => {
         this.setState({ logonFailed: false });
+        this.setState({ signedIn: true });
         this.setState({ user: user.user.userId });
       })
       .catch(err => {
@@ -266,7 +270,7 @@ export default class App extends React.Component {
           addToWatchlist={this.addToWatchlist} menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist}
           isWatchlistOpen={this.state.watchlistOpen} goHome={this.goHome} saveToLog={this.saveToLog} openLog={this.openLog} setShow={this.setShow} user={this.state.user} />
         <AppDrawer menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist} goHome={this.goHome} openLog={this.openLog} signUp={this.goToSignUp}
-          signIn={this.goToSignIn} user={this.state.user} signOut={this.signOut}/>;
+          signIn={this.goToSignIn} user={this.state.user} signOut={this.signOut} />;
       </div>;
     } else if (this.state.logOpen === true) {
       return <div>
@@ -274,7 +278,7 @@ export default class App extends React.Component {
           isWatchlistOpen={this.state.watchlistOpen} watchlist={this.state.watchlist} deleteFromWatchlist={this.deleteFromWatchlist} saveToLog={this.saveToLog} openLog={this.openLog} log={this.state.log}
           user={this.state.user} />
         <AppDrawer menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist} goHome={this.goHome} openLog={this.openLog} signUp={this.goToSignUp}
-          signIn={this.goToSignIn} user={this.state.user} signOut={this.signOut}/>;
+          signIn={this.goToSignIn} user={this.state.user} signOut={this.signOut} />;
       </div>;
     } else if (this.state.watchlistOpen === true) {
       return <div>
@@ -282,7 +286,7 @@ export default class App extends React.Component {
           isWatchlistOpen={this.state.watchlistOpen} watchlist={this.state.watchlist} deleteFromWatchlist={this.deleteFromWatchlist} saveToLog={this.saveToLog} openLog={this.openLog} showName={this.state.showName}
           user={this.state.user} />;
         <AppDrawer menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist} goHome={this.goHome} openLog={this.openLog} signUp={this.goToSignUp}
-          signIn={this.goToSignIn} user={this.state.user} signOut={this.signOut}/>;
+          signIn={this.goToSignIn} user={this.state.user} signOut={this.signOut} />;
         </div>;
     } else if (this.state.show !== null) {
       return <div>
@@ -291,7 +295,7 @@ export default class App extends React.Component {
           isWatchlistOpen={this.state.watchlistOpen} goHome={this.goHome} saveToLog={this.saveToLog} openLog={this.openLog} show={this.state.show}
           episodes={this.setEpisodes} setShow={this.setShow} user={this.state.user} />;
         <AppDrawer menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist} goHome={this.goHome} openLog={this.openLog} signUp={this.goToSignUp}
-          signIn={this.goToSignIn} user={this.state.user} signOut={this.signOut}/>;
+          signIn={this.goToSignIn} user={this.state.user} signOut={this.signOut} />;
       </div>;
     } else if (this.state.episodes.length > 0) {
       return <div>
@@ -300,19 +304,19 @@ export default class App extends React.Component {
           isWatchlistOpen={this.state.watchlistOpen} goHome={this.goHome} saveToLog={this.saveToLog} openLog={this.openLog} show={this.state.show}
           episodes={this.setEpisodes} episodesList={this.state.episodes} showEpisode={this.setShowEpisode} showName={this.state.showName} user={this.state.user} />;
       <AppDrawer menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist} goHome={this.goHome} openLog={this.openLog} signUp={this.goToSignUp}
-          signIn={this.goToSignIn} user={this.state.user} signOut={this.signOut}/>;
+          signIn={this.goToSignIn} user={this.state.user} signOut={this.signOut} />;
       </div>;
     } else if (this.state.signUp === true) {
       return <div>
         <SignUp menu={this.openMenu} menuOpen={this.state.menuOpen} signUp={this.signUp} goHome={this.goHome} />;
       <AppDrawer menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist} goHome={this.goHome} openLog={this.openLog} signUp={this.goToSignUp}
-          signIn={this.goToSignIn} user={this.state.user} signOut={this.signOut}/>;
+          signIn={this.goToSignIn} user={this.state.user} signOut={this.signOut} />;
       </div>;
     } else if (this.state.signIn === true) {
       return <div>
         <SignIn menu={this.openMenu} menuOpen={this.state.menuOpen} signUp={this.signUp} goHome={this.goHome} signIn={this.signIn} logonFailed={this.state.logonFailed} />;
       <AppDrawer menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist} goHome={this.goHome} openLog={this.openLog} signUp={this.goToSignUp}
-          signIn={this.goToSignIn} user={this.state.user} signOut={this.signOut}/>;
+          signIn={this.goToSignIn} user={this.state.user} signOut={this.signOut} />;
       </div>;
     } else {
       return <div>
@@ -321,7 +325,7 @@ export default class App extends React.Component {
           isWatchlistOpen={this.state.watchlistOpen} goHome={this.goHome} saveToLog={this.saveToLog} openLog={this.openLog} show={this.state.show}
           episodes={this.setEpisodes} episodesList={this.state.episodes} showEpisode={this.state.showEpisode} user={this.state.user} />;
         <AppDrawer menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist} goHome={this.goHome} openLog={this.openLog} signUp={this.goToSignUp}
-          signIn={this.goToSignIn} user={this.state.user} signOut={this.signOut}/>;
+          signIn={this.goToSignIn} user={this.state.user} signOut={this.signOut} />;
       </div>;
     }
   }

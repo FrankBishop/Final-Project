@@ -22,12 +22,16 @@ app.listen(process.env.PORT, () => {
 });
 
 app.get('/api/watchlist/:user', (req, res) => {
+  const userId = parseInt(req.params.user, 10);
+  console.log('req.user', userId)
   const sql = `
     select *
       from "watchlist"
+      where "userId" = $1
      order by "entryId"
   `;
-  db.query(sql)
+  const params = [userId];
+  db.query(sql, params)
     .then(result => {
       res.json(result.rows);
     })
@@ -40,7 +44,7 @@ app.get('/api/watchlist/:user', (req, res) => {
 });
 
 app.get('/api/log', (req, res) => {
-  console.log('req.user', req.body.user)
+  // console.log('req.user', req.body.user)
   // const {user} = req.body;
   //  where "userId" = '1'
   const sql = `

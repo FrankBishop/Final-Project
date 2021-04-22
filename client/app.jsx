@@ -118,6 +118,7 @@ export default class App extends React.Component {
     this.setState({ episodes: [] });
     this.setState({ showEpisode: null });
     this.setState({ signUp: false });
+    this.setState({ signIn: false });
   }
 
   openLog() {
@@ -129,6 +130,7 @@ export default class App extends React.Component {
     this.setState({ episodes: [] });
     this.setState({ showEpisode: null });
     this.setState({ signUp: false });
+    this.setState({ signIn: false });
   }
 
   goHome() {
@@ -140,6 +142,7 @@ export default class App extends React.Component {
     this.setState({ episodes: [] });
     this.setState({ showEpisode: null });
     this.setState({ signUp: false });
+    this.setState({ signIn: false });
   }
 
   deleteFromWatchlist(episode) {
@@ -219,8 +222,6 @@ export default class App extends React.Component {
     })
       .then(response => response.json())
       .then(user => {
-        console.log(user);
-        this.setState({ signedIn: true });
         this.setState({ user: user.user.userId });
       })
       .catch(err => {
@@ -236,7 +237,7 @@ export default class App extends React.Component {
           addToWatchlist={this.addToWatchlist} menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist}
           isWatchlistOpen={this.state.watchlistOpen} goHome={this.goHome} saveToLog={this.saveToLog} openLog={this.openLog} />;
         <AppDrawer menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist} goHome={this.goHome} openLog={this.openLog} signUp={this.goToSignUp}
-          signIn={this.goToSignIn} />;
+          signIn={this.goToSignIn} user={this.state.user} />;
       </div>;
     } else if (this.state.searchResults.length > 0) {
       return <div>
@@ -244,21 +245,21 @@ export default class App extends React.Component {
           addToWatchlist={this.addToWatchlist} menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist}
           isWatchlistOpen={this.state.watchlistOpen} goHome={this.goHome} saveToLog={this.saveToLog} openLog={this.openLog} setShow={this.setShow} />
         <AppDrawer menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist} goHome={this.goHome} openLog={this.openLog} signUp={this.goToSignUp}
-          signIn={this.goToSignIn} />;
+          signIn={this.goToSignIn} user={this.state.user} />;
       </div>;
     } else if (this.state.logOpen === true) {
       return <div>
         <Diary menu={this.openMenu} setSearchResults={this.setSearchResults} searchResults={this.state.searchResults} menuOpen={this.state.menuOpen === false} goHome={this.goHome} openWatchlist={this.openWatchlist}
           isWatchlistOpen={this.state.watchlistOpen} watchlist={this.state.watchlist} deleteFromWatchlist={this.deleteFromWatchlist} saveToLog={this.saveToLog} openLog={this.openLog} log={this.state.log} />
         <AppDrawer menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist} goHome={this.goHome} openLog={this.openLog} signUp={this.goToSignUp}
-          signIn={this.goToSignIn} />;
+          signIn={this.goToSignIn} user={this.state.user} />;
       </div>;
     } else if (this.state.watchlistOpen === true) {
       return <div>
         <Watchlist menu={this.openMenu} setSearchResults={this.setSearchResults} searchResults={this.state.searchResults} menuOpen={this.state.menuOpen === false} goHome={this.goHome} openWatchlist={this.openWatchlist}
           isWatchlistOpen={this.state.watchlistOpen} watchlist={this.state.watchlist} deleteFromWatchlist={this.deleteFromWatchlist} saveToLog={this.saveToLog} openLog={this.openLog} showName={this.state.showName} />;
         <AppDrawer menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist} goHome={this.goHome} openLog={this.openLog} signUp={this.goToSignUp}
-          signIn={this.goToSignIn} />;
+          signIn={this.goToSignIn} user={this.state.user} />;
         </div>;
     } else if (this.state.show !== null) {
       return <div>
@@ -267,7 +268,7 @@ export default class App extends React.Component {
           isWatchlistOpen={this.state.watchlistOpen} goHome={this.goHome} saveToLog={this.saveToLog} openLog={this.openLog} show={this.state.show}
           episodes={this.setEpisodes} setShow={this.setShow} />;
         <AppDrawer menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist} goHome={this.goHome} openLog={this.openLog} signUp={this.goToSignUp}
-          signIn={this.goToSignIn} />;
+          signIn={this.goToSignIn} user={this.state.user} />;
       </div>;
     } else if (this.state.episodes.length > 0) {
       return <div>
@@ -276,19 +277,19 @@ export default class App extends React.Component {
           isWatchlistOpen={this.state.watchlistOpen} goHome={this.goHome} saveToLog={this.saveToLog} openLog={this.openLog} show={this.state.show}
           episodes={this.setEpisodes} episodesList={this.state.episodes} showEpisode={this.setShowEpisode} showName={this.state.showName} />;
       <AppDrawer menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist} goHome={this.goHome} openLog={this.openLog} signUp={this.goToSignUp}
-          signIn={this.goToSignIn} />;
+          signIn={this.goToSignIn} user={this.state.user} />;
       </div>;
     } else if (this.state.signUp === true) {
       return <div>
         <SignUp menu={this.openMenu} menuOpen={this.state.menuOpen} signUp={this.signUp} goHome={this.goHome} />;
       <AppDrawer menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist} goHome={this.goHome} openLog={this.openLog} signUp={this.goToSignUp}
-          signIn={this.goToSignIn} />;
+          signIn={this.goToSignIn} user={this.state.user} />;
       </div>;
     } else if (this.state.signIn === true) {
       return <div>
         <SignIn menu={this.openMenu} menuOpen={this.state.menuOpen} signUp={this.signUp} goHome={this.goHome} signIn={this.signIn} />;
       <AppDrawer menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist} goHome={this.goHome} openLog={this.openLog} signUp={this.goToSignUp}
-          signIn={this.goToSignIn} />;
+          signIn={this.goToSignIn} user={this.state.user} />;
       </div>;
     } else {
       return <div>
@@ -297,7 +298,7 @@ export default class App extends React.Component {
           isWatchlistOpen={this.state.watchlistOpen} goHome={this.goHome} saveToLog={this.saveToLog} openLog={this.openLog} show={this.state.show}
           episodes={this.setEpisodes} episodesList={this.state.episodes} showEpisode={this.state.showEpisode} />;
         <AppDrawer menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist} goHome={this.goHome} openLog={this.openLog} signUp={this.goToSignUp}
-          signIn={this.goToSignIn} />;
+          signIn={this.goToSignIn} user={this.state.user} />;
       </div>;
     }
   }

@@ -189,6 +189,7 @@ app.post('/api/users/sign-in', (req, res, next) => {
                 user: payload
               };
               res.json(response);
+              console.log('made it to the end', response);
             }
           })
           .catch(err => next(err));

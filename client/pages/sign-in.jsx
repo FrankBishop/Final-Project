@@ -25,10 +25,17 @@ class SignIn extends React.Component {
           <div className="search-form">
             <SearchForm onSubmit={this.props.setSearchResults} />
           </div>
-          <div className="registration">
-            <h1 className="registration-header">Congrats you are signed in</h1>
-            <h2 className="registration-header">Click the TV in the top left to navigate the site</h2>
-          </div>
+          {this.props.logonFailed === true &&
+            <div className="registration">
+              <h2 className="registration-header">Incorrect Usnername or Password</h2>
+            </div>
+          }
+          {this.props.logonFailed === false &&
+            <div className="registration">
+              <h1 className="registration-header">Congrats you are signed in</h1>
+              <h2 className="registration-header">Click the TV in the top left to navigate the site</h2>
+            </div>
+          }
         </main>
         <footer>
 

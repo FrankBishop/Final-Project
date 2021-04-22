@@ -67,7 +67,8 @@ class Watchlist extends React.Component {
         <main>
           {this.state.logModalOpen === true &&
             <LogModal toggleModal={this.toggleLogModal} showName={this.state.episodeToLog.showName} season={this.state.episodeToLog.season}
-              number={this.state.episodeToLog.number} name={this.state.episodeToLog.name} saveToLog={this.props.saveToLog} image={this.state.episodeToLog.image} />
+              number={this.state.episodeToLog.number} name={this.state.episodeToLog.name} saveToLog={this.props.saveToLog} image={this.state.episodeToLog.image}
+              userId={this.state.episodeToLog.userId} />
           }
           {this.state.openModal === true &&
             <DeleteModal episodeToDelete={this.state.episodeToDelete} deleteFromWatchlist={this.props.deleteFromWatchlist} openModal={this.props.openModal}
@@ -105,12 +106,14 @@ class Watchlist extends React.Component {
 
   openLogModal(event) {
     this.setState({ logModalOpen: true });
+    const userId = this.props.user;
     const showName = event.target.getAttribute('show');
     const episodeName = event.target.getAttribute('name');
     const season = event.target.getAttribute('season');
     const number = event.target.getAttribute('number');
     const image = event.target.getAttribute('image');
     const episode = {
+      userId: userId,
       showName: showName,
       season: season,
       number: number,

@@ -19,6 +19,7 @@ create table "watchlist" (
 
 create table "log" (
   "logId" serial,
+  "userId" text,
   "show" text,
   "episode name" text,
   "season" text,

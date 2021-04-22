@@ -334,7 +334,8 @@ export default class App extends React.Component {
       </div>;
     } else if (this.state.signIn === true) {
       return <div>
-        <SignIn menu={this.openMenu} menuOpen={this.state.menuOpen} signUp={this.signUp} goHome={this.goHome} signIn={this.signIn} logonFailed={this.state.logonFailed} />;
+        <SignIn menu={this.openMenu} menuOpen={this.state.menuOpen} signUp={this.signUp} goHome={this.goHome} signIn={this.signIn} logonFailed={this.state.logonFailed}
+          setSearchResults={this.setSearchResults} />;
       <AppDrawer menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist} goHome={this.goHome} openLog={this.openLog} signUp={this.goToSignUp}
           signIn={this.goToSignIn} user={this.state.user} signOut={this.signOut} />;
       </div>;

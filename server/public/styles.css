@@ -552,6 +552,23 @@ h4 {
   .image-holder-row > img {
     height: 135px;
   }
+
+  .registration {
+    margin-top: 75px;
+  }
+
+  .episode-title {
+    font-size: 14px;
+  }
+
+  .episode-date {
+    font-size: 10px;
+  }
+
+  .episodes-list-image {
+    height: 140px;
+    width: 120px;
+  }
 }
 
 @media screen and (min-width: 1025px) {

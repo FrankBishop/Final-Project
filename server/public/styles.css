@@ -12,6 +12,10 @@ header {
   align-items: flex-start;
 }
 
+.site-header {
+  font-size: 2em;
+}
+
 main {
   height: 100%;
   padding-bottom: 100px;
@@ -536,7 +540,7 @@ h4 {
     padding-top: 10px;
   }
 
-  header > h1 {
+  .site-header {
     font-size: 42px;
     margin-left: 70px;
   }

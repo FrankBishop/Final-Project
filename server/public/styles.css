@@ -536,7 +536,7 @@ h4 {
   display: hidden;
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 320px) and (orientation: portrait) {
   .search-bar {
     width: 200px;
   }
@@ -580,6 +580,36 @@ h4 {
 
   .stars-mobile {
     display: none;
+  }
+}
+
+@media screen and (max-width: 568px) and (orientation: landscape) {
+  .search-bar {
+    width: 450px;
+  }
+
+  .image-holder-row {
+    margin-top: 25px;
+  }
+
+  .main-header {
+    font-size: 20px;
+  }
+
+  .app-drawer-links > a {
+    font-size: 20px;
+  }
+
+  .registration {
+    margin-top: 10px;
+  }
+
+  .stars-mini {
+    display: none;
+  }
+
+  .diary-rating {
+    margin-left: 75px;
   }
 }
 

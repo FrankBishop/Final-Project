@@ -528,6 +528,33 @@ h4 {
   margin-right: 3px;
 }
 
+@media screen and (max-width: 320px) {
+  .search-bar {
+    width: 200px;
+  }
+
+  .watch-show-title {
+    font-size: 14px;
+  }
+
+  .watch-episode-title {
+    font-size: 12px;
+  }
+
+  /* .episodes-link {
+    position: absolute;
+    left: 140px;
+    top: 130px;
+  } */
+  .header-text {
+    font-size: 26px;
+  }
+
+  .image-holder-row > img {
+    height: 135px;
+  }
+}
+
 @media screen and (min-width: 1025px) {
   .image-holder-row > img {
     height: 300px;

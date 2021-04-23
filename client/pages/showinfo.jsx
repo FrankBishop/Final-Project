@@ -24,7 +24,7 @@ class ShowInfo extends React.Component {
     return <div>
       <header>
         <i onClick={this.props.menu} className="fas fa-tv fa-2x tv-icon"></i>
-        <h1 className="header-text"> {this.props.text} </h1>
+        <h1 className="header-text" onClick={this.props.goHome}> {this.props.text} </h1>
         <div className="search-form-header">
           <SearchForm onSubmit={this.props.setSearchResults} />
         </div>

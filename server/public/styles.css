@@ -329,13 +329,20 @@ h4 {
   background-color: #ffd700;
   width: 300px;
   min-height: 100vh;
-  font-family: 'Work Sans', sans-serif;
-  color: #053f5e;
   position: fixed;
   top: 48px;
   left: 0;
   z-index: 1;
   padding-left: 2rem;
+}
+
+.app-drawer-links > a {
+  margin-top: 20px;
+  display: block;
+  font-family: 'Work Sans', sans-serif;
+  font-size: 40px;
+  color: #053f5e;
+  font-weight: 600;
 }
 
 .watchlist-result {

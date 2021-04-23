@@ -22,6 +22,7 @@ class Diary extends React.Component {
         </div>
         <div className="diary-rating">
           <ul className="log-date"> {episode.date}  </ul>
+          <ReactStars className="stars-mini" count={5} size={20} color2={'#ffd700'} value={Number(episode.rating)} edit={false} />
           <ReactStars className="stars-mobile" count={5} size={25} color2={'#ffd700'} value={Number(episode.rating)} edit={false} />
           <ReactStars className="stars-desktop" count={5} size={50} color2={'#ffd700'} value={Number(episode.rating)} edit={false} />
         </div>

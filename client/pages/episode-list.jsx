@@ -19,7 +19,7 @@ class EpisodeList extends React.Component {
     const listResults = filteredEpisodes.map(episode =>
       <div className="episodes-list" key={episode.id} id={episode.id}>
         <img className="episodes-list-image" src={episode.image.medium} alt={episode.image.name} />
-        <ul className="episode-title" value={episode.name} onClick={this.episodeInfo}>S{episode.season}E{episode.number} {episode.name}</ul>
+        <a className="episode-title" value={episode.name} onClick={this.episodeInfo}>S{episode.season}E{episode.number} {episode.name}</a>
         <ul className="episode-date" value={episode.airdate}> {episode.airdate} </ul>
         <div className="list-button-container">
           <button onClick={this.openLogModal} show={this.props.showName} name={episode.name} season={episode.season} number={episode.number}

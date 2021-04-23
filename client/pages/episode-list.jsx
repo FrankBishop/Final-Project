@@ -24,7 +24,7 @@ class EpisodeList extends React.Component {
         <div className="list-button-container">
           <button onClick={this.openLogModal} show={this.props.showName} name={episode.name} season={episode.season} number={episode.number}
             image={episode.image.original}>Log</button>
-          <button show={this.props.showName} name={episode.name} season={episode.season} number={episode.number} image={episode.image.medium} onClick={this.addToWatchlist}>Need to Watch</button>
+          <button show={this.props.showName} name={episode.name} season={episode.season} number={episode.number} image={episode.image.medium} onClick={this.addToWatchlist} type="submit">Need to Watch</button>
         </div>
       </div>
     );

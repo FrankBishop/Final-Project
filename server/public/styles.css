@@ -143,6 +143,10 @@ h4 {
   margin-left: 10px;
 }
 
+.below-title {
+  position: relative;
+}
+
 .actor {
   margin-top: 2px;
   font-family: 'roboto', sans-serif;
@@ -204,7 +208,7 @@ h4 {
   background-color: #053f5e;
   position: absolute;
   left: 140px;
-  top: 110px;
+  top: 15px;
   color: #ffd700;
   font-family: 'Work Sans', sans-serif;
   border: none;
@@ -541,11 +545,6 @@ h4 {
     font-size: 12px;
   }
 
-  /* .episodes-link {
-    position: absolute;
-    left: 140px;
-    top: 130px;
-  } */
   .header-text {
     font-size: 26px;
   }
@@ -625,8 +624,7 @@ h4 {
   }
 
   .episodes-link {
-    left: 250px;
-    top: 125px;
+    left: 225px;
   }
 
   .summary-header {

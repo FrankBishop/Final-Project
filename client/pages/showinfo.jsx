@@ -36,17 +36,19 @@ class ShowInfo extends React.Component {
         <div className="show-info">
           <h1 className="show-header header-text">{this.state.showName.name}</h1>
           <h4 className="premiere-date">Premiere Date - {this.state.showName.premiered}</h4>
-          <a className="episodes-link" onClick={this.episodeListings} type="submit">Episode List</a>
-          <img className="show-image" src={this.state.showName.image.medium} alt={this.state.showName.name} ></img>
-          <h3 className="summary-header">Summary</h3>
-          <div className="summary"> {filteredSummary}</div>
-          <ul className="cast-list">{listResults}</ul>
+          <div className="below-title">
+            <a className="episodes-link" onClick={this.episodeListings} type="submit">Episode List</a>
+            <img className="show-image" src={this.state.showName.image.medium} alt={this.state.showName.name} ></img>
+            <h3 className="summary-header">Summary</h3>
+            <div className="summary"> {filteredSummary}</div>
+            <ul className="cast-list">{listResults}</ul>
+          </div>
         </div>
       </main>
       <footer>
 
       </footer>
-    </div>;
+    </div >;
   }
 
   episodeListings() {

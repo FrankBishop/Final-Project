@@ -42,9 +42,8 @@ class EpisodeDetails extends React.Component {
             <p>{filteredSummary}</p>
           </div>
           <div className="episode-button-container">
-            <button onClick={this.openModal}>Log</button>
+            <button onClick={this.openModal} type="button">Log</button>
             <button onClick={this.addToWatchlist} type="submit">Need To Watch</button>
-            <button>Mark as Watched</button>
           </div>
         </div>
       </main>

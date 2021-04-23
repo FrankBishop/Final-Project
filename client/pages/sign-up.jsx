@@ -55,7 +55,7 @@ class SignUp extends React.Component {
             <h2 className="registration-fields">Password</h2>
             <input type="password" id="password" name="password" minLength="8" required onChange={this.setPassword}></input>
             <div className="registration-button-holder">
-              <button onClick={this.props.goHome}>Cancel</button>
+              <button onClick={this.props.goHome} type="button">Cancel</button>
               <button onClick={this.startSignUp} type="submit">Sign Up</button>
             </div>
           </form>

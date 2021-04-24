@@ -533,7 +533,7 @@ h4 {
 }
 
 .stars-mini {
-  display: hidden;
+  display: none;
 }
 
 @media screen and (max-width: 320px) and (orientation: portrait) {
@@ -610,6 +610,40 @@ h4 {
 
   .diary-rating {
     margin-left: 75px;
+  }
+}
+
+@media screen and (max-width: 812px) and (orientation: landscape) {
+  header {
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
+    padding-top: 10px;
+  }
+
+  .search-form {
+    display: none;
+  }
+
+  .search-form-header {
+    display: inline;
+  }
+
+  .site-header {
+    font-size: 42px;
+    margin-left: 70px;
+  }
+
+  .search-button {
+    margin-right: 10px;
+  }
+
+  .tv-icon {
+    margin-top: 16px;
+  }
+
+  .registration {
+    margin-top: 5px;
   }
 }
 

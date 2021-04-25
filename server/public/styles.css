@@ -621,7 +621,7 @@ h4 {
   }
 }
 
-/* @media screen and (min-width: 568px) and (max-width: 812px) and (orientation: landscape) {
+@media screen and (min-width: 600px) and (max-width: 812px) {
   header {
     justify-content: space-between;
     align-items: center;
@@ -653,7 +653,7 @@ h4 {
   .registration {
     margin-top: 5px;
   }
-} */
+}
 
 @media screen and (min-width: 1025px) {
   .image-holder-row > img {

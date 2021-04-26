@@ -270,7 +270,9 @@ export default class App extends React.Component {
   }
 
   signOut() {
-    this.setState({ user: null });
+    this.setState({
+      searchResults: [], watchlist: [], menuOpen: false, watchlistOpen: false, log: [], logOpen: false, show: null, episodes: [], showEpisode: null, signUp: false, signIn: false, showName: null, signedIn: false, user: null, logonFailed: null
+    });
     this.goHome();
   }
 

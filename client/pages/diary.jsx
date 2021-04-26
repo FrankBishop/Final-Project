@@ -42,6 +42,9 @@ class Diary extends React.Component {
         </div>
         <div>
           <h1 className="main-header header-text">Diary</h1>
+          {this.props.log.length === 0 &&
+            <h2 className="main-header header-text"> Your Have No Diary Entries</h2>
+          }
           <ul className="list-results"> {diaryToRender} </ul>
         </div>;
         </main>

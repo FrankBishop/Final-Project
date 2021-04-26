@@ -536,6 +536,20 @@ h4 {
   display: none;
 }
 
+a:hover,
+button:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+a:hover {
+  color: #ccad00;
+}
+
+button:hover {
+  background-color: #ccad00;
+}
+
 @media screen and (max-width: 320px) and (orientation: portrait) {
   .search-bar {
     width: 200px;

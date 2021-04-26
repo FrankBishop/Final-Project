@@ -135,6 +135,7 @@ export default class App extends React.Component {
     this.setState({ showEpisode: null });
     this.setState({ signUp: false });
     this.setState({ signIn: false });
+    this.setState({ menuOpen: false });
   }
 
   openLog() {
@@ -147,6 +148,7 @@ export default class App extends React.Component {
     this.setState({ showEpisode: null });
     this.setState({ signUp: false });
     this.setState({ signIn: false });
+    this.setState({ menuOpen: false });
   }
 
   goHome() {
@@ -159,6 +161,7 @@ export default class App extends React.Component {
     this.setState({ showEpisode: null });
     this.setState({ signUp: false });
     this.setState({ signIn: false });
+    this.setState({ menuOpen: false });
   }
 
   deleteFromWatchlist(episode) {

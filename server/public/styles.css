@@ -12,6 +12,10 @@ header {
   align-items: flex-start;
 }
 
+.site-header {
+  font-size: 2em;
+}
+
 main {
   height: 100%;
   padding-bottom: 100px;
@@ -136,6 +140,11 @@ h4 {
 
 .show {
   font-size: 22px;
+  margin-left: 10px;
+}
+
+.below-title {
+  position: relative;
 }
 
 .actor {
@@ -199,7 +208,7 @@ h4 {
   background-color: #053f5e;
   position: absolute;
   left: 140px;
-  top: 110px;
+  top: 15px;
   color: #ffd700;
   font-family: 'Work Sans', sans-serif;
   border: none;
@@ -329,13 +338,20 @@ h4 {
   background-color: #ffd700;
   width: 300px;
   min-height: 100vh;
-  font-family: 'Work Sans', sans-serif;
-  color: #053f5e;
   position: fixed;
   top: 48px;
   left: 0;
   z-index: 1;
   padding-left: 2rem;
+}
+
+.app-drawer-links > a {
+  margin-top: 20px;
+  display: block;
+  font-family: 'Work Sans', sans-serif;
+  font-size: 40px;
+  color: #053f5e;
+  font-weight: 600;
 }
 
 .watchlist-result {
@@ -516,7 +532,181 @@ h4 {
   margin-right: 3px;
 }
 
-@media screen and (min-width: 1025px) {
+.stars-mini {
+  display: none;
+}
+
+a:hover,
+button:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+a:hover {
+  color: #ccad00;
+}
+
+button:hover {
+  background-color: #ccad00;
+}
+
+.loading-spinner {
+  width: 80px;
+  height: 80px;
+  border: 2px solid #f3f3f3;
+  border-top: 3px solid #f25a41;
+  border-radius: 100%;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  animation: spin 1s infinite linear;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media screen and (max-width: 320px) and (orientation: portrait) {
+  .search-bar {
+    width: 200px;
+  }
+
+  .watch-show-title {
+    font-size: 14px;
+  }
+
+  .watch-episode-title {
+    font-size: 12px;
+  }
+
+  .header-text {
+    font-size: 26px;
+  }
+
+  .image-holder-row > img {
+    height: 135px;
+  }
+
+  .registration {
+    margin-top: 75px;
+  }
+
+  .episode-title {
+    font-size: 14px;
+  }
+
+  .episode-date {
+    font-size: 12px;
+  }
+
+  .episodes-list-image {
+    height: 140px;
+    width: 120px;
+  }
+
+  .stars-mini {
+    display: inline;
+  }
+
+  .stars-mobile {
+    display: none;
+  }
+
+  .app-drawer {
+    top: 42px;
+  }
+}
+
+@media screen and (max-width: 568px) and (orientation: landscape) {
+  .search-bar {
+    width: 450px;
+  }
+
+  .search-form-header {
+    display: hidden;
+  }
+
+  .search-form {
+    display: inline;
+  }
+
+  .image-holder-row {
+    margin-top: 25px;
+  }
+
+  .main-header {
+    font-size: 20px;
+  }
+
+  .app-drawer-links > a {
+    font-size: 20px;
+  }
+
+  .registration {
+    margin-top: 10px;
+  }
+
+  .stars-mini {
+    display: none;
+  }
+
+  .diary-rating {
+    margin-left: 75px;
+  }
+}
+
+@media screen and (min-width: 600px) and (max-width: 812px) {
+  header {
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
+    padding-top: 10px;
+  }
+
+  .search-form {
+    display: none;
+  }
+
+  .search-form-header {
+    display: inline;
+  }
+
+  .site-header {
+    font-size: 42px;
+    margin-left: 70px;
+  }
+
+  .search-button {
+    margin-right: 10px;
+  }
+
+  .tv-icon {
+    margin-top: 16px;
+  }
+
+  .registration {
+    margin-top: 5px;
+  }
+
+  .diary-rating {
+    margin-left: 160px;
+  }
+
+  .app-drawer {
+    top: 79px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
   .image-holder-row > img {
     height: 300px;
   }
@@ -528,7 +718,7 @@ h4 {
     padding-top: 10px;
   }
 
-  header > h1 {
+  .site-header {
     font-size: 42px;
     margin-left: 70px;
   }
@@ -586,8 +776,7 @@ h4 {
   }
 
   .episodes-link {
-    left: 250px;
-    top: 125px;
+    left: 225px;
   }
 
   .summary-header {

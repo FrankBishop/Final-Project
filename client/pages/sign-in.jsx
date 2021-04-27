@@ -5,7 +5,7 @@ class SignIn extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = { username: null, password: null, signedIn: false };
+    this.state = { username: null, password: null, signedIn: false, searching: false };
     this.startSignIn = this.startSignIn.bind(this);
     this.setUsername = this.setUsername.bind(this);
     this.setPassword = this.setPassword.bind(this);
@@ -16,7 +16,7 @@ class SignIn extends React.Component {
       return <div>
         <header>
           <i onClick={this.props.menu} className="fas fa-tv fa-2x tv-icon"></i>
-          <h1 className="header-text"> TV Diary </h1>
+          <h1 className="header-text site-header" onClick={this.props.goHome}> TV Diary </h1>
           <div className="search-form-header">
             <SearchForm onSubmit={this.props.setSearchResults} />
           </div>
@@ -34,8 +34,8 @@ class SignIn extends React.Component {
                 <h2 className="registration-fields">Password</h2>
                 <input type="password" id="password" name="password" minLength="8" required onChange={this.setPassword}></input>
                 <div className="registration-button-holder">
-                  <button onClick={this.props.goHome}>Cancel</button>
-                  <button onClick={this.startSignIn}>Sign In</button>
+                  <button onClick={this.props.goHome} type="button">Cancel</button>
+                  <button onClick={this.startSignIn} type="submit">Sign In</button>
                 </div>
               </form>
             </div>
@@ -55,7 +55,7 @@ class SignIn extends React.Component {
     return <div>
       <header>
         <i onClick={this.props.menu} className="fas fa-tv fa-2x tv-icon"></i>
-        <h1 className="header-text"> TV Diary </h1>
+        <a className="header-text site-header" onClick={this.props.goHome}> TV Diary </a>
         <div className="search-form-header">
           <SearchForm onSubmit={this.props.setSearchResults} />
         </div>
@@ -72,8 +72,8 @@ class SignIn extends React.Component {
             <h2 className="registration-fields">Password</h2>
             <input type="password" id="password" name="password" minLength="8" required onChange={this.setPassword}></input>
             <div className="registration-button-holder">
-              <button onClick={this.props.goHome}>Cancel</button>
-              <button onClick={this.startSignIn}>Sign In</button>
+              <button onClick={this.props.goHome} type="button">Cancel</button>
+              <button onClick={this.startSign} type="submit">Sign In</button>
             </div>
           </form>
         </div>;

@@ -10,19 +10,19 @@ class AppDrawer extends React.Component {
   render() {
     if (this.props.menuOpen === true) {
       return <div className="app-drawer">
-        <div>
-          <h1 onClick={this.props.goHome}>Home</h1>
-          <h1 onClick={this.props.openLog}>Diary</h1>
-          <h1 onClick={this.props.openWatchlist}>Watchlist</h1>
+        <div className = "app-drawer-links">
+          <a onClick={this.props.goHome}>Home</a>
+          <a onClick={this.props.openLog}>Diary</a>
+          <a onClick={this.props.openWatchlist}>Watchlist</a>
           {this.props.user === null &&
-            < div >
-              {<h1 onClick={this.props.signIn}>Sign In</h1>}
-              {<h1 onClick={this.props.signUp}>Sign Up</h1>}
+            < div className="app-drawer-links" >
+              {<a onClick={this.props.signIn}>Sign In</a>}
+              {<a onClick={this.props.signUp}>Sign Up</a>}
             </div>
           }
           {
             this.props.user !== null &&
-            <h1 onClick={this.props.signOut}> Sign Out</h1>
+            <a onClick={this.props.signOut}> Sign Out</a>
           }
         </div >
       </div >;

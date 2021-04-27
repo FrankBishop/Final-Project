@@ -16,7 +16,7 @@ class SignUp extends React.Component {
       return <div>
         <header>
           <i onClick={this.props.menu} className="fas fa-tv fa-2x tv-icon"></i>
-          <h1 className="header-text"> TV Diary </h1>
+          <h1 className="header-text" onClick={this.props.goHome}> TV Diary </h1>
           <div className="search-form-header">
             <SearchForm onSubmit={this.props.setSearchResults} />
           </div>
@@ -38,7 +38,7 @@ class SignUp extends React.Component {
     return <div>
       <header>
         <i onClick={this.props.menu} className="fas fa-tv fa-2x tv-icon"></i>
-        <h1 className="header-text"> TV Diary </h1>
+        <a className="header-text site-header" onClick={this.props.goHome}> TV Diary </a>
         <div className="search-form-header">
           <SearchForm onSubmit={this.props.setSearchResults} />
         </div>
@@ -55,8 +55,8 @@ class SignUp extends React.Component {
             <h2 className="registration-fields">Password</h2>
             <input type="password" id="password" name="password" minLength="8" required onChange={this.setPassword}></input>
             <div className="registration-button-holder">
-              <button onClick={this.props.goHome}>Cancel</button>
-              <button onClick={this.startSignUp}>Sign Up</button>
+              <button onClick={this.props.goHome} type="button">Cancel</button>
+              <button onClick={this.startSignUp} type="submit">Sign Up</button>
             </div>
           </form>
         </div>;

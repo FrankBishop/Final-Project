@@ -22,6 +22,7 @@ class Diary extends React.Component {
         </div>
         <div className="diary-rating">
           <ul className="log-date"> {episode.date}  </ul>
+          <ReactStars className="stars-mini" count={5} size={20} color2={'#ffd700'} value={Number(episode.rating)} edit={false} />
           <ReactStars className="stars-mobile" count={5} size={25} color2={'#ffd700'} value={Number(episode.rating)} edit={false} />
           <ReactStars className="stars-desktop" count={5} size={50} color2={'#ffd700'} value={Number(episode.rating)} edit={false} />
         </div>
@@ -30,7 +31,7 @@ class Diary extends React.Component {
     return <div>
       <header>
         <i onClick={this.props.menu} className="fas fa-tv fa-2x tv-icon"></i>
-        <h1 className="header-text"> TV Diary </h1>
+        <a className="header-text site-header" onClick={this.props.goHome}> TV Diary </a>
         <div className="search-form-header">
           <SearchForm onSubmit={this.props.setSearchResults} />
         </div>
@@ -41,6 +42,9 @@ class Diary extends React.Component {
         </div>
         <div>
           <h1 className="main-header header-text">Diary</h1>
+          {this.props.log.length === 0 &&
+            <h2 className="main-header header-text"> Your Have No Diary Entries</h2>
+          }
           <ul className="list-results"> {diaryToRender} </ul>
         </div>;
         </main>

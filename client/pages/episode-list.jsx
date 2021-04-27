@@ -6,7 +6,7 @@ class EpisodeList extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = { episode: null, logModalOpen: false, episodeToLog: null };
+    this.state = { episode: null, logModalOpen: false, episodeToLog: null, searching: false };
     this.episodeInfo = this.episodeInfo.bind(this);
     this.addToWatchlist = this.addToWatchlist.bind(this);
     this.openLogModal = this.openLogModal.bind(this);
@@ -19,19 +19,19 @@ class EpisodeList extends React.Component {
     const listResults = filteredEpisodes.map(episode =>
       <div className="episodes-list" key={episode.id} id={episode.id}>
         <img className="episodes-list-image" src={episode.image.medium} alt={episode.image.name} />
-        <ul className="episode-title" value={episode.name} onClick={this.episodeInfo}>S{episode.season}E{episode.number} {episode.name}</ul>
+        <a className="episode-title" value={episode.name} onClick={this.episodeInfo}>S{episode.season}E{episode.number} {episode.name}</a>
         <ul className="episode-date" value={episode.airdate}> {episode.airdate} </ul>
         <div className="list-button-container">
           <button onClick={this.openLogModal} show={this.props.showName} name={episode.name} season={episode.season} number={episode.number}
-            image={episode.image.original}>Log</button>
-          <button show={this.props.showName} name={episode.name} season={episode.season} number={episode.number} image={episode.image.medium} onClick={this.addToWatchlist}>Need to Watch</button>
+            image={episode.image.original} type="button">Log</button>
+          <button show={this.props.showName} name={episode.name} season={episode.season} number={episode.number} image={episode.image.medium} onClick={this.addToWatchlist} type="submit">Need to Watch</button>
         </div>
       </div>
     );
     return <div>
       <header>
         <i onClick={this.props.menu} className="fas fa-tv fa-2x tv-icon"></i>
-        <h1 className="header-text"> TV Diary </h1>
+        <a className="header-text site-header" onClick={this.props.goHome}> TV Diary </a>
         <div className="search-form-header">
           <SearchForm onSubmit={this.props.setSearchResults} />
         </div>
@@ -45,6 +45,9 @@ class EpisodeList extends React.Component {
             number={this.state.episodeToLog.number} name={this.state.episodeToLog.name} saveToLog={this.props.saveToLog} image={this.state.episodeToLog.image}
             userId={this.state.episodeToLog.userId} />
         }
+        {this.state.searching === true &&
+          <div className="loading-spinner"></div>
+        }
         <h1 className="episodes-list-header header-text">Episode List</h1>
         <ul className="list-results"> {listResults} </ul>
       </main>
@@ -55,6 +58,7 @@ class EpisodeList extends React.Component {
   }
 
   episodeInfo(event) {
+    this.setState({ searching: true });
     const episodeId = event.target.parentElement.getAttribute('id');
     fetch('https://api.tvmaze.com/episodes/' + episodeId + '?embed=show')
       .then(response => response.json())

@@ -7,7 +7,7 @@ export default class Home extends React.Component {
     return <div>
       <header>
         <i onClick={this.props.menu} className="fas fa-tv fa-2x tv-icon"></i>
-        <h1 className="header-text"> {this.props.text} </h1>
+        <a className="header-text site-header" onClick={this.props.goHome}> {this.props.text} </a>
         <div className="search-form-header">
           <SearchForm onSubmit={this.props.setSearchResults} />
         </div>
@@ -16,6 +16,7 @@ export default class Home extends React.Component {
         <div className="search-form">
           <SearchForm onSubmit={this.props.setSearchResults} />
         </div>
+        {/* <div class="loading-spinner"></div> */}
         <h1 className="main-header header-text">Popular Shows</h1>
         <div className="image-holder-row">
           <img src="/images/683813.jpg" alt="The Mandalorian" />

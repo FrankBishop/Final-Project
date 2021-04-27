@@ -27,8 +27,8 @@ class Watchlist extends React.Component {
           <ul className="watch-episode-title" value={episode['episode name']} > S{episode.season}E{episode.number} {episode['episode name']} </ul>
           <div className="watchlist-button-container">
             <button className="watchlist-log-button" onClick={this.openLogModal} show={episode.show} name={episode['episode name']}
-              season={episode.season} number={episode.number} image={episode.image}>Log</button>
-            <button onClick={this.openModal} id={episode.entryId} className="watchlist-delete-button">Delete</button>
+              season={episode.season} number={episode.number} image={episode.image} type="button">Log</button>
+            <button onClick={this.openModal} id={episode.entryId} className="watchlist-delete-button" type="submit">Delete</button>
           </div>
         </div>
       </div>
@@ -37,7 +37,7 @@ class Watchlist extends React.Component {
       return <div>
         <header>
           <i onClick={this.props.menu} className="fas fa-tv fa-2x tv-icon"></i>
-          <h1 className="header-text"> TV Diary </h1>
+          <a className="header-text site-header" onClick={this.props.goHome}> TV Diary </a>
           <div className="search-form-header">
             <SearchForm onSubmit={this.props.setSearchResults} />
           </div>
@@ -59,7 +59,7 @@ class Watchlist extends React.Component {
       return <div>
         <header>
           <i onClick={this.props.menu} className="fas fa-tv fa-2x tv-icon"></i>
-          <h1 className="header-text"> TV Diary </h1>
+          <a className="header-text site-header" onClick={this.props.goHome}> TV Diary </a>
           <div className="search-form-header">
             <SearchForm onSubmit={this.props.setSearchResults} />
           </div>

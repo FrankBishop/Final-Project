@@ -17,8 +17,8 @@ class DeleteModal extends React.Component {
         <div className="delete-modal">
           <h2>Are you sure you want to delete this episode from your watchlist?</h2>
           <div className="delete-modal-buttons">
-            <button onClick={this.deleteFromWatchlist} id={this.props.episodeToDelete} >Yes</button>
-            <button onClick={this.props.toggleModal}>No</button>
+            <button onClick={this.deleteFromWatchlist} id={this.props.episodeToDelete} type="submit">Yes</button>
+            <button onClick={this.props.toggleModal} type="button">No</button>
           </div>
         </div>
       </div >;

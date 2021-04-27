@@ -24,7 +24,7 @@ class ShowInfo extends React.Component {
     return <div>
       <header>
         <i onClick={this.props.menu} className="fas fa-tv fa-2x tv-icon"></i>
-        <h1 className="header-text"> {this.props.text} </h1>
+        <a className="header-text site-header" onClick={this.props.goHome}> {this.props.text} </a>
         <div className="search-form-header">
           <SearchForm onSubmit={this.props.setSearchResults} />
         </div>
@@ -36,17 +36,19 @@ class ShowInfo extends React.Component {
         <div className="show-info">
           <h1 className="show-header header-text">{this.state.showName.name}</h1>
           <h4 className="premiere-date">Premiere Date - {this.state.showName.premiered}</h4>
-          <button className="episodes-link" onClick={this.episodeListings}>Episode List</button>
-          <img className="show-image" src={this.state.showName.image.medium} alt={this.state.showName.name} ></img>
-          <h3 className="summary-header">Summary</h3>
-          <div className="summary"> {filteredSummary}</div>
-          <ul className="cast-list">{listResults}</ul>
+          <div className="below-title">
+            <a className="episodes-link" onClick={this.episodeListings} type="submit">Episode List</a>
+            <img className="show-image" src={this.state.showName.image.medium} alt={this.state.showName.name} ></img>
+            <h3 className="summary-header">Summary</h3>
+            <div className="summary"> {filteredSummary}</div>
+            <ul className="cast-list">{listResults}</ul>
+          </div>
         </div>
       </main>
       <footer>
 
       </footer>
-    </div>;
+    </div >;
   }
 
   episodeListings() {

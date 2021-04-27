@@ -18,7 +18,7 @@ class EpisodeDetails extends React.Component {
     return <div>
       <header>
         <i onClick={this.props.menu} className="fas fa-tv fa-2x tv-icon"></i>
-        <h1 className="header-text"> TV Diary </h1>
+        <a className="header-text site-header" onClick={this.props.goHome}> TV Diary </a>
         <div className="search-form-header">
           <SearchForm onSubmit={this.props.setSearchResults} />
         </div>
@@ -42,9 +42,8 @@ class EpisodeDetails extends React.Component {
             <p>{filteredSummary}</p>
           </div>
           <div className="episode-button-container">
-            <button onClick={this.openModal}>Log</button>
-            <button onClick={this.addToWatchlist}>Need To Watch</button>
-            <button>Mark as Watched</button>
+            <button onClick={this.openModal} type="button">Log</button>
+            <button onClick={this.addToWatchlist} type="submit">Need To Watch</button>
           </div>
         </div>
       </main>

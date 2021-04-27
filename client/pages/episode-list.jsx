@@ -6,7 +6,7 @@ class EpisodeList extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = { episode: null, logModalOpen: false, episodeToLog: null };
+    this.state = { episode: null, logModalOpen: false, episodeToLog: null, searching: false };
     this.episodeInfo = this.episodeInfo.bind(this);
     this.addToWatchlist = this.addToWatchlist.bind(this);
     this.openLogModal = this.openLogModal.bind(this);
@@ -45,6 +45,9 @@ class EpisodeList extends React.Component {
             number={this.state.episodeToLog.number} name={this.state.episodeToLog.name} saveToLog={this.props.saveToLog} image={this.state.episodeToLog.image}
             userId={this.state.episodeToLog.userId} />
         }
+        {this.state.searching === true &&
+          <div className="loading-spinner"></div>
+        }
         <h1 className="episodes-list-header header-text">Episode List</h1>
         <ul className="list-results"> {listResults} </ul>
       </main>
@@ -55,6 +58,7 @@ class EpisodeList extends React.Component {
   }
 
   episodeInfo(event) {
+    this.setState({ searching: true });
     const episodeId = event.target.parentElement.getAttribute('id');
     fetch('https://api.tvmaze.com/episodes/' + episodeId + '?embed=show')
       .then(response => response.json())

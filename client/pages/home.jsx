@@ -16,6 +16,7 @@ export default class Home extends React.Component {
         <div className="search-form">
           <SearchForm onSubmit={this.props.setSearchResults} />
         </div>
+        {/* <div class="loading-spinner"></div> */}
         <h1 className="main-header header-text">Popular Shows</h1>
         <div className="image-holder-row">
           <img src="/images/683813.jpg" alt="The Mandalorian" />

@@ -5,7 +5,7 @@ class SearchResults extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = { show: null };
+    this.state = { show: null, searching: false };
     this.showInfo = this.showInfo.bind(this);
   }
 
@@ -30,6 +30,9 @@ class SearchResults extends React.Component {
         <div className="search-form">
           <SearchForm onSubmit={this.props.setSearchResults} />
         </div>
+        {this.state.searching === true &&
+          <div className="loading-spinner"></div>
+        }
         <h1 className="main-header header-text">Search Results</h1>
         <ul className="list-results"> {listResults} </ul>
       </main>
@@ -40,6 +43,7 @@ class SearchResults extends React.Component {
   }
 
   showInfo(event) {
+    this.setState({ searching: true });
     const showId = event.target.parentElement.getAttribute('id');
     fetch('https://api.tvmaze.com/shows/' + showId + '?embed[]=episodes&embed[]=cast')
       .then(response => response.json())

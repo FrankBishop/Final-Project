@@ -231,7 +231,14 @@ export default class App extends React.Component {
       }
     })
       .then(response => response.json())
-      .then(user => this.setState({ signedIn: true }))
+      .then(user => {
+        this.setState({ signedIn: true });
+        this.setState({ logonFailed: false });
+        this.setState({ user: user.userId });
+        this.setState({ signIn: false });
+        JSON.stringify(user);
+        localStorage.setItem('token', user.token);
+      })
       .catch(err => {
         console.error(err);
       });
@@ -263,6 +270,7 @@ export default class App extends React.Component {
         this.setState({ logonFailed: false });
         this.setState({ user: user.user.userId });
         this.setState({ signedIn: true });
+        this.setState({ signIn: false });
         JSON.stringify(user);
         localStorage.setItem('token', user.token);
       })

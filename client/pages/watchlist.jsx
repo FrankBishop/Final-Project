@@ -7,7 +7,7 @@ class Watchlist extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = { openModal: false, episodeToDelete: null, logModalOpen: false, episodeToLog: null };
+    this.state = { openModal: false, episodeToDelete: null, logModalOpen: false, episodeToLog: null, searching: false };
     this.openModal = this.openModal.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
     this.openLogModal = this.openLogModal.bind(this);
@@ -65,6 +65,9 @@ class Watchlist extends React.Component {
           </div>
         </header>
         <main>
+          {this.state.searching === true &&
+            <div className="loading-spinner"></div>
+          }
           {this.state.logModalOpen === true &&
             <LogModal toggleModal={this.toggleLogModal} showName={this.state.episodeToLog.showName} season={this.state.episodeToLog.season}
               number={this.state.episodeToLog.number} name={this.state.episodeToLog.name} saveToLog={this.props.saveToLog} image={this.state.episodeToLog.image}

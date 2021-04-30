@@ -63,6 +63,7 @@ class EpisodeList extends React.Component {
     fetch('https://api.tvmaze.com/episodes/' + episodeId + '?embed=show')
       .then(response => response.json())
       .then(result => {
+        this.setState({ searching: false });
         this.props.showEpisode(result);
       });
   }

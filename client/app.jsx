@@ -232,6 +232,7 @@ export default class App extends React.Component {
   }
 
   signUp(user) {
+    this.setState({ calling: true });
     fetch('/api/users/sign-up', {
       method: 'POST',
       body: JSON.stringify(user),
@@ -240,7 +241,10 @@ export default class App extends React.Component {
         'X-Access-Token': localStorage.getItem('token')
       }
     })
-      .then(response => response.json())
+      .then(response => {
+        response.json();
+        this.setState({ calling: false });
+      })
       .then(user => {
         this.setState({ signedIn: true });
         this.setState({ logonFailed: false });
@@ -267,6 +271,7 @@ export default class App extends React.Component {
   }
 
   signIn(user) {
+    // this.setState({ calling: true });
     fetch('/api/users/sign-in', {
       method: 'POST',
       body: JSON.stringify(user),

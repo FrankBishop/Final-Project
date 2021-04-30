@@ -22,6 +22,9 @@ class SignIn extends React.Component {
           </div>
         </header>
         <main>
+          {this.props.calling === true &&
+            <div className="loading-spinner"></div>
+          }
           <div className="search-form">
             <SearchForm onSubmit={this.props.setSearchResults} />
           </div>

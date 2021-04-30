@@ -14,7 +14,7 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchResults: [], watchlist: [], menuOpen: false, watchlistOpen: false, log: [], logOpen: false, show: null, episodes: [], showEpisode: null, signUp: false, signIn: false, showName: null, signedIn: false, user: null, logonFailed: null
+      searchResults: [], watchlist: [], menuOpen: false, watchlistOpen: false, log: [], logOpen: false, show: null, episodes: [], showEpisode: null, signUp: false, signIn: false, showName: null, signedIn: false, user: null, logonFailed: null, calling: false
     };
     this.setSearchResults = this.setSearchResults.bind(this);
     this.showWatchlist = this.showWatchlist.bind(this);
@@ -74,6 +74,7 @@ export default class App extends React.Component {
   }
 
   addToWatchlist(episode) {
+    this.setState({ calling: true });
     fetch('/api/watchlist', {
       method: 'POST',
       body: JSON.stringify(episode),
@@ -82,7 +83,10 @@ export default class App extends React.Component {
         'X-Access-Token': localStorage.getItem('token')
       }
     })
-      .then(response => response.json())
+      .then(response => {
+        response.json();
+        this.setState({ calling: false });
+      })
       .then(episode => {
         const watchlist = this.state.watchlist.concat(episode);
         this.setState({ watchlist });
@@ -165,6 +169,7 @@ export default class App extends React.Component {
   }
 
   deleteFromWatchlist(episode) {
+    this.setState({ calling: true });
     const deleteId = parseInt(episode, 10);
     fetch(`/api/watchlist/${deleteId}`, {
       method: 'DELETE',
@@ -174,6 +179,7 @@ export default class App extends React.Component {
       }
     })
       .then(episode => {
+        this.setState({ calling: false });
         let entryToDelete;
         const watchlist = this.state.watchlist.slice();
         for (let i = 0; i < watchlist.length; i++) {
@@ -190,6 +196,7 @@ export default class App extends React.Component {
   }
 
   saveToLog(entry) {
+    this.setState({ calling: true });
     fetch('/api/log', {
       method: 'POST',
       body: JSON.stringify(entry),
@@ -198,7 +205,10 @@ export default class App extends React.Component {
         'X-Access-Token': localStorage.getItem('token')
       }
     })
-      .then(response => response.json())
+      .then(response => {
+        response.json();
+        this.setState({ calling: false });
+      })
       .then(episode => {
         let log = this.state.log;
         log = this.state.log.concat(episode);
@@ -222,6 +232,7 @@ export default class App extends React.Component {
   }
 
   signUp(user) {
+    this.setState({ calling: true });
     fetch('/api/users/sign-up', {
       method: 'POST',
       body: JSON.stringify(user),
@@ -230,8 +241,18 @@ export default class App extends React.Component {
         'X-Access-Token': localStorage.getItem('token')
       }
     })
-      .then(response => response.json())
-      .then(user => this.setState({ signedIn: true }))
+      .then(response => {
+        response.json();
+        this.setState({ calling: false });
+      })
+      .then(user => {
+        this.setState({ signedIn: true });
+        this.setState({ logonFailed: false });
+        this.setState({ user: user.userId });
+        this.setState({ signIn: false });
+        JSON.stringify(user);
+        localStorage.setItem('token', user.token);
+      })
       .catch(err => {
         console.error(err);
       });
@@ -250,6 +271,7 @@ export default class App extends React.Component {
   }
 
   signIn(user) {
+    // this.setState({ calling: true });
     fetch('/api/users/sign-in', {
       method: 'POST',
       body: JSON.stringify(user),
@@ -263,6 +285,7 @@ export default class App extends React.Component {
         this.setState({ logonFailed: false });
         this.setState({ user: user.user.userId });
         this.setState({ signedIn: true });
+        this.setState({ signIn: false });
         JSON.stringify(user);
         localStorage.setItem('token', user.token);
       })
@@ -309,7 +332,7 @@ export default class App extends React.Component {
       return <div>
         <Watchlist menu={this.openMenu} setSearchResults={this.setSearchResults} searchResults={this.state.searchResults} menuOpen={this.state.menuOpen === false} goHome={this.goHome} openWatchlist={this.openWatchlist}
           isWatchlistOpen={this.state.watchlistOpen} watchlist={this.state.watchlist} deleteFromWatchlist={this.deleteFromWatchlist} saveToLog={this.saveToLog} openLog={this.openLog} showName={this.state.showName}
-          user={this.state.user} />;
+          user={this.state.user} calling={this.state.calling} />;
         <AppDrawer menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist} goHome={this.goHome} openLog={this.openLog} signUp={this.goToSignUp}
           signIn={this.goToSignIn} user={this.state.user} signOut={this.signOut} />;
         </div>;
@@ -327,20 +350,21 @@ export default class App extends React.Component {
         <EpisodeList text="TV Diary" setSearchResults={this.setSearchResults} searchResults={this.state.searchResults} watchlist={this.state.watchlist}
           addToWatchlist={this.addToWatchlist} menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist}
           isWatchlistOpen={this.state.watchlistOpen} goHome={this.goHome} saveToLog={this.saveToLog} openLog={this.openLog} show={this.state.show}
-          episodes={this.setEpisodes} episodesList={this.state.episodes} showEpisode={this.setShowEpisode} showName={this.state.showName} user={this.state.user} />;
+          episodes={this.setEpisodes} episodesList={this.state.episodes} showEpisode={this.setShowEpisode} showName={this.state.showName} user={this.state.user}
+          calling={this.state.calling} />;
       <AppDrawer menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist} goHome={this.goHome} openLog={this.openLog} signUp={this.goToSignUp}
           signIn={this.goToSignIn} user={this.state.user} signOut={this.signOut} />;
       </div>;
     } else if (this.state.signUp === true) {
       return <div>
-        <SignUp menu={this.openMenu} menuOpen={this.state.menuOpen} signUp={this.signUp} goHome={this.goHome} />;
+        <SignUp menu={this.openMenu} menuOpen={this.state.menuOpen} signUp={this.signUp} goHome={this.goHome} calling={this.state.calling} />;
       <AppDrawer menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist} goHome={this.goHome} openLog={this.openLog} signUp={this.goToSignUp}
           signIn={this.goToSignIn} user={this.state.user} signOut={this.signOut} />;
       </div>;
     } else if (this.state.signIn === true) {
       return <div>
         <SignIn menu={this.openMenu} menuOpen={this.state.menuOpen} signUp={this.signUp} goHome={this.goHome} signIn={this.signIn} logonFailed={this.state.logonFailed}
-          setSearchResults={this.setSearchResults} />;
+          setSearchResults={this.setSearchResults} calling={this.state.calling} />;
       <AppDrawer menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist} goHome={this.goHome} openLog={this.openLog} signUp={this.goToSignUp}
           signIn={this.goToSignIn} user={this.state.user} signOut={this.signOut} />;
       </div>;
@@ -349,7 +373,7 @@ export default class App extends React.Component {
         <EpisodeDetails text="TV Diary" setSearchResults={this.setSearchResults} searchResults={this.state.searchResults} watchlist={this.state.watchlist}
           addToWatchlist={this.addToWatchlist} menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist}
           isWatchlistOpen={this.state.watchlistOpen} goHome={this.goHome} saveToLog={this.saveToLog} openLog={this.openLog} show={this.state.show}
-          episodes={this.setEpisodes} episodesList={this.state.episodes} showEpisode={this.state.showEpisode} user={this.state.user} />;
+          episodes={this.setEpisodes} episodesList={this.state.episodes} showEpisode={this.state.showEpisode} user={this.state.user} calling={this.state.calling} />;
         <AppDrawer menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist} goHome={this.goHome} openLog={this.openLog} signUp={this.goToSignUp}
           signIn={this.goToSignIn} user={this.state.user} signOut={this.signOut} />;
       </div>;

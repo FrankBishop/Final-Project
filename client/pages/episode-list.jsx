@@ -37,6 +37,9 @@ class EpisodeList extends React.Component {
         </div>
       </header>
       <main>
+        {this.props.calling === true &&
+          <div className="loading-spinner"></div>
+        }
         <div className="search-form">
           <SearchForm onSubmit={this.props.setSearchResults} />
         </div>
@@ -63,6 +66,7 @@ class EpisodeList extends React.Component {
     fetch('https://api.tvmaze.com/episodes/' + episodeId + '?embed=show')
       .then(response => response.json())
       .then(result => {
+        this.setState({ searching: false });
         this.props.showEpisode(result);
       });
   }

@@ -5,7 +5,7 @@ class SignIn extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = { username: null, password: null, signedIn: false, searching: false };
+    this.state = { username: null, password: null, signedIn: false };
     this.startSignIn = this.startSignIn.bind(this);
     this.setUsername = this.setUsername.bind(this);
     this.setPassword = this.setPassword.bind(this);
@@ -22,6 +22,9 @@ class SignIn extends React.Component {
           </div>
         </header>
         <main>
+          {this.props.calling === true &&
+            <div className="loading-spinner"></div>
+          }
           <div className="search-form">
             <SearchForm onSubmit={this.props.setSearchResults} />
           </div>
@@ -73,7 +76,7 @@ class SignIn extends React.Component {
             <input type="password" id="password" name="password" minLength="8" required onChange={this.setPassword}></input>
             <div className="registration-button-holder">
               <button onClick={this.props.goHome} type="button">Cancel</button>
-              <button onClick={this.startSign} type="submit">Sign In</button>
+              <button onClick={this.startSignIn} type="submit">Sign In</button>
             </div>
           </form>
         </div>;

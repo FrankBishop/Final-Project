@@ -16,12 +16,15 @@ class SignUp extends React.Component {
       return <div>
         <header>
           <i onClick={this.props.menu} className="fas fa-tv fa-2x tv-icon"></i>
-          <h1 className="header-text" onClick={this.props.goHome}> TV Diary </h1>
+          <h1 className="header-text site-header" onClick={this.props.goHome}> TV Diary </h1>
           <div className="search-form-header">
             <SearchForm onSubmit={this.props.setSearchResults} />
           </div>
         </header>
         <main>
+          {this.props.calling === true &&
+            <div className="loading-spinner"></div>
+          }
           <div className="search-form">
             <SearchForm onSubmit={this.props.setSearchResults} />
           </div>
@@ -76,6 +79,7 @@ class SignUp extends React.Component {
   }
 
   startSignUp() {
+    // this.setState({ calling: true });
     event.preventDefault();
     const user = {
       username: this.state.username,
@@ -83,6 +87,7 @@ class SignUp extends React.Component {
     };
     this.props.signUp(user);
     this.setState({ registered: true });
+    // this.setState({ calling: false });
   }
 }
 

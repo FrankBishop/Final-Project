@@ -24,10 +24,12 @@ class EpisodeDetails extends React.Component {
         </div>
       </header>
       <main>
+        {this.props.calling === true &&
+          <div className="loading-spinner"></div>
+        }
         <div className="search-form">
           <SearchForm onSubmit={this.props.setSearchResults} />
         </div>
-
         <div className="episode-info">
           {this.state.logModalOpen === true &&
             <LogModal toggleModal={this.toggleModal} showName={this.props.showEpisode._embedded.show.name} season={this.props.showEpisode.season}

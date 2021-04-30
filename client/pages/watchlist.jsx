@@ -65,6 +65,9 @@ class Watchlist extends React.Component {
           </div>
         </header>
         <main>
+          {this.props.calling === true &&
+            <div className="loading-spinner"></div>
+          }
           {this.state.searching === true &&
             <div className="loading-spinner"></div>
           }

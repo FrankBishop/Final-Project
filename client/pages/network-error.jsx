@@ -4,7 +4,7 @@ class NetworkError extends React.Component {
 
   constructor(props) {
     super(props);
-    this.close - this.close.bind(this);
+    this.close = this.close.bind(this);
   }
 
   render() {
@@ -19,7 +19,8 @@ class NetworkError extends React.Component {
   }
 
   close() {
-    t
+    this.props.tryAgain();
+    this.props.toggleCalling();
   }
 
 }

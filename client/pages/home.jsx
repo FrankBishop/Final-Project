@@ -10,17 +10,16 @@ export default class Home extends React.Component {
         <i onClick={this.props.menu} className="fas fa-tv fa-2x tv-icon"></i>
         <a className="header-text site-header" onClick={this.props.goHome}> {this.props.text} </a>
         <div className="search-form-header">
-          <SearchForm onSubmit={this.props.setSearchResults} noResults={this.props.noResults} networkError = {this.props.networkError} />
+          <SearchForm onSubmit={this.props.setSearchResults} noResults={this.props.noResults} networkError={this.props.networkError} calling = {this.props.calling} toggleCalling = {this.props.toggleCalling} />
         </div>
       </header>
       <main>
         <div className="search-form">
-          <SearchForm onSubmit={this.props.setSearchResults} noResults={this.props.noResults} networkError={this.props.networkError}/>
+          <SearchForm onSubmit={this.props.setSearchResults} noResults={this.props.noResults} networkError={this.props.networkError} calling={this.props.calling} toggleCalling={this.props.toggleCalling}/>
         </div>
-        {/* <div class="loading-spinner"></div> */}
         <h1 className="main-header header-text">Popular Shows</h1>
-        { this.props.networkErrorState === true &&
-          <NetworkError/>
+        {this.props.networkErrorState === true &&
+          <NetworkError tryAgain={this.props.tryAgain} toggleCalling={this.props.toggleCalling} />
         }
         <div className="image-holder-row">
           <img src="/images/683813.jpg" alt="The Mandalorian" />

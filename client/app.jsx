@@ -36,6 +36,8 @@ export default class App extends React.Component {
     this.signOut = this.signOut.bind(this);
     this.noResults = this.noResults.bind(this);
     this.networkError = this.networkError.bind(this);
+    this.networkErrorTryAgain = this.networkErrorTryAgain.bind(this);
+    this.toggleCalling = this.toggleCalling.bind(this);
   }
 
   componentDidUpdate() {
@@ -127,6 +129,19 @@ export default class App extends React.Component {
     this.setState({ networkError: true });
   }
 
+  networkErrorTryAgain() {
+    this.setState({ networkError: false });
+    this.setState({ calling: false });
+  }
+
+  toggleCalling() {
+    if (this.state.calling === true) {
+      this.setState({ calling: false });
+    } else {
+      this.setState({ calling: true });
+    }
+  }
+
   showWatchlist(entries) {
     this.setState({ watchlist: entries });
   }
@@ -176,6 +191,7 @@ export default class App extends React.Component {
     this.setState({ signUp: false });
     this.setState({ signIn: false });
     this.setState({ menuOpen: false });
+    this.setState({ calling: false });
   }
 
   deleteFromWatchlist(episode) {
@@ -321,7 +337,8 @@ export default class App extends React.Component {
         <Home text="TV Diary" setSearchResults={this.setSearchResults} searchResults={this.state.searchResults} watchlist={this.state.watchlist}
           addToWatchlist={this.addToWatchlist} menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist}
           isWatchlistOpen={this.state.watchlistOpen} goHome={this.goHome} saveToLog={this.saveToLog} openLog={this.openLog} user={this.state.user} noResults={this.noResults}
-          networkError = {this.networkError} networkErrorState = {this.state.networkError} />;
+          networkError={this.networkError} networkErrorState={this.state.networkError} tryAgain={this.networkErrorTryAgain} toggleCalling={this.toggleCalling}
+          calling={this.state.calling} />;
         <AppDrawer menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist} goHome={this.goHome} openLog={this.openLog} signUp={this.goToSignUp}
           signIn={this.goToSignIn} user={this.state.user} signOut={this.signOut} />;
       </div>;

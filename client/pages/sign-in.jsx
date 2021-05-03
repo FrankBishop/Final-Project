@@ -18,7 +18,7 @@ class SignIn extends React.Component {
           <i onClick={this.props.menu} className="fas fa-tv fa-2x tv-icon"></i>
           <h1 className="header-text site-header" onClick={this.props.goHome}> TV Diary </h1>
           <div className="search-form-header">
-            <SearchForm onSubmit={this.props.setSearchResults} />
+            <SearchForm onSubmit={this.props.setSearchResults} noResults={this.props.noResults} />
           </div>
         </header>
         <main>
@@ -26,7 +26,7 @@ class SignIn extends React.Component {
             <div className="loading-spinner"></div>
           }
           <div className="search-form">
-            <SearchForm onSubmit={this.props.setSearchResults} />
+            <SearchForm onSubmit={this.props.setSearchResults} noResults={this.props.noResults} />
           </div>
           {this.props.logonFailed === true &&
             <div className="registration">
@@ -60,12 +60,12 @@ class SignIn extends React.Component {
         <i onClick={this.props.menu} className="fas fa-tv fa-2x tv-icon"></i>
         <a className="header-text site-header" onClick={this.props.goHome}> TV Diary </a>
         <div className="search-form-header">
-          <SearchForm onSubmit={this.props.setSearchResults} />
+          <SearchForm onSubmit={this.props.setSearchResults} noResults={this.props.noResults} />
         </div>
       </header>
       <main>
         <div className="search-form">
-          <SearchForm onSubmit={this.props.setSearchResults} />
+          <SearchForm onSubmit={this.props.setSearchResults} noResults={this.props.noResults} />
         </div>
         <div className="registration">
           <h1 className="registration-header">Sign In</h1>

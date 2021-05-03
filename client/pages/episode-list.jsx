@@ -33,7 +33,7 @@ class EpisodeList extends React.Component {
         <i onClick={this.props.menu} className="fas fa-tv fa-2x tv-icon"></i>
         <a className="header-text site-header" onClick={this.props.goHome}> TV Diary </a>
         <div className="search-form-header">
-          <SearchForm onSubmit={this.props.setSearchResults} />
+          <SearchForm onSubmit={this.props.setSearchResults} noResults={this.props.noResults} />
         </div>
       </header>
       <main>
@@ -41,7 +41,7 @@ class EpisodeList extends React.Component {
           <div className="loading-spinner"></div>
         }
         <div className="search-form">
-          <SearchForm onSubmit={this.props.setSearchResults} />
+          <SearchForm onSubmit={this.props.setSearchResults} noResults={this.props.noResults} />
         </div>
         {this.state.logModalOpen === true &&
           <LogModal toggleModal={this.toggleLogModal} showName={this.state.episodeToLog.showName} season={this.state.episodeToLog.season}
@@ -52,6 +52,9 @@ class EpisodeList extends React.Component {
           <div className="loading-spinner"></div>
         }
         <h1 className="episodes-list-header header-text">Episode List</h1>
+        {listResults.length === 0 &&
+          <h2 className="main-header header-text"> There are no episodes to display</h2>
+        }
         <ul className="list-results"> {listResults} </ul>
       </main>
       <footer>

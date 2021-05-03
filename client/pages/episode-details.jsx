@@ -20,7 +20,7 @@ class EpisodeDetails extends React.Component {
         <i onClick={this.props.menu} className="fas fa-tv fa-2x tv-icon"></i>
         <a className="header-text site-header" onClick={this.props.goHome}> TV Diary </a>
         <div className="search-form-header">
-          <SearchForm onSubmit={this.props.setSearchResults} />
+          <SearchForm onSubmit={this.props.setSearchResults} noResults={this.props.noResults} />
         </div>
       </header>
       <main>
@@ -28,7 +28,7 @@ class EpisodeDetails extends React.Component {
           <div className="loading-spinner"></div>
         }
         <div className="search-form">
-          <SearchForm onSubmit={this.props.setSearchResults} />
+          <SearchForm onSubmit={this.props.setSearchResults} noResults={this.props.noResults} />
         </div>
         <div className="episode-info">
           {this.state.logModalOpen === true &&

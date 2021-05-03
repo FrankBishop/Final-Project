@@ -39,12 +39,12 @@ class Watchlist extends React.Component {
           <i onClick={this.props.menu} className="fas fa-tv fa-2x tv-icon"></i>
           <a className="header-text site-header" onClick={this.props.goHome}> TV Diary </a>
           <div className="search-form-header">
-            <SearchForm onSubmit={this.props.setSearchResults} />
+            <SearchForm onSubmit={this.props.setSearchResults} noResults={this.props.noResults} />
           </div>
         </header>
         <main>
           <div className="search-form">
-            <SearchForm onSubmit={this.props.setSearchResults} />
+            <SearchForm onSubmit={this.props.setSearchResults} noResults={this.props.noResults} />
           </div>
           <div>
             <h1 className="main-header header-text">Watchlist</h1>
@@ -61,7 +61,7 @@ class Watchlist extends React.Component {
           <i onClick={this.props.menu} className="fas fa-tv fa-2x tv-icon"></i>
           <a className="header-text site-header" onClick={this.props.goHome}> TV Diary </a>
           <div className="search-form-header">
-            <SearchForm onSubmit={this.props.setSearchResults} />
+            <SearchForm onSubmit={this.props.setSearchResults} noResults={this.props.noResults} />
           </div>
         </header>
         <main>
@@ -81,7 +81,7 @@ class Watchlist extends React.Component {
               toggleModal={this.toggleModal} />
           }
           <div className="search-form">
-            <SearchForm onSubmit={this.props.setSearchResults} />
+            <SearchForm onSubmit={this.props.setSearchResults} noResults={this.props.noResults} />
           </div>
           <div>
             <h1 className="main-header header-text">Watchlist</h1>

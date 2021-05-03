@@ -27,7 +27,13 @@ class SearchForm extends React.Component {
     event.preventDefault();
     fetch('https://api.tvmaze.com/search/shows?q=' + this.state.value + '')
       .then(response => response.json())
-      .then(results => this.props.onSubmit(results));
+      .then(results => {
+        if (results.length === 0) {
+          this.setState({ searching: false });
+          this.props.noResults();
+        }
+        this.props.onSubmit(results);
+      });
   }
 
 }

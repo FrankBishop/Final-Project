@@ -34,6 +34,9 @@ class SearchResults extends React.Component {
           <div className="loading-spinner"></div>
         }
         <h1 className="main-header header-text">Search Results</h1>
+        {this.props.results.length === 0 &&
+          <h2 className="main-header header-text"> There are no results for this search</h2>
+        }
         <ul className="list-results"> {listResults} </ul>
       </main>
       <footer>

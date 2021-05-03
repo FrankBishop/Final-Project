@@ -444,7 +444,8 @@ h4 {
 }
 
 .delete-modal-buttons > button,
-.log-modal-buttons > button {
+.log-modal-buttons > button,
+.network-error-buttons > button {
   width: 30%;
   background-color: #ffd700;
   height: 50px;
@@ -574,6 +575,16 @@ button:hover {
   to {
     transform: rotate(360deg);
   }
+}
+
+.network-error-buttons {
+  margin-top: 150px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.network-error-header {
+  margin-top: 100px;
 }
 
 @media screen and (max-width: 320px) and (orientation: portrait) {

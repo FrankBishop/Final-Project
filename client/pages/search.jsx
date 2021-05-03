@@ -33,6 +33,10 @@ class SearchForm extends React.Component {
           this.props.noResults();
         }
         this.props.onSubmit(results);
+      })
+      .catch(err => {
+        this.props.networkError();
+        console.error(err);
       });
   }
 

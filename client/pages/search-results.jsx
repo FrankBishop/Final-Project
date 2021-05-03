@@ -23,12 +23,12 @@ class SearchResults extends React.Component {
         <i onClick={this.props.menu} className="fas fa-tv fa-2x tv-icon"></i>
         <a className="header-text site-header" onClick={this.props.goHome}> {this.props.text} </a>
         <div className="search-form-header">
-          <SearchForm onSubmit={this.props.setSearchResults} />
+          <SearchForm onSubmit={this.props.setSearchResults} noResults={this.props.noResults} />
         </div>
       </header>
       <main>
         <div className="search-form">
-          <SearchForm onSubmit={this.props.setSearchResults} />
+          <SearchForm onSubmit={this.props.setSearchResults} noResults={this.props.noResults} />
         </div>
         {this.state.searching === true &&
           <div className="loading-spinner"></div>

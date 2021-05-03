@@ -9,12 +9,12 @@ export default class Home extends React.Component {
         <i onClick={this.props.menu} className="fas fa-tv fa-2x tv-icon"></i>
         <a className="header-text site-header" onClick={this.props.goHome}> {this.props.text} </a>
         <div className="search-form-header">
-          <SearchForm onSubmit={this.props.setSearchResults} />
+          <SearchForm onSubmit={this.props.setSearchResults} noResults={this.props.noResults} />
         </div>
       </header>
       <main>
         <div className="search-form">
-          <SearchForm onSubmit={this.props.setSearchResults} />
+          <SearchForm onSubmit={this.props.setSearchResults} noResults={this.props.noResults}/>
         </div>
         {/* <div class="loading-spinner"></div> */}
         <h1 className="main-header header-text">Popular Shows</h1>

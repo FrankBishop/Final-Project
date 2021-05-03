@@ -30,6 +30,7 @@ class SearchForm extends React.Component {
       .then(results => {
         if (results.length === 0) {
           this.setState({ searching: false });
+          this.props.noResults();
         }
         this.props.onSubmit(results);
       });

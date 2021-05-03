@@ -254,6 +254,7 @@ export default class App extends React.Component {
         localStorage.setItem('token', user.token);
       })
       .catch(err => {
+        this.setState({ calling: false });
         console.error(err);
       });
   }
@@ -291,6 +292,7 @@ export default class App extends React.Component {
       })
       .catch(err => {
         this.setState({ logonFailed: true });
+        this.setState({ calling: false });
         console.error(err);
       });
   }

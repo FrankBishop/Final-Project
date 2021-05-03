@@ -563,6 +563,7 @@ button:hover {
   right: 0;
   margin: auto;
   animation: spin 1s infinite linear;
+  z-index: 1;
 }
 
 @keyframes spin {

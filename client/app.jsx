@@ -271,7 +271,7 @@ export default class App extends React.Component {
   }
 
   signIn(user) {
-    // this.setState({ calling: true });
+    this.setState({ calling: true });
     fetch('/api/users/sign-in', {
       method: 'POST',
       body: JSON.stringify(user),

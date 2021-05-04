@@ -50,12 +50,23 @@ class SearchResults extends React.Component {
   }
 
   showInfo(event) {
+    if (this.props.calling === false) {
+      this.props.toggleCalling();
+    }
     this.setState({ searching: true });
     const showId = event.target.parentElement.getAttribute('id');
     fetch('https://api.tvmaze.com/shows/' + showId + '?embed[]=episodes&embed[]=cast')
       .then(response => response.json())
       .then(result => {
+        this.props.toggleCalling();
         this.props.setShow(result);
+        this.setState({ searching: false });
+      })
+      .catch(err => {
+        this.props.networkError();
+        this.props.toggleCalling();
+        this.setState({ searching: false });
+        console.error(err);
       });
   }
 }

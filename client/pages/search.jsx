@@ -3,15 +3,17 @@ import React from 'react';
 class SearchForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { value: ''};
+    this.state = { value: '' };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   render() {
     return <form onSubmit={this.handleSubmit}>
-      <input className="search-bar" type="search" value={this.state.value} onChange={this.handleChange} ></input>
-      <button className="search-button" type="submit">Search</button>
+      <label htmlFor="search"> Search
+      <input className="search-bar" name="search" type="search" value={this.state.value} onChange={this.handleChange} ></input>
+      </label>
+      <button disabled={this.props.calling === true} className="search-button" type="submit">Search</button>
       {this.props.calling === true &&
         <div className="loading-spinner"></div>
       }

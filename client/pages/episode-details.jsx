@@ -53,8 +53,8 @@ class EpisodeDetails extends React.Component {
             <p>{filteredSummary}</p>
           </div>
           <div className="episode-button-container">
-            <button onClick={this.openModal} type="button">Log</button>
-            <button onClick={this.addToWatchlist} type="submit">Need To Watch</button>
+            <button onClick={this.openModal} disabled={this.props.calling === true} type="button">Log</button>
+            <button onClick={this.addToWatchlist} disabled={this.props.calling === true} type="submit">Need To Watch</button>
           </div>
         </div>
       </main>

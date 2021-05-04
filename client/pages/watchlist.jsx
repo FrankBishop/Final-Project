@@ -27,9 +27,9 @@ class Watchlist extends React.Component {
           <ul className="watch-show-title" value={episode.show} > {episode.show}  </ul>
           <ul className="watch-episode-title" value={episode['episode name']} > S{episode.season}E{episode.number} {episode['episode name']} </ul>
           <div className="watchlist-button-container">
-            <button className="watchlist-log-button" onClick={this.openLogModal} show={episode.show} name={episode['episode name']}
+            <button className="watchlist-log-button" onClick={this.openLogModal} disabled={this.props.calling === true} show={episode.show} name={episode['episode name']}
               season={episode.season} number={episode.number} image={episode.image} type="button">Log</button>
-            <button onClick={this.openModal} id={episode.entryId} className="watchlist-delete-button" type="submit">Delete</button>
+            <button onClick={this.openModal} disabled={this.props.calling === true} id={episode.entryId} className="watchlist-delete-button" type="submit">Delete</button>
           </div>
         </div>
       </div>

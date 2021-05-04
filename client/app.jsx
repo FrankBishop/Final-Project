@@ -87,11 +87,9 @@ export default class App extends React.Component {
         'X-Access-Token': localStorage.getItem('token')
       }
     })
-      .then(response => {
-        this.toggleCalling();
-        response.json();
-      })
+      .then(response => response.json())
       .then(episode => {
+        this.toggleCalling();
         const watchlist = this.state.watchlist.concat(episode);
         this.setState({ watchlist });
       })
@@ -234,16 +232,15 @@ export default class App extends React.Component {
         'X-Access-Token': localStorage.getItem('token')
       }
     })
-      .then(response => {
-        response.json();
-        this.setState({ calling: false });
-      })
+      .then(response => response.json())
       .then(episode => {
+        this.setState({ calling: false });
         let log = this.state.log;
         log = this.state.log.concat(episode);
         this.setState({ log });
       })
       .catch(err => {
+        this.networkError();
         console.error(err);
       });
   }
@@ -314,6 +311,7 @@ export default class App extends React.Component {
     })
       .then(response => response.json())
       .then(user => {
+        this.setState({ calling: false });
         this.setState({ logonFailed: false });
         this.setState({ user: user.user.userId });
         this.setState({ signedIn: true });

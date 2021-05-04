@@ -2,17 +2,19 @@ import React from 'react';
 import LogModal from './log-modal';
 import SearchForm from './search';
 import NetworkError from './network-error';
+import LoginModal from './login-request';
 
 class EpisodeList extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = { episode: null, logModalOpen: false, episodeToLog: null, searching: false };
+    this.state = { episode: null, logModalOpen: false, episodeToLog: null, searching: false, userLoggedIn: true };
     this.episodeInfo = this.episodeInfo.bind(this);
     this.addToWatchlist = this.addToWatchlist.bind(this);
     this.openLogModal = this.openLogModal.bind(this);
     this.toggleLogModal = this.toggleLogModal.bind(this);
     this.episodeToLog = this.episodeToLog.bind(this);
+    this.userLogonToggle = this.userLogonToggle.bind(this);
   }
 
   render() {
@@ -55,6 +57,9 @@ class EpisodeList extends React.Component {
         {this.state.searching === true &&
           <div className="loading-spinner"></div>
         }
+        {this.state.userLoggedIn === false &&
+          <LoginModal tryAgain={this.props.tryAgain} toggle={this.userLogonToggle} />
+        }
         <h1 className="episodes-list-header header-text">Episode List</h1>
         {listResults.length === 0 &&
           <h2 className="main-header header-text"> There are no episodes to display</h2>
@@ -84,7 +89,15 @@ class EpisodeList extends React.Component {
       });
   }
 
+  userLogonToggle() {
+    this.setState({ userLoggedIn: true });
+  }
+
   addToWatchlist(event) {
+    if (this.props.user === null) {
+      this.setState({ userLoggedIn: false });
+      return;
+    }
     event.preventDefault();
     const show = event.target.getAttribute('show');
     const episodeName = event.target.getAttribute('name');
@@ -102,6 +115,10 @@ class EpisodeList extends React.Component {
   }
 
   openLogModal(event) {
+    if (this.props.user === null) {
+      this.setState({ userLoggedIn: false });
+      return;
+    }
     this.setState({ logModalOpen: true });
     const showName = event.target.getAttribute('show');
     const episodeName = event.target.getAttribute('name');

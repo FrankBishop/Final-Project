@@ -2,15 +2,17 @@ import React from 'react';
 import LogModal from './log-modal';
 import SearchForm from './search';
 import NetworkError from './network-error';
+import LoginModal from './login-request';
 
 class EpisodeDetails extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = { logModalOpen: false };
+    this.state = { logModalOpen: false, userLoggedIn: true };
     this.addToWatchlist = this.addToWatchlist.bind(this);
     this.openModal = this.openModal.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
+    this.userLogonToggle = this.userLogonToggle.bind(this);
   }
 
   render() {
@@ -40,6 +42,9 @@ class EpisodeDetails extends React.Component {
               number={this.props.showEpisode.number} name={this.props.showEpisode.name} saveToLog={this.props.saveToLog} image={this.props.showEpisode.image.original}
               userId={this.props.user} />
           }
+          {this.state.userLoggedIn === false &&
+            <LoginModal tryAgain={this.props.tryAgain} toggle={this.userLogonToggle} />
+          }
           <h1 className="episode-header">{this.props.showEpisode._embedded.show.name}</h1>
           <h3 className="episode-details">S{this.props.showEpisode.season} E{this.props.showEpisode.number} {this.props.showEpisode.name}</h3>
           <h4 className="episode-details">{this.props.showEpisode.airdate}</h4>
@@ -60,6 +65,10 @@ class EpisodeDetails extends React.Component {
   }
 
   addToWatchlist(event) {
+    if (this.props.user === null) {
+      this.setState({ userLoggedIn: false });
+      return;
+    }
     const show = this.props.showEpisode._embedded.show.name;
     const episodeName = this.props.showEpisode.name;
     const season = this.props.showEpisode.season;
@@ -75,7 +84,15 @@ class EpisodeDetails extends React.Component {
     this.props.addToWatchlist(episode);
   }
 
+  userLogonToggle() {
+    this.setState({ userLoggedIn: true });
+  }
+
   openModal() {
+    if (this.props.user === null) {
+      this.setState({ userLoggedIn: false });
+      return;
+    }
     this.setState({ logModalOpen: true });
   }
 

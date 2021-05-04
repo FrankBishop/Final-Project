@@ -3,7 +3,7 @@ import React from 'react';
 class SearchForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { value: ''};
+    this.state = { value: '' };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -23,7 +23,6 @@ class SearchForm extends React.Component {
   }
 
   handleSubmit(event) {
-    console.log('this is not disabled')
     if (this.props.calling === false) {
       this.props.toggleCalling();
     }

@@ -11,7 +11,7 @@ class SearchForm extends React.Component {
   render() {
     return <form onSubmit={this.handleSubmit}>
       <input className="search-bar" type="search" value={this.state.value} onChange={this.handleChange} ></input>
-      <button className="search-button" type="submit">Search</button>
+      <button disabled={this.props.calling === true} className="search-button" type="submit">Search</button>
       {this.props.calling === true &&
         <div className="loading-spinner"></div>
       }
@@ -23,6 +23,7 @@ class SearchForm extends React.Component {
   }
 
   handleSubmit(event) {
+    console.log('this is not disabled')
     if (this.props.calling === false) {
       this.props.toggleCalling();
     }

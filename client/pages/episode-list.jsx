@@ -75,6 +75,12 @@ class EpisodeList extends React.Component {
       .then(result => {
         this.setState({ searching: false });
         this.props.showEpisode(result);
+      })
+      .catch(err => {
+        this.props.networkError();
+        this.props.toggleCalling();
+        this.setState({ searching: false });
+        console.error(err);
       });
   }
 

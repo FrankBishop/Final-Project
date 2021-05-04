@@ -64,6 +64,12 @@ class ShowInfo extends React.Component {
       .then(response => response.json())
       .then(result => {
         this.props.episodes(result);
+      })
+      .catch(err => {
+        this.props.networkError();
+        this.props.toggleCalling();
+        this.setState({ searching: false });
+        console.error(err);
       });
   }
 }

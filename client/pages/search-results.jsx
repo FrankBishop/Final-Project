@@ -64,7 +64,6 @@ class SearchResults extends React.Component {
       })
       .catch(err => {
         this.props.networkError();
-        this.props.toggleCalling();
         this.setState({ searching: false });
         console.error(err);
       });

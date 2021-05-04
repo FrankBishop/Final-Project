@@ -584,7 +584,9 @@ button:hover {
 }
 
 .network-error-header {
-  margin-top: 100px;
+  margin-top: 25px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 @media screen and (max-width: 320px) and (orientation: portrait) {
@@ -909,5 +911,15 @@ button:hover {
 
   .log-date {
     font-size: 20px;
+  }
+
+  .network-error-buttons {
+    margin-top: 150px;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .network-error-header {
+    margin-top: 100px;
   }
 }

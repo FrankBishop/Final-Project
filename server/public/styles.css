@@ -554,8 +554,8 @@ button:hover {
 .loading-spinner {
   width: 80px;
   height: 80px;
-  border: 2px solid #f3f3f3;
-  border-top: 3px solid #f25a41;
+  border: 9px solid #f3f3f3;
+  border-top: 10px solid #ffd700;
   border-radius: 100%;
   position: fixed;
   top: 0;

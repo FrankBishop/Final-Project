@@ -88,14 +88,15 @@ export default class App extends React.Component {
       }
     })
       .then(response => {
+        this.toggleCalling();
         response.json();
-        this.setState({ calling: false });
       })
       .then(episode => {
         const watchlist = this.state.watchlist.concat(episode);
         this.setState({ watchlist });
       })
       .catch(err => {
+        this.networkError();
         console.error(err);
       });
   }

@@ -1,6 +1,7 @@
 import React from 'react';
 import SearchForm from './search';
 import ReactStars from 'react-stars';
+import NetworkError from './network-error';
 
 class Diary extends React.Component {
 
@@ -37,6 +38,9 @@ class Diary extends React.Component {
         </div>
       </header>
       <main>
+        {this.props.networkErrorState === true &&
+          <NetworkError tryAgain={this.props.tryAgain} toggleCalling={this.props.toggleCalling} />
+        }
         <div className="search-form">
           <SearchForm onSubmit={this.props.setSearchResults} noResults={this.props.noResults} />
         </div>

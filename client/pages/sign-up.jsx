@@ -1,5 +1,6 @@
 import React from 'react';
 import SearchForm from './search';
+import NetworkError from './network-error';
 
 class SignUp extends React.Component {
 
@@ -50,6 +51,9 @@ class SignUp extends React.Component {
         <div className="search-form">
           <SearchForm onSubmit={this.props.setSearchResults} noResults={this.props.noResults} />
         </div>
+        {this.props.networkErrorState === true &&
+          <NetworkError tryAgain={this.props.tryAgain} toggleCalling={this.props.toggleCalling} />
+        }
         <div className="registration">
           <h1 className="registration-header">Register</h1>
           <form>

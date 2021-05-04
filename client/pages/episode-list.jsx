@@ -1,6 +1,7 @@
 import React from 'react';
 import LogModal from './log-modal';
 import SearchForm from './search';
+import NetworkError from './network-error';
 
 class EpisodeList extends React.Component {
 
@@ -39,6 +40,9 @@ class EpisodeList extends React.Component {
       <main>
         {this.props.calling === true &&
           <div className="loading-spinner"></div>
+        }
+        {this.props.networkErrorState === true &&
+          <NetworkError tryAgain={this.props.tryAgain} toggleCalling={this.props.toggleCalling} />
         }
         <div className="search-form">
           <SearchForm onSubmit={this.props.setSearchResults} noResults={this.props.noResults} />

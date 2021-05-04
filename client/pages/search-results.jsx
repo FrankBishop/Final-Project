@@ -1,5 +1,6 @@
 import React from 'react';
 import SearchForm from './search';
+import NetworkError from './network-error';
 
 class SearchResults extends React.Component {
 
@@ -32,6 +33,9 @@ class SearchResults extends React.Component {
         </div>
         {this.state.searching === true &&
           <div className="loading-spinner"></div>
+        }
+        {this.props.networkErrorState === true &&
+          <NetworkError tryAgain={this.props.tryAgain} toggleCalling={this.props.toggleCalling} />
         }
         <h1 className="main-header header-text">Search Results</h1>
         {this.props.results.length === 0 &&

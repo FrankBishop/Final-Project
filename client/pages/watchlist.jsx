@@ -40,12 +40,12 @@ class Watchlist extends React.Component {
           <i onClick={this.props.menu} className="fas fa-tv fa-2x tv-icon"></i>
           <a className="header-text site-header" onClick={this.props.goHome}> TV Diary </a>
           <div className="search-form-header">
-            <SearchForm onSubmit={this.props.setSearchResults} noResults={this.props.noResults} />
+            <SearchForm onSubmit={this.props.setSearchResults} noResults={this.props.noResults} networkError={this.props.networkError} calling={this.props.calling} toggleCalling={this.props.toggleCalling} />
           </div>
         </header>
         <main>
           <div className="search-form">
-            <SearchForm onSubmit={this.props.setSearchResults} noResults={this.props.noResults} />
+            <SearchForm onSubmit={this.props.setSearchResults} noResults={this.props.noResults} networkError={this.props.networkError} calling={this.props.calling} toggleCalling={this.props.toggleCalling} />
           </div>
           {this.props.networkErrorState === true &&
             <NetworkError tryAgain={this.props.tryAgain} toggleCalling={this.props.toggleCalling} />
@@ -65,7 +65,7 @@ class Watchlist extends React.Component {
           <i onClick={this.props.menu} className="fas fa-tv fa-2x tv-icon"></i>
           <a className="header-text site-header" onClick={this.props.goHome}> TV Diary </a>
           <div className="search-form-header">
-            <SearchForm onSubmit={this.props.setSearchResults} noResults={this.props.noResults} />
+            <SearchForm onSubmit={this.props.setSearchResults} noResults={this.props.noResults} networkError={this.props.networkError} calling={this.props.calling} toggleCalling={this.props.toggleCalling} />
           </div>
         </header>
         <main>
@@ -88,7 +88,7 @@ class Watchlist extends React.Component {
               toggleModal={this.toggleModal} />
           }
           <div className="search-form">
-            <SearchForm onSubmit={this.props.setSearchResults} noResults={this.props.noResults} />
+            <SearchForm onSubmit={this.props.setSearchResults} noResults={this.props.noResults} networkError={this.props.networkError} calling={this.props.calling} toggleCalling={this.props.toggleCalling} />
           </div>
           <div>
             <h1 className="main-header header-text">Watchlist</h1>

@@ -19,7 +19,7 @@ class SignUp extends React.Component {
           <i onClick={this.props.menu} className="fas fa-tv fa-2x tv-icon"></i>
           <h1 className="header-text site-header" onClick={this.props.goHome}> TV Diary </h1>
           <div className="search-form-header">
-            <SearchForm onSubmit={this.props.setSearchResults} noResults={this.props.noResults} />
+            <SearchForm onSubmit={this.props.setSearchResults} noResults={this.props.noResults} networkError={this.props.networkError} calling={this.props.calling} toggleCalling={this.props.toggleCalling} />
           </div>
         </header>
         <main>
@@ -27,7 +27,7 @@ class SignUp extends React.Component {
             <div className="loading-spinner"></div>
           }
           <div className="search-form">
-            <SearchForm onSubmit={this.props.setSearchResults} noResults={this.props.noResults} />
+            <SearchForm onSubmit={this.props.setSearchResults} noResults={this.props.noResults} networkError={this.props.networkError} calling={this.props.calling} toggleCalling={this.props.toggleCalling} />
           </div>
           <div className="registration">
             <h1 className="registration-header">Congrats you are registered</h1>
@@ -44,12 +44,12 @@ class SignUp extends React.Component {
         <i onClick={this.props.menu} className="fas fa-tv fa-2x tv-icon"></i>
         <a className="header-text site-header" onClick={this.props.goHome}> TV Diary </a>
         <div className="search-form-header">
-          <SearchForm onSubmit={this.props.setSearchResults} noResults={this.props.noResults} />
+          <SearchForm onSubmit={this.props.setSearchResults} noResults={this.props.noResults} networkError={this.props.networkError} calling={this.props.calling} toggleCalling={this.props.toggleCalling} />
         </div>
       </header>
       <main>
         <div className="search-form">
-          <SearchForm onSubmit={this.props.setSearchResults} noResults={this.props.noResults} />
+          <SearchForm onSubmit={this.props.setSearchResults} noResults={this.props.noResults} networkError={this.props.networkError} calling={this.props.calling} toggleCalling={this.props.toggleCalling} />
         </div>
         {this.props.networkErrorState === true &&
           <NetworkError tryAgain={this.props.tryAgain} toggleCalling={this.props.toggleCalling} />

@@ -165,6 +165,7 @@ export default class App extends React.Component {
     this.setState({ signUp: false });
     this.setState({ signIn: false });
     this.setState({ menuOpen: false });
+    this.setState({ calling: false });
   }
 
   openLog() {
@@ -178,6 +179,7 @@ export default class App extends React.Component {
     this.setState({ signUp: false });
     this.setState({ signIn: false });
     this.setState({ menuOpen: false });
+    this.setState({ calling: false });
   }
 
   goHome() {
@@ -255,6 +257,7 @@ export default class App extends React.Component {
     this.setState({ show: null });
     this.setState({ episodes: [] });
     this.setState({ showEpisode: null });
+    this.setState({ calling: false });
   }
 
   signUp(user) {
@@ -295,6 +298,7 @@ export default class App extends React.Component {
     this.setState({ episodes: [] });
     this.setState({ showEpisode: null });
     this.setState({ signUp: false });
+    this.setState({ calling: false });
   }
 
   signIn(user) {
@@ -325,7 +329,7 @@ export default class App extends React.Component {
 
   signOut() {
     this.setState({
-      searchResults: [], watchlist: [], menuOpen: false, watchlistOpen: false, log: [], logOpen: false, show: null, episodes: [], showEpisode: null, signUp: false, signIn: false, showName: null, signedIn: false, user: null, logonFailed: null
+      searchResults: [], watchlist: [], menuOpen: false, watchlistOpen: false, log: [], logOpen: false, show: null, episodes: [], showEpisode: null, signUp: false, signIn: false, showName: null, signedIn: false, user: null, logonFailed: null, calling: false
     });
     this.goHome();
   }

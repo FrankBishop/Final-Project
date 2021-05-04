@@ -23,7 +23,9 @@ class SearchForm extends React.Component {
   }
 
   handleSubmit(event) {
-    this.props.toggleCalling();
+    if (this.props.calling === false) {
+      this.props.toggleCalling();
+    }
     event.preventDefault();
     fetch('https://api.tvmaze.com/search/shows?q=' + this.state.value + '')
       .then(response => response.json())

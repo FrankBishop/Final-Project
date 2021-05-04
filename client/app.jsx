@@ -218,6 +218,7 @@ export default class App extends React.Component {
         this.setState({ watchlist });
       })
       .catch(err => {
+        this.networkError();
         console.error(err);
       });
   }

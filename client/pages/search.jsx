@@ -10,7 +10,9 @@ class SearchForm extends React.Component {
 
   render() {
     return <form onSubmit={this.handleSubmit}>
-      <input className="search-bar" type="search" value={this.state.value} onChange={this.handleChange} ></input>
+      <label htmlFor="search"> Search
+      <input className="search-bar" name="search" type="search" value={this.state.value} onChange={this.handleChange} ></input>
+      </label>
       <button disabled={this.props.calling === true} className="search-button" type="submit">Search</button>
       {this.props.calling === true &&
         <div className="loading-spinner"></div>

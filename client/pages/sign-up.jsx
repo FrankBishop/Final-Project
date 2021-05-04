@@ -62,8 +62,8 @@ class SignUp extends React.Component {
             <h2 className="registration-fields">Password</h2>
             <input type="password" id="password" name="password" minLength="8" required onChange={this.setPassword}></input>
             <div className="registration-button-holder">
-              <button onClick={this.props.goHome} type="button">Cancel</button>
-              <button onClick={this.startSignUp} type="submit">Sign Up</button>
+              <button onClick={this.props.goHome} disabled={this.props.calling === true} type="button">Cancel</button>
+              <button onClick={this.startSignUp} disabled={this.props.calling === true} type="submit">Sign Up</button>
             </div>
           </form>
         </div>;
@@ -83,7 +83,6 @@ class SignUp extends React.Component {
   }
 
   startSignUp() {
-    // this.setState({ calling: true });
     event.preventDefault();
     const user = {
       username: this.state.username,
@@ -91,7 +90,6 @@ class SignUp extends React.Component {
     };
     this.props.signUp(user);
     this.setState({ registered: true });
-    // this.setState({ calling: false });
   }
 }
 

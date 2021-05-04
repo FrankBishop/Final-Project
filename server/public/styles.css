@@ -88,6 +88,7 @@ h4 {
   height: 38px;
   width: 250px;
   margin-left: 20px;
+  visibility: visible;
 }
 
 .search-form {
@@ -589,6 +590,10 @@ button:hover {
   padding-right: 10px;
 }
 
+label[for="search"] {
+  font-size: 0%;
+}
+
 @media screen and (max-width: 320px) and (orientation: portrait) {
   .search-bar {
     width: 200px;
@@ -921,5 +926,9 @@ button:hover {
 
   .network-error-header {
     margin-top: 100px;
+  }
+
+  .search-button {
+    margin-right: 10px;
   }
 }

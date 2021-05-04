@@ -1,5 +1,6 @@
 import React from 'react';
 import SearchForm from './search';
+import NetworkError from './network-error';
 
 class ShowInfo extends React.Component {
 
@@ -26,15 +27,18 @@ class ShowInfo extends React.Component {
         <i onClick={this.props.menu} className="fas fa-tv fa-2x tv-icon"></i>
         <a className="header-text site-header" onClick={this.props.goHome}> {this.props.text} </a>
         <div className="search-form-header">
-          <SearchForm onSubmit={this.props.setSearchResults} noResults={this.props.noResults} />
+          <SearchForm onSubmit={this.props.setSearchResults} noResults={this.props.noResults} networkError={this.props.networkError} calling={this.props.calling} toggleCalling={this.props.toggleCalling} />
         </div>
       </header>
       <main>
         <div className="search-form">
-          <SearchForm onSubmit={this.props.setSearchResults} noResults={this.props.noResults} />
+          <SearchForm onSubmit={this.props.setSearchResults} noResults={this.props.noResults} networkError={this.props.networkError} calling={this.props.calling} toggleCalling={this.props.toggleCalling} />
         </div>
         {this.state.searching === true &&
           <div className="loading-spinner"></div>
+        }
+        {this.props.networkErrorState === true &&
+          <NetworkError tryAgain={this.props.tryAgain} toggleCalling={this.props.toggleCalling} />
         }
         <div className="show-info">
           <h1 className="show-header header-text">{this.state.showName.name}</h1>
@@ -60,6 +64,12 @@ class ShowInfo extends React.Component {
       .then(response => response.json())
       .then(result => {
         this.props.episodes(result);
+      })
+      .catch(err => {
+        this.props.networkError();
+        this.props.toggleCalling();
+        this.setState({ searching: false });
+        console.error(err);
       });
   }
 }

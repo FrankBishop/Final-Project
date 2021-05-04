@@ -14,7 +14,7 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchResults: [], watchlist: [], menuOpen: false, watchlistOpen: false, log: [], logOpen: false, show: null, episodes: [], showEpisode: null, signUp: false, signIn: false, showName: null, signedIn: false, user: null, logonFailed: null, calling: false, noResults: false
+      searchResults: [], watchlist: [], menuOpen: false, watchlistOpen: false, log: [], logOpen: false, show: null, episodes: [], showEpisode: null, signUp: false, signIn: false, showName: null, signedIn: false, user: null, logonFailed: null, calling: false, noResults: false, networkError: false
     };
     this.setSearchResults = this.setSearchResults.bind(this);
     this.showWatchlist = this.showWatchlist.bind(this);
@@ -35,6 +35,9 @@ export default class App extends React.Component {
     this.signIn = this.signIn.bind(this);
     this.signOut = this.signOut.bind(this);
     this.noResults = this.noResults.bind(this);
+    this.networkError = this.networkError.bind(this);
+    this.networkErrorTryAgain = this.networkErrorTryAgain.bind(this);
+    this.toggleCalling = this.toggleCalling.bind(this);
   }
 
   componentDidUpdate() {
@@ -84,15 +87,14 @@ export default class App extends React.Component {
         'X-Access-Token': localStorage.getItem('token')
       }
     })
-      .then(response => {
-        response.json();
-        this.setState({ calling: false });
-      })
+      .then(response => response.json())
       .then(episode => {
+        this.toggleCalling();
         const watchlist = this.state.watchlist.concat(episode);
         this.setState({ watchlist });
       })
       .catch(err => {
+        this.networkError();
         console.error(err);
       });
   }
@@ -122,6 +124,23 @@ export default class App extends React.Component {
     this.setState({ noResults: true });
   }
 
+  networkError() {
+    this.setState({ networkError: true });
+  }
+
+  networkErrorTryAgain() {
+    this.setState({ networkError: false });
+    this.setState({ calling: false });
+  }
+
+  toggleCalling() {
+    if (this.state.calling === true) {
+      this.setState({ calling: false });
+    } else {
+      this.setState({ calling: true });
+    }
+  }
+
   showWatchlist(entries) {
     this.setState({ watchlist: entries });
   }
@@ -145,6 +164,7 @@ export default class App extends React.Component {
     this.setState({ signUp: false });
     this.setState({ signIn: false });
     this.setState({ menuOpen: false });
+    this.setState({ calling: false });
   }
 
   openLog() {
@@ -158,6 +178,7 @@ export default class App extends React.Component {
     this.setState({ signUp: false });
     this.setState({ signIn: false });
     this.setState({ menuOpen: false });
+    this.setState({ calling: false });
   }
 
   goHome() {
@@ -171,6 +192,7 @@ export default class App extends React.Component {
     this.setState({ signUp: false });
     this.setState({ signIn: false });
     this.setState({ menuOpen: false });
+    this.setState({ calling: false });
   }
 
   deleteFromWatchlist(episode) {
@@ -196,6 +218,7 @@ export default class App extends React.Component {
         this.setState({ watchlist });
       })
       .catch(err => {
+        this.networkError();
         console.error(err);
       });
   }
@@ -210,16 +233,15 @@ export default class App extends React.Component {
         'X-Access-Token': localStorage.getItem('token')
       }
     })
-      .then(response => {
-        response.json();
-        this.setState({ calling: false });
-      })
+      .then(response => response.json())
       .then(episode => {
+        this.setState({ calling: false });
         let log = this.state.log;
         log = this.state.log.concat(episode);
         this.setState({ log });
       })
       .catch(err => {
+        this.networkError();
         console.error(err);
       });
   }
@@ -234,6 +256,7 @@ export default class App extends React.Component {
     this.setState({ show: null });
     this.setState({ episodes: [] });
     this.setState({ showEpisode: null });
+    this.setState({ calling: false });
   }
 
   signUp(user) {
@@ -274,6 +297,7 @@ export default class App extends React.Component {
     this.setState({ episodes: [] });
     this.setState({ showEpisode: null });
     this.setState({ signUp: false });
+    this.setState({ calling: false });
   }
 
   signIn(user) {
@@ -288,6 +312,7 @@ export default class App extends React.Component {
     })
       .then(response => response.json())
       .then(user => {
+        this.setState({ calling: false });
         this.setState({ logonFailed: false });
         this.setState({ user: user.user.userId });
         this.setState({ signedIn: true });
@@ -304,7 +329,7 @@ export default class App extends React.Component {
 
   signOut() {
     this.setState({
-      searchResults: [], watchlist: [], menuOpen: false, watchlistOpen: false, log: [], logOpen: false, show: null, episodes: [], showEpisode: null, signUp: false, signIn: false, showName: null, signedIn: false, user: null, logonFailed: null
+      searchResults: [], watchlist: [], menuOpen: false, watchlistOpen: false, log: [], logOpen: false, show: null, episodes: [], showEpisode: null, signUp: false, signIn: false, showName: null, signedIn: false, user: null, logonFailed: null, calling: false
     });
     this.goHome();
   }
@@ -315,7 +340,9 @@ export default class App extends React.Component {
       return <div>
         <Home text="TV Diary" setSearchResults={this.setSearchResults} searchResults={this.state.searchResults} watchlist={this.state.watchlist}
           addToWatchlist={this.addToWatchlist} menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist}
-          isWatchlistOpen={this.state.watchlistOpen} goHome={this.goHome} saveToLog={this.saveToLog} openLog={this.openLog} user={this.state.user} noResults = {this.noResults} />;
+          isWatchlistOpen={this.state.watchlistOpen} goHome={this.goHome} saveToLog={this.saveToLog} openLog={this.openLog} user={this.state.user} noResults={this.noResults}
+          networkError={this.networkError} networkErrorState={this.state.networkError} tryAgain={this.networkErrorTryAgain} toggleCalling={this.toggleCalling}
+          calling={this.state.calling} />;
         <AppDrawer menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist} goHome={this.goHome} openLog={this.openLog} signUp={this.goToSignUp}
           signIn={this.goToSignIn} user={this.state.user} signOut={this.signOut} />;
       </div>;
@@ -323,7 +350,9 @@ export default class App extends React.Component {
       return <div>
         <SearchResults text="TV Diary" setSearchResults={this.setSearchResults} results={this.state.searchResults} watchlist={this.state.watchlist}
           addToWatchlist={this.addToWatchlist} menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist}
-          isWatchlistOpen={this.state.watchlistOpen} goHome={this.goHome} saveToLog={this.saveToLog} openLog={this.openLog} setShow={this.setShow} user={this.state.user} noResults={this.noResults} />
+          isWatchlistOpen={this.state.watchlistOpen} goHome={this.goHome} saveToLog={this.saveToLog} openLog={this.openLog} setShow={this.setShow} user={this.state.user} noResults={this.noResults}
+          networkError={this.networkError} networkErrorState={this.state.networkError} tryAgain={this.networkErrorTryAgain} toggleCalling={this.toggleCalling}
+          calling={this.state.calling} />
         <AppDrawer menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist} goHome={this.goHome} openLog={this.openLog} signUp={this.goToSignUp}
           signIn={this.goToSignIn} user={this.state.user} signOut={this.signOut} />;
       </div>;
@@ -331,7 +360,8 @@ export default class App extends React.Component {
       return <div>
         <Diary menu={this.openMenu} setSearchResults={this.setSearchResults} searchResults={this.state.searchResults} menuOpen={this.state.menuOpen === false} goHome={this.goHome} openWatchlist={this.openWatchlist}
           isWatchlistOpen={this.state.watchlistOpen} watchlist={this.state.watchlist} deleteFromWatchlist={this.deleteFromWatchlist} saveToLog={this.saveToLog} openLog={this.openLog} log={this.state.log}
-          user={this.state.user} noResults={this.noResults} />
+          user={this.state.user} noResults={this.noResults} networkErrorState={this.state.networkError} tryAgain={this.networkErrorTryAgain} toggleCalling={this.toggleCalling}
+          calling={this.state.calling} networkError={this.networkError} />
         <AppDrawer menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist} goHome={this.goHome} openLog={this.openLog} signUp={this.goToSignUp}
           signIn={this.goToSignIn} user={this.state.user} signOut={this.signOut} />;
       </div>;
@@ -339,7 +369,8 @@ export default class App extends React.Component {
       return <div>
         <Watchlist menu={this.openMenu} setSearchResults={this.setSearchResults} searchResults={this.state.searchResults} menuOpen={this.state.menuOpen === false} goHome={this.goHome} openWatchlist={this.openWatchlist}
           isWatchlistOpen={this.state.watchlistOpen} watchlist={this.state.watchlist} deleteFromWatchlist={this.deleteFromWatchlist} saveToLog={this.saveToLog} openLog={this.openLog} showName={this.state.showName}
-          user={this.state.user} calling={this.state.calling} noResults={this.noResults}/>;
+          user={this.state.user} calling={this.state.calling} noResults={this.noResults} networkErrorState={this.state.networkError} tryAgain={this.networkErrorTryAgain} toggleCalling={this.toggleCalling}
+          networkError={this.networkError} />;
         <AppDrawer menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist} goHome={this.goHome} openLog={this.openLog} signUp={this.goToSignUp}
           signIn={this.goToSignIn} user={this.state.user} signOut={this.signOut} />;
         </div>;
@@ -348,7 +379,8 @@ export default class App extends React.Component {
         <ShowInfo text="TV Diary" setSearchResults={this.setSearchResults} searchResults={this.state.searchResults} watchlist={this.state.watchlist}
           addToWatchlist={this.addToWatchlist} menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist}
           isWatchlistOpen={this.state.watchlistOpen} goHome={this.goHome} saveToLog={this.saveToLog} openLog={this.openLog} show={this.state.show}
-          episodes={this.setEpisodes} setShow={this.setShow} user={this.state.user} noResults={this.noResults}/>;
+          episodes={this.setEpisodes} setShow={this.setShow} user={this.state.user} noResults={this.noResults} networkErrorState={this.state.networkError} tryAgain={this.networkErrorTryAgain} toggleCalling={this.toggleCalling}
+          calling={this.state.calling} networkError={this.networkError} />;
         <AppDrawer menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist} goHome={this.goHome} openLog={this.openLog} signUp={this.goToSignUp}
           signIn={this.goToSignIn} user={this.state.user} signOut={this.signOut} />;
       </div>;
@@ -358,20 +390,23 @@ export default class App extends React.Component {
           addToWatchlist={this.addToWatchlist} menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist}
           isWatchlistOpen={this.state.watchlistOpen} goHome={this.goHome} saveToLog={this.saveToLog} openLog={this.openLog} show={this.state.show}
           episodes={this.setEpisodes} episodesList={this.state.episodes} showEpisode={this.setShowEpisode} showName={this.state.showName} user={this.state.user}
-          calling={this.state.calling} noResults={this.noResults}/>;
+          noResults={this.noResults} networkErrorState={this.state.networkError} tryAgain={this.networkErrorTryAgain} toggleCalling={this.toggleCalling}
+          calling={this.state.calling} networkError={this.networkError} />;
       <AppDrawer menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist} goHome={this.goHome} openLog={this.openLog} signUp={this.goToSignUp}
           signIn={this.goToSignIn} user={this.state.user} signOut={this.signOut} />;
       </div>;
     } else if (this.state.signUp === true) {
       return <div>
-        <SignUp menu={this.openMenu} menuOpen={this.state.menuOpen} signUp={this.signUp} goHome={this.goHome} calling={this.state.calling} noResults={this.noResults} />;
+        <SignUp menu={this.openMenu} menuOpen={this.state.menuOpen} signUp={this.signUp} goHome={this.goHome} calling={this.state.calling} noResults={this.noResults}
+          networkErrorState={this.state.networkError} tryAgain={this.networkErrorTryAgain} toggleCalling={this.toggleCalling} networkError={this.networkError} />;
       <AppDrawer menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist} goHome={this.goHome} openLog={this.openLog} signUp={this.goToSignUp}
           signIn={this.goToSignIn} user={this.state.user} signOut={this.signOut} />;
       </div>;
     } else if (this.state.signIn === true) {
       return <div>
         <SignIn menu={this.openMenu} menuOpen={this.state.menuOpen} signUp={this.signUp} goHome={this.goHome} signIn={this.signIn} logonFailed={this.state.logonFailed}
-          setSearchResults={this.setSearchResults} calling={this.state.calling} noResults={this.noResults} />;
+          setSearchResults={this.setSearchResults} networkErrorState={this.state.networkError} tryAgain={this.networkErrorTryAgain} toggleCalling={this.toggleCalling}
+          calling={this.state.calling} noResults={this.noResults} networkError={this.networkError} />;
       <AppDrawer menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist} goHome={this.goHome} openLog={this.openLog} signUp={this.goToSignUp}
           signIn={this.goToSignIn} user={this.state.user} signOut={this.signOut} />;
       </div>;
@@ -380,8 +415,9 @@ export default class App extends React.Component {
         <EpisodeDetails text="TV Diary" setSearchResults={this.setSearchResults} searchResults={this.state.searchResults} watchlist={this.state.watchlist}
           addToWatchlist={this.addToWatchlist} menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist}
           isWatchlistOpen={this.state.watchlistOpen} goHome={this.goHome} saveToLog={this.saveToLog} openLog={this.openLog} show={this.state.show}
-          episodes={this.setEpisodes} episodesList={this.state.episodes} showEpisode={this.state.showEpisode} user={this.state.user} calling={this.state.calling}
-          noResults={this.noResults} />;
+          episodes={this.setEpisodes} episodesList={this.state.episodes} showEpisode={this.state.showEpisode} user={this.state.user} noResults={this.noResults}
+          networkErrorState={this.state.networkError} tryAgain={this.networkErrorTryAgain} toggleCalling={this.toggleCalling}
+          calling={this.state.calling} networkError={this.networkError} />;
         <AppDrawer menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist} goHome={this.goHome} openLog={this.openLog} signUp={this.goToSignUp}
           signIn={this.goToSignIn} user={this.state.user} signOut={this.signOut} />;
       </div>;

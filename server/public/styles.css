@@ -444,7 +444,8 @@ h4 {
 }
 
 .delete-modal-buttons > button,
-.log-modal-buttons > button {
+.log-modal-buttons > button,
+.network-error-buttons > button {
   width: 30%;
   background-color: #ffd700;
   height: 50px;
@@ -553,8 +554,8 @@ button:hover {
 .loading-spinner {
   width: 80px;
   height: 80px;
-  border: 2px solid #f3f3f3;
-  border-top: 3px solid #f25a41;
+  border: 9px solid #f3f3f3;
+  border-top: 10px solid #ffd700;
   border-radius: 100%;
   position: fixed;
   top: 0;
@@ -574,6 +575,18 @@ button:hover {
   to {
     transform: rotate(360deg);
   }
+}
+
+.network-error-buttons {
+  margin-top: 150px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.network-error-header {
+  margin-top: 25px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 @media screen and (max-width: 320px) and (orientation: portrait) {
@@ -898,5 +911,15 @@ button:hover {
 
   .log-date {
     font-size: 20px;
+  }
+
+  .network-error-buttons {
+    margin-top: 150px;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .network-error-header {
+    margin-top: 100px;
   }
 }

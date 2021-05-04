@@ -1,5 +1,6 @@
 import React from 'react';
 import SearchForm from './search';
+import NetworkError from './network-error';
 
 class SignIn extends React.Component {
 
@@ -18,15 +19,18 @@ class SignIn extends React.Component {
           <i onClick={this.props.menu} className="fas fa-tv fa-2x tv-icon"></i>
           <h1 className="header-text site-header" onClick={this.props.goHome}> TV Diary </h1>
           <div className="search-form-header">
-            <SearchForm onSubmit={this.props.setSearchResults} noResults={this.props.noResults} />
+            <SearchForm onSubmit={this.props.setSearchResults} noResults={this.props.noResults} networkError={this.props.networkError} calling={this.props.calling} toggleCalling={this.props.toggleCalling} />
           </div>
         </header>
         <main>
           {this.props.calling === true &&
             <div className="loading-spinner"></div>
           }
+          {this.props.networkErrorState === true &&
+            <NetworkError tryAgain={this.props.tryAgain} toggleCalling={this.props.toggleCalling} />
+          }
           <div className="search-form">
-            <SearchForm onSubmit={this.props.setSearchResults} noResults={this.props.noResults} />
+            <SearchForm onSubmit={this.props.setSearchResults} noResults={this.props.noResults} networkError={this.props.networkError} calling={this.props.calling} toggleCalling={this.props.toggleCalling} />
           </div>
           {this.props.logonFailed === true &&
             <div className="registration">
@@ -60,13 +64,16 @@ class SignIn extends React.Component {
         <i onClick={this.props.menu} className="fas fa-tv fa-2x tv-icon"></i>
         <a className="header-text site-header" onClick={this.props.goHome}> TV Diary </a>
         <div className="search-form-header">
-          <SearchForm onSubmit={this.props.setSearchResults} noResults={this.props.noResults} />
+          <SearchForm onSubmit={this.props.setSearchResults} noResults={this.props.noResults} networkError={this.props.networkError} calling={this.props.calling} toggleCalling={this.props.toggleCalling} />
         </div>
       </header>
       <main>
         <div className="search-form">
-          <SearchForm onSubmit={this.props.setSearchResults} noResults={this.props.noResults} />
+          <SearchForm onSubmit={this.props.setSearchResults} noResults={this.props.noResults} networkError={this.props.networkError} calling={this.props.calling} toggleCalling={this.props.toggleCalling} />
         </div>
+        {this.props.networkErrorState === true &&
+          <NetworkError tryAgain={this.props.tryAgain} toggleCalling={this.props.toggleCalling} />
+        }
         <div className="registration">
           <h1 className="registration-header">Sign In</h1>
           <form>

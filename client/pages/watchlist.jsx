@@ -52,7 +52,12 @@ class Watchlist extends React.Component {
           }
           <div>
             <h1 className="main-header header-text">Watchlist</h1>
+            {this.props.user === null &&
+              <h2 className="main-header header-text">Please sign in to access this feature</h2>
+            }
+            {this.props.user !== null &&
             <h2 className="main-header header-text"> Your Watchlist is Empty</h2>
+            }
           </div>;
         </main>
         <footer>

@@ -199,6 +199,7 @@ export default class App extends React.Component {
     this.setState({ signIn: false });
     this.setState({ menuOpen: false });
     this.setState({ calling: false });
+    this.setState({ noResults: false });
   }
 
   deleteFromWatchlist(episode) {

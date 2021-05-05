@@ -43,7 +43,7 @@ class SearchResults extends React.Component {
         }
         <ul className="list-results"> {listResults} </ul>
       </main>
-      <footer>
+      <footer onClick={this.props.closeMenu}>
 
       </footer>
     </div>;

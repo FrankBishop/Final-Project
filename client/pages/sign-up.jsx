@@ -34,7 +34,7 @@ class SignUp extends React.Component {
             <h2 className="registration-header">Click the TV in the top left to navigate the site</h2>
           </div>
         </main>
-        <footer>
+        <footer onClick={this.props.closeMenu}>
 
         </footer>
       </div>;
@@ -68,7 +68,7 @@ class SignUp extends React.Component {
           </form>
         </div>;
         </main>
-      <footer>
+      <footer onClick={this.props.closeMenu}>
 
       </footer>
     </div>;

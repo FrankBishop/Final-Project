@@ -55,7 +55,7 @@ class Diary extends React.Component {
           <ul className="list-results"> {diaryToRender} </ul>
         </div>;
         </main>
-      <footer>
+      <footer onClick={this.props.closeMenu}>
 
       </footer>
     </div>;

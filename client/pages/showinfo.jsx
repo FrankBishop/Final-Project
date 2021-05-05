@@ -52,7 +52,7 @@ class ShowInfo extends React.Component {
           </div>
         </div>
       </main>
-      <footer>
+      <footer onClick={this.props.closeMenu}>
 
       </footer>
     </div >;

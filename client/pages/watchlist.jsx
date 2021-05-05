@@ -60,7 +60,7 @@ class Watchlist extends React.Component {
             }
           </div>;
         </main>
-        <footer>
+        <footer onClick={this.props.closeMenu}>
 
         </footer>
       </div>;
@@ -100,7 +100,7 @@ class Watchlist extends React.Component {
             <ul className="list-results"> {watchlistToRender} </ul>
           </div>;
         </main>
-        <footer>
+        <footer onClick={this.props.closeMenu}>
 
         </footer>
       </div>;

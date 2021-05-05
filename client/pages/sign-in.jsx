@@ -54,7 +54,7 @@ class SignIn extends React.Component {
             </div>
           }
         </main>
-        <footer>
+        <footer onClick={this.props.closeMenu}>
 
         </footer>
       </div>;
@@ -88,7 +88,7 @@ class SignIn extends React.Component {
           </form>
         </div>;
         </main>
-      <footer>
+      <footer onClick={this.props.closeMenu}>
 
       </footer>
     </div>;

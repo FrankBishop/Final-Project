@@ -30,7 +30,7 @@ export default class Home extends React.Component {
           <img src="/images/679902.jpg" alt="The Simpsons" />
         </div>
       </main>
-      <footer>
+      <footer onClick={this.props.closeMenu}>
 
       </footer>
     </div>;

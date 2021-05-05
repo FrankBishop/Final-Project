@@ -37,7 +37,7 @@ class Diary extends React.Component {
           <SearchForm onSubmit={this.props.setSearchResults} noResults={this.props.noResults} networkError={this.props.networkError} calling={this.props.calling} toggleCalling={this.props.toggleCalling} />
         </div>
       </header>
-      <main>
+      <main onClick={this.props.closeMenu}>
         {this.props.networkErrorState === true &&
           <NetworkError tryAgain={this.props.tryAgain} toggleCalling={this.props.toggleCalling} />
         }

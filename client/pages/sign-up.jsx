@@ -22,7 +22,7 @@ class SignUp extends React.Component {
             <SearchForm onSubmit={this.props.setSearchResults} noResults={this.props.noResults} networkError={this.props.networkError} calling={this.props.calling} toggleCalling={this.props.toggleCalling} />
           </div>
         </header>
-        <main>
+        <main onClick={this.props.closeMenu}>
           {this.props.calling === true &&
             <div className="loading-spinner"></div>
           }
@@ -47,7 +47,7 @@ class SignUp extends React.Component {
           <SearchForm onSubmit={this.props.setSearchResults} noResults={this.props.noResults} networkError={this.props.networkError} calling={this.props.calling} toggleCalling={this.props.toggleCalling} />
         </div>
       </header>
-      <main>
+      <main onClick={this.props.closeMenu}>
         <div className="search-form">
           <SearchForm onSubmit={this.props.setSearchResults} noResults={this.props.noResults} networkError={this.props.networkError} calling={this.props.calling} toggleCalling={this.props.toggleCalling} />
         </div>

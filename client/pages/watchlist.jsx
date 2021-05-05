@@ -43,7 +43,7 @@ class Watchlist extends React.Component {
             <SearchForm onSubmit={this.props.setSearchResults} noResults={this.props.noResults} networkError={this.props.networkError} calling={this.props.calling} toggleCalling={this.props.toggleCalling} />
           </div>
         </header>
-        <main>
+        <main onClick={this.props.closeMenu}>
           <div className="search-form">
             <SearchForm onSubmit={this.props.setSearchResults} noResults={this.props.noResults} networkError={this.props.networkError} calling={this.props.calling} toggleCalling={this.props.toggleCalling} />
           </div>
@@ -52,10 +52,15 @@ class Watchlist extends React.Component {
           }
           <div>
             <h1 className="main-header header-text">Watchlist</h1>
+            {this.props.user === null &&
+              <h2 className="main-header header-text">Please sign in to access this feature</h2>
+            }
+            {this.props.user !== null &&
             <h2 className="main-header header-text"> Your Watchlist is Empty</h2>
+            }
           </div>;
         </main>
-        <footer>
+        <footer onClick={this.props.closeMenu}>
 
         </footer>
       </div>;
@@ -68,7 +73,7 @@ class Watchlist extends React.Component {
             <SearchForm onSubmit={this.props.setSearchResults} noResults={this.props.noResults} networkError={this.props.networkError} calling={this.props.calling} toggleCalling={this.props.toggleCalling} />
           </div>
         </header>
-        <main>
+        <main onClick={this.props.closeMenu}>
           {this.props.calling === true &&
             <div className="loading-spinner"></div>
           }
@@ -95,7 +100,7 @@ class Watchlist extends React.Component {
             <ul className="list-results"> {watchlistToRender} </ul>
           </div>;
         </main>
-        <footer>
+        <footer onClick={this.props.closeMenu}>
 
         </footer>
       </div>;

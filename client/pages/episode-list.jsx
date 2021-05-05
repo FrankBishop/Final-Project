@@ -39,7 +39,7 @@ class EpisodeList extends React.Component {
           <SearchForm onSubmit={this.props.setSearchResults} noResults={this.props.noResults} networkError={this.props.networkError} calling={this.props.calling} toggleCalling={this.props.toggleCalling} />
         </div>
       </header>
-      <main>
+      <main onClick={this.props.closeMenu}>
         {this.props.calling === true &&
           <div className="loading-spinner"></div>
         }
@@ -66,7 +66,7 @@ class EpisodeList extends React.Component {
         }
         <ul className="list-results"> {listResults} </ul>
       </main>
-      <footer>
+      <footer onClick={this.props.closeMenu}>
 
       </footer>
     </div >;

@@ -37,7 +37,7 @@ class Diary extends React.Component {
           <SearchForm onSubmit={this.props.setSearchResults} noResults={this.props.noResults} networkError={this.props.networkError} calling={this.props.calling} toggleCalling={this.props.toggleCalling} />
         </div>
       </header>
-      <main>
+      <main onClick={this.props.closeMenu}>
         {this.props.networkErrorState === true &&
           <NetworkError tryAgain={this.props.tryAgain} toggleCalling={this.props.toggleCalling} />
         }
@@ -46,13 +46,16 @@ class Diary extends React.Component {
         </div>
         <div>
           <h1 className="main-header header-text">Diary</h1>
-          {this.props.log.length === 0 &&
+          {this.props.user === null &&
+              <h2 className="main-header header-text">Please sign in to access this feature</h2>
+          }
+          {this.props.log.length === 0 & this.props.user !== null &&
             <h2 className="main-header header-text"> Your Have No Diary Entries</h2>
           }
           <ul className="list-results"> {diaryToRender} </ul>
         </div>;
         </main>
-      <footer>
+      <footer onClick={this.props.closeMenu}>
 
       </footer>
     </div>;

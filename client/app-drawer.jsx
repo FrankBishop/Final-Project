@@ -5,12 +5,7 @@ class AppDrawer extends React.Component {
   constructor(props) {
     super(props);
     this.state = { menuOpen: true };
-    // this.close = this.close.bind(this);
   }
-
-  // componentDidMount() {
-  //   window.addEventListener('click', this.close)
-  // }
 
   render() {
     if (this.props.menuOpen === true) {
@@ -37,10 +32,6 @@ class AppDrawer extends React.Component {
 
     }
   }
-
-  // close() {
-  //   console.log(event.target)
-  // }
 
 }
 

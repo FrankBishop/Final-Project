@@ -17,7 +17,6 @@ header {
 }
 
 main {
-  /* height: 100%; */
   min-height: 100vh;
   padding-bottom: 100px;
 }
@@ -543,6 +542,10 @@ a:hover,
 button:hover {
   cursor: pointer;
   text-decoration: underline;
+}
+
+.image-holder-row > img:hover {
+  cursor: pointer;
 }
 
 a:hover {

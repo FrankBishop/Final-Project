@@ -350,7 +350,7 @@ export default class App extends React.Component {
           addToWatchlist={this.addToWatchlist} menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist}
           isWatchlistOpen={this.state.watchlistOpen} goHome={this.goHome} saveToLog={this.saveToLog} openLog={this.openLog} user={this.state.user} noResults={this.noResults}
           networkError={this.networkError} networkErrorState={this.state.networkError} tryAgain={this.networkErrorTryAgain} toggleCalling={this.toggleCalling}
-          calling={this.state.calling} closeMenu={this.closeMenu} />;
+          calling={this.state.calling} closeMenu={this.closeMenu} setShow={this.setShow} />;
         <AppDrawer menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist} goHome={this.goHome} openLog={this.openLog} signUp={this.goToSignUp}
           signIn={this.goToSignIn} user={this.state.user} signOut={this.signOut} />;
       </div>;

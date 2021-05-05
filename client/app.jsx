@@ -104,6 +104,7 @@ export default class App extends React.Component {
     this.setState({ show });
     this.setState({ searchResults: [] });
     this.setState({ showName: show.name });
+    this.setState({ noResults: false });
   }
 
   setEpisodes(episodes) {

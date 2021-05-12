@@ -277,11 +277,9 @@ export default class App extends React.Component {
         'X-Access-Token': localStorage.getItem('token')
       }
     })
-      .then(response => {
-        response.json();
-        this.setState({ calling: false });
-      })
+      .then(response => response.json())
       .then(user => {
+        this.setState({ calling: false });
         this.setState({ signedIn: true });
         this.setState({ logonFailed: false });
         this.setState({ user: user.userId });

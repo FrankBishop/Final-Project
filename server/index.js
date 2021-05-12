@@ -40,6 +40,16 @@ app.post('/api/users/sign-up', (req, res, next) => {
         .then(result => {
           const userAccount = result.rows[0];
           delete userAccount.hashedPassword;
+          const payload = {
+            userId: userAccount.userId,
+            username: userAccount.username
+          };
+          const token = jwt.sign(payload, process.env.TOKEN_SECRET);
+          const response = {
+            token: token,
+            user: payload
+          };
+          res.json(response);
           res.status(201).json(userAccount);
         })
         .catch(err => next(err));

@@ -6,6 +6,8 @@ class SearchForm extends React.Component {
     this.state = { value: '', searchType: 'show' };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.changeShow = this.changeShow.bind(this);
+    this.changeActor = this.changeActor.bind(this);
   }
 
   render() {
@@ -13,12 +15,20 @@ class SearchForm extends React.Component {
       <label htmlFor="search"> Search
         <input className="search-bar" name="search" type="search" value={this.state.value} onChange={this.handleChange} ></input>
       </label>
-      <button disabled={this.props.calling === true} className="search-button" type="submit">Search Shows</button>
-      <button disabled={this.props.calling === true} className="search-button" type="submit">Search Actors</button>
+      <button disabled={this.props.calling === true} className="search-button" type="submit" searchType="show" onClick={this.changeShow}>Search Shows</button>
+      <button disabled={this.props.calling === true} className="search-button" type="submit" searchType="actor" onClick={this.changeActor}>Search Actors</button>
       {this.props.calling === true &&
         <div className="loading-spinner"></div>
       }
     </form>;
+  }
+
+  changeShow() {
+    this.setState({ searchType: 'show' });
+  }
+
+  changeActor() {
+    this.setState({ searchType: 'actor' });
   }
 
   handleChange(event) {

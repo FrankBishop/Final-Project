@@ -13,7 +13,8 @@ class SearchForm extends React.Component {
       <label htmlFor="search"> Search
         <input className="search-bar" name="search" type="search" value={this.state.value} onChange={this.handleChange} ></input>
       </label>
-      <button disabled={this.props.calling === true} className="search-button" type="submit">Search</button>
+      <button disabled={this.props.calling === true} className="search-button" type="submit">Search Shows</button>
+      <button disabled={this.props.calling === true} className="search-button" type="submit">Search Actors</button>
       {this.props.calling === true &&
         <div className="loading-spinner"></div>
       }

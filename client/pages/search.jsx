@@ -41,7 +41,23 @@ class SearchForm extends React.Component {
     }
     event.preventDefault();
     if (this.state.searchType === 'show') {
+      //change state of app with props for search type
       fetch('https://api.tvmaze.com/search/shows?q=' + this.state.value + '')
+        .then(response => response.json())
+        .then(results => {
+          this.props.toggleCalling();
+          if (results.length === 0) {
+            this.props.noResults();
+          }
+          this.props.onSubmit(results);
+        })
+        .catch(err => {
+          this.props.networkError();
+          console.error(err);
+        });
+    } else {
+      //change state of app with props for search type
+      fetch('https://api.tvmaze.com/search/people?q=' + this.state.value + '')
         .then(response => response.json())
         .then(results => {
           this.props.toggleCalling();

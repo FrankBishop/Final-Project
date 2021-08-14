@@ -3,7 +3,7 @@ import React from 'react';
 class SearchForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { value: '' };
+    this.state = { value: '', searchType: 'show' };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -11,7 +11,7 @@ class SearchForm extends React.Component {
   render() {
     return <form onSubmit={this.handleSubmit}>
       <label htmlFor="search"> Search
-      <input className="search-bar" name="search" type="search" value={this.state.value} onChange={this.handleChange} ></input>
+        <input className="search-bar" name="search" type="search" value={this.state.value} onChange={this.handleChange} ></input>
       </label>
       <button disabled={this.props.calling === true} className="search-button" type="submit">Search</button>
       {this.props.calling === true &&
@@ -29,19 +29,21 @@ class SearchForm extends React.Component {
       this.props.toggleCalling();
     }
     event.preventDefault();
-    fetch('https://api.tvmaze.com/search/shows?q=' + this.state.value + '')
-      .then(response => response.json())
-      .then(results => {
-        this.props.toggleCalling();
-        if (results.length === 0) {
-          this.props.noResults();
-        }
-        this.props.onSubmit(results);
-      })
-      .catch(err => {
-        this.props.networkError();
-        console.error(err);
-      });
+    if (this.state.searchType === 'show') {
+      fetch('https://api.tvmaze.com/search/shows?q=' + this.state.value + '')
+        .then(response => response.json())
+        .then(results => {
+          this.props.toggleCalling();
+          if (results.length === 0) {
+            this.props.noResults();
+          }
+          this.props.onSubmit(results);
+        })
+        .catch(err => {
+          this.props.networkError();
+          console.error(err);
+        });
+    }
   }
 
 }

@@ -41,7 +41,6 @@ class SearchForm extends React.Component {
     }
     event.preventDefault();
     if (this.state.searchType === 'show') {
-      //change state of app with props for search type
       fetch('https://api.tvmaze.com/search/shows?q=' + this.state.value + '')
         .then(response => response.json())
         .then(results => {
@@ -56,7 +55,6 @@ class SearchForm extends React.Component {
           console.error(err);
         });
     } else {
-      //change state of app with props for search type
       fetch('https://api.tvmaze.com/search/people?q=' + this.state.value + '')
         .then(response => response.json())
         .then(results => {
@@ -64,7 +62,9 @@ class SearchForm extends React.Component {
           if (results.length === 0) {
             this.props.noResults();
           }
-          this.props.onSubmit(results);
+          // this.props.onSubmit(results);
+          // have the searchForm run a different method
+          // pass the new method to all search forms 
         })
         .catch(err => {
           this.props.networkError();

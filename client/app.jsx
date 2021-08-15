@@ -40,8 +40,6 @@ export default class App extends React.Component {
     this.toggleCalling = this.toggleCalling.bind(this);
     this.closeMenu = this.closeMenu.bind(this);
     this.actorSearch = this.actorSearch.bind(this);
-    // this.changeSearchTypeToShow = this.changeSearchTypeToShow.bind(this);
-    // this.changeSearchTypeToActor = this.changeSearchTypeToActor.bind(this);
   }
 
   componentDidUpdate() {
@@ -52,15 +50,6 @@ export default class App extends React.Component {
       this.setState({ signedIn: false });
     }
   }
-
-  // changeSearchTypeToActor() {
-  //   this.setState({ searchType: 'actor' });
-  // }
-
-  // changeSearchTypeToShow() {
-  //   this.setState({ searchType: 'show' });
-  // }
-
 
   getWatchlist(userId) {
     const user = parseInt(userId, 10);
@@ -138,6 +127,7 @@ export default class App extends React.Component {
 
   actorSearch(results) {
     this.setState({ searchType: 'actor' });
+    console.log(results);
   }
 
   noResults() {
@@ -371,7 +361,7 @@ export default class App extends React.Component {
       </div>;
     } else if (this.state.searchResults.length > 0 || this.state.noResults === true) {
       return <div>
-        <SearchResults text="TV Diary" setSearchResults={this.setSearchResults} results={this.state.searchResults} watchlist={this.state.watchlist}
+        <SearchResults text="TV Diary" setSearchResults={this.setSearchResults} actorSearch={this.actorSearch} results={this.state.searchResults} watchlist={this.state.watchlist}
           addToWatchlist={this.addToWatchlist} menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist}
           isWatchlistOpen={this.state.watchlistOpen} goHome={this.goHome} saveToLog={this.saveToLog} openLog={this.openLog} setShow={this.setShow} user={this.state.user} noResults={this.noResults}
           networkError={this.networkError} networkErrorState={this.state.networkError} tryAgain={this.networkErrorTryAgain} toggleCalling={this.toggleCalling}
@@ -381,7 +371,7 @@ export default class App extends React.Component {
       </div>;
     } else if (this.state.logOpen === true) {
       return <div>
-        <Diary menu={this.openMenu} setSearchResults={this.setSearchResults} searchResults={this.state.searchResults} menuOpen={this.state.menuOpen === false} goHome={this.goHome} openWatchlist={this.openWatchlist}
+        <Diary menu={this.openMenu} setSearchResults={this.setSearchResults} actorSearch={this.actorSearch} searchResults={this.state.searchResults} menuOpen={this.state.menuOpen === false} goHome={this.goHome} openWatchlist={this.openWatchlist}
           isWatchlistOpen={this.state.watchlistOpen} watchlist={this.state.watchlist} deleteFromWatchlist={this.deleteFromWatchlist} saveToLog={this.saveToLog} openLog={this.openLog} log={this.state.log}
           user={this.state.user} noResults={this.noResults} networkErrorState={this.state.networkError} tryAgain={this.networkErrorTryAgain} toggleCalling={this.toggleCalling}
           calling={this.state.calling} networkError={this.networkError} closeMenu={this.closeMenu} />
@@ -390,7 +380,7 @@ export default class App extends React.Component {
       </div>;
     } else if (this.state.watchlistOpen === true) {
       return <div>
-        <Watchlist menu={this.openMenu} setSearchResults={this.setSearchResults} searchResults={this.state.searchResults} menuOpen={this.state.menuOpen === false} goHome={this.goHome} openWatchlist={this.openWatchlist}
+        <Watchlist menu={this.openMenu} setSearchResults={this.setSearchResults} actorSearch={this.actorSearch} searchResults={this.state.searchResults} menuOpen={this.state.menuOpen === false} goHome={this.goHome} openWatchlist={this.openWatchlist}
           isWatchlistOpen={this.state.watchlistOpen} watchlist={this.state.watchlist} deleteFromWatchlist={this.deleteFromWatchlist} saveToLog={this.saveToLog} openLog={this.openLog} showName={this.state.showName}
           user={this.state.user} calling={this.state.calling} noResults={this.noResults} networkErrorState={this.state.networkError} tryAgain={this.networkErrorTryAgain} toggleCalling={this.toggleCalling}
           networkError={this.networkError} closeMenu={this.closeMenu} />;
@@ -399,7 +389,7 @@ export default class App extends React.Component {
       </div>;
     } else if (this.state.show !== null) {
       return <div>
-        <ShowInfo text="TV Diary" setSearchResults={this.setSearchResults} searchResults={this.state.searchResults} watchlist={this.state.watchlist}
+        <ShowInfo text="TV Diary" setSearchResults={this.setSearchResults} actorSearch={this.actorSearch} searchResults={this.state.searchResults} watchlist={this.state.watchlist}
           addToWatchlist={this.addToWatchlist} menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist}
           isWatchlistOpen={this.state.watchlistOpen} goHome={this.goHome} saveToLog={this.saveToLog} openLog={this.openLog} show={this.state.show}
           episodes={this.setEpisodes} setShow={this.setShow} user={this.state.user} noResults={this.noResults} networkErrorState={this.state.networkError} tryAgain={this.networkErrorTryAgain} toggleCalling={this.toggleCalling}
@@ -409,7 +399,7 @@ export default class App extends React.Component {
       </div>;
     } else if (this.state.episodes.length > 0) {
       return <div>
-        <EpisodeList text="TV Diary" setSearchResults={this.setSearchResults} searchResults={this.state.searchResults} watchlist={this.state.watchlist}
+        <EpisodeList text="TV Diary" setSearchResults={this.setSearchResults} actorSearch={this.actorSearch} searchResults={this.state.searchResults} watchlist={this.state.watchlist}
           addToWatchlist={this.addToWatchlist} menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist}
           isWatchlistOpen={this.state.watchlistOpen} goHome={this.goHome} saveToLog={this.saveToLog} openLog={this.openLog} show={this.state.show}
           episodes={this.setEpisodes} episodesList={this.state.episodes} showEpisode={this.setShowEpisode} showName={this.state.showName} user={this.state.user}
@@ -420,7 +410,7 @@ export default class App extends React.Component {
       </div>;
     } else if (this.state.signUp === true) {
       return <div>
-        <SignUp menu={this.openMenu} menuOpen={this.state.menuOpen} signUp={this.signUp} goHome={this.goHome} calling={this.state.calling} noResults={this.noResults}
+        <SignUp menu={this.openMenu} menuOpen={this.state.menuOpen} actorSearch={this.actorSearch} signUp={this.signUp} goHome={this.goHome} calling={this.state.calling} noResults={this.noResults}
           networkErrorState={this.state.networkError} tryAgain={this.networkErrorTryAgain} toggleCalling={this.toggleCalling} networkError={this.networkError} closeMenu={this.closeMenu}
           setSearchResults={this.setSearchResults} />;
         <AppDrawer menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist} goHome={this.goHome} openLog={this.openLog} signUp={this.goToSignUp}
@@ -428,7 +418,7 @@ export default class App extends React.Component {
       </div>;
     } else if (this.state.signIn === true) {
       return <div>
-        <SignIn menu={this.openMenu} menuOpen={this.state.menuOpen} signUp={this.signUp} goHome={this.goHome} signIn={this.signIn} logonFailed={this.state.logonFailed}
+        <SignIn menu={this.openMenu} menuOpen={this.state.menuOpen} actorSearch={this.actorSearch} signUp={this.signUp} goHome={this.goHome} signIn={this.signIn} logonFailed={this.state.logonFailed}
           setSearchResults={this.setSearchResults} networkErrorState={this.state.networkError} tryAgain={this.networkErrorTryAgain} toggleCalling={this.toggleCalling}
           calling={this.state.calling} noResults={this.noResults} networkError={this.networkError} closeMenu={this.closeMenu} />;
         <AppDrawer menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist} goHome={this.goHome} openLog={this.openLog} signUp={this.goToSignUp}
@@ -436,7 +426,7 @@ export default class App extends React.Component {
       </div>;
     } else {
       return <div>
-        <EpisodeDetails text="TV Diary" setSearchResults={this.setSearchResults} searchResults={this.state.searchResults} watchlist={this.state.watchlist}
+        <EpisodeDetails text="TV Diary" setSearchResults={this.setSearchResults} actorSearch={this.actorSearch} searchResults={this.state.searchResults} watchlist={this.state.watchlist}
           addToWatchlist={this.addToWatchlist} menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist}
           isWatchlistOpen={this.state.watchlistOpen} goHome={this.goHome} saveToLog={this.saveToLog} openLog={this.openLog} show={this.state.show}
           episodes={this.setEpisodes} episodesList={this.state.episodes} showEpisode={this.state.showEpisode} user={this.state.user} noResults={this.noResults}

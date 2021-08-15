@@ -39,6 +39,7 @@ export default class App extends React.Component {
     this.networkErrorTryAgain = this.networkErrorTryAgain.bind(this);
     this.toggleCalling = this.toggleCalling.bind(this);
     this.closeMenu = this.closeMenu.bind(this);
+    this.actorSearch = this.actorSearch.bind(this);
     // this.changeSearchTypeToShow = this.changeSearchTypeToShow.bind(this);
     // this.changeSearchTypeToActor = this.changeSearchTypeToActor.bind(this);
   }
@@ -59,6 +60,7 @@ export default class App extends React.Component {
   // changeSearchTypeToShow() {
   //   this.setState({ searchType: 'show' });
   // }
+
 
   getWatchlist(userId) {
     const user = parseInt(userId, 10);
@@ -128,9 +130,14 @@ export default class App extends React.Component {
   }
 
   setSearchResults(results) {
+    this.setState({ searchType: 'show' });
     this.setState({ menuOpen: false });
     this.setState({ logOpen: false });
     this.setState({ searchResults: results });
+  }
+
+  actorSearch(results) {
+    this.setState({ searchType: 'actor' });
   }
 
   noResults() {
@@ -354,7 +361,7 @@ export default class App extends React.Component {
     if (this.state.watchlistOpen === false && this.state.logOpen === false && this.state.searchResults.length === 0 && this.state.show === null &&
       this.state.episodes.length === 0 && this.state.showEpisode === null && this.state.signUp === false && this.state.signIn === false && this.state.noResults === false) {
       return <div>
-        <Home text="TV Diary" setSearchResults={this.setSearchResults} searchResults={this.state.searchResults} watchlist={this.state.watchlist}
+        <Home text="TV Diary" setSearchResults={this.setSearchResults} actorSearch={this.actorSearch} searchResults={this.state.searchResults} watchlist={this.state.watchlist}
           addToWatchlist={this.addToWatchlist} menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist}
           isWatchlistOpen={this.state.watchlistOpen} goHome={this.goHome} saveToLog={this.saveToLog} openLog={this.openLog} user={this.state.user} noResults={this.noResults}
           networkError={this.networkError} networkErrorState={this.state.networkError} tryAgain={this.networkErrorTryAgain} toggleCalling={this.toggleCalling}

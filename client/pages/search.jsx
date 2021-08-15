@@ -62,9 +62,9 @@ class SearchForm extends React.Component {
           if (results.length === 0) {
             this.props.noResults();
           }
-          // this.props.onSubmit(results);
+          this.props.actorSearch(results);
           // have the searchForm run a different method
-          // pass the new method to all search forms 
+          // pass the new method to all search forms
         })
         .catch(err => {
           this.props.networkError();

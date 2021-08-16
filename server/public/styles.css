@@ -82,17 +82,18 @@ h4 {
   font-family: 'roboto', sans-serif;
   font-weight: 600;
   margin-left: 5px;
+  margin-top: 5px;
 }
 
 .search-bar {
   height: 38px;
-  width: 250px;
-  margin-left: 20px;
+  width: 325px;
   visibility: visible;
 }
 
 .search-form {
   margin-top: 7px;
+  text-align: center;
 }
 
 .search-form-header {

@@ -9,12 +9,13 @@ import EpisodeList from './pages/episode-list';
 import EpisodeDetails from './pages/episode-details';
 import SignUp from './pages/sign-up';
 import SignIn from './pages/sign-in';
+import SearchResultsActor from './pages/search-results-actor';
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchResults: [], watchlist: [], menuOpen: false, watchlistOpen: false, log: [], logOpen: false, show: null, episodes: [], showEpisode: null, signUp: false, signIn: false, showName: null, signedIn: false, user: null, logonFailed: null, calling: false, noResults: false, networkError: false, searchType: 'show'
+      searchResults: [], actorSearchResults: [], watchlist: [], menuOpen: false, watchlistOpen: false, log: [], logOpen: false, show: null, episodes: [], showEpisode: null, signUp: false, signIn: false, showName: null, signedIn: false, user: null, logonFailed: null, calling: false, noResults: false, noActorResults: false, networkError: false, searchType: 'show'
     };
     this.setSearchResults = this.setSearchResults.bind(this);
     this.showWatchlist = this.showWatchlist.bind(this);
@@ -35,6 +36,7 @@ export default class App extends React.Component {
     this.signIn = this.signIn.bind(this);
     this.signOut = this.signOut.bind(this);
     this.noResults = this.noResults.bind(this);
+    this.noActorResults = this.noActorResults.bind(this);
     this.networkError = this.networkError.bind(this);
     this.networkErrorTryAgain = this.networkErrorTryAgain.bind(this);
     this.toggleCalling = this.toggleCalling.bind(this);
@@ -128,10 +130,18 @@ export default class App extends React.Component {
   actorSearch(results) {
     this.setState({ searchType: 'actor' });
     console.log(results);
+    //render list of actors for results
+    //set ID as attribute for each actor
+    //when user clicks on result, use ID to render page for actor with embedded cast credits
+
   }
 
   noResults() {
     this.setState({ noResults: true });
+  }
+
+  noActorResults() {
+    this.setState({ noActorResults: true });
   }
 
   networkError() {
@@ -355,7 +365,7 @@ export default class App extends React.Component {
           addToWatchlist={this.addToWatchlist} menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist}
           isWatchlistOpen={this.state.watchlistOpen} goHome={this.goHome} saveToLog={this.saveToLog} openLog={this.openLog} user={this.state.user} noResults={this.noResults}
           networkError={this.networkError} networkErrorState={this.state.networkError} tryAgain={this.networkErrorTryAgain} toggleCalling={this.toggleCalling}
-          calling={this.state.calling} closeMenu={this.closeMenu} setShow={this.setShow} />;
+          calling={this.state.calling} closeMenu={this.closeMenu} setShow={this.setShow} noActorResults={this.noActorResults}/>;
         <AppDrawer menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist} goHome={this.goHome} openLog={this.openLog} signUp={this.goToSignUp}
           signIn={this.goToSignIn} user={this.state.user} signOut={this.signOut} />;
       </div>;
@@ -365,7 +375,17 @@ export default class App extends React.Component {
           addToWatchlist={this.addToWatchlist} menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist}
           isWatchlistOpen={this.state.watchlistOpen} goHome={this.goHome} saveToLog={this.saveToLog} openLog={this.openLog} setShow={this.setShow} user={this.state.user} noResults={this.noResults}
           networkError={this.networkError} networkErrorState={this.state.networkError} tryAgain={this.networkErrorTryAgain} toggleCalling={this.toggleCalling}
-          calling={this.state.calling} closeMenu={this.closeMenu} />
+          calling={this.state.calling} closeMenu={this.closeMenu} noActorResults={this.noActorResults} />
+        <AppDrawer menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist} goHome={this.goHome} openLog={this.openLog} signUp={this.goToSignUp}
+          signIn={this.goToSignIn} user={this.state.user} signOut={this.signOut} />;
+      </div>;
+    } else if (this.state.actorSearchResults.length > 0 || this.state.noActorResults === true) {
+      return <div>
+        <SearchResultsActor text="TV Diary" setSearchResults={this.setSearchResults} actorSearch={this.actorSearch} results={this.state.searchResults} watchlist={this.state.watchlist}
+          addToWatchlist={this.addToWatchlist} menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist}
+          isWatchlistOpen={this.state.watchlistOpen} goHome={this.goHome} saveToLog={this.saveToLog} openLog={this.openLog} setShow={this.setShow} user={this.state.user} noResults={this.noResults}
+          networkError={this.networkError} networkErrorState={this.state.networkError} tryAgain={this.networkErrorTryAgain} toggleCalling={this.toggleCalling}
+          calling={this.state.calling} closeMenu={this.closeMenu} noActorResults={this.noActorResults} />
         <AppDrawer menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist} goHome={this.goHome} openLog={this.openLog} signUp={this.goToSignUp}
           signIn={this.goToSignIn} user={this.state.user} signOut={this.signOut} />;
       </div>;
@@ -374,7 +394,7 @@ export default class App extends React.Component {
         <Diary menu={this.openMenu} setSearchResults={this.setSearchResults} actorSearch={this.actorSearch} searchResults={this.state.searchResults} menuOpen={this.state.menuOpen === false} goHome={this.goHome} openWatchlist={this.openWatchlist}
           isWatchlistOpen={this.state.watchlistOpen} watchlist={this.state.watchlist} deleteFromWatchlist={this.deleteFromWatchlist} saveToLog={this.saveToLog} openLog={this.openLog} log={this.state.log}
           user={this.state.user} noResults={this.noResults} networkErrorState={this.state.networkError} tryAgain={this.networkErrorTryAgain} toggleCalling={this.toggleCalling}
-          calling={this.state.calling} networkError={this.networkError} closeMenu={this.closeMenu} />
+          calling={this.state.calling} networkError={this.networkError} closeMenu={this.closeMenu} noActorResults={this.noActorResults} />
         <AppDrawer menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist} goHome={this.goHome} openLog={this.openLog} signUp={this.goToSignUp}
           signIn={this.goToSignIn} user={this.state.user} signOut={this.signOut} />;
       </div>;
@@ -383,7 +403,7 @@ export default class App extends React.Component {
         <Watchlist menu={this.openMenu} setSearchResults={this.setSearchResults} actorSearch={this.actorSearch} searchResults={this.state.searchResults} menuOpen={this.state.menuOpen === false} goHome={this.goHome} openWatchlist={this.openWatchlist}
           isWatchlistOpen={this.state.watchlistOpen} watchlist={this.state.watchlist} deleteFromWatchlist={this.deleteFromWatchlist} saveToLog={this.saveToLog} openLog={this.openLog} showName={this.state.showName}
           user={this.state.user} calling={this.state.calling} noResults={this.noResults} networkErrorState={this.state.networkError} tryAgain={this.networkErrorTryAgain} toggleCalling={this.toggleCalling}
-          networkError={this.networkError} closeMenu={this.closeMenu} />;
+          networkError={this.networkError} closeMenu={this.closeMenu} noActorResults={this.noActorResults} />;
         <AppDrawer menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist} goHome={this.goHome} openLog={this.openLog} signUp={this.goToSignUp}
           signIn={this.goToSignIn} user={this.state.user} signOut={this.signOut} />;
       </div>;
@@ -393,7 +413,7 @@ export default class App extends React.Component {
           addToWatchlist={this.addToWatchlist} menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist}
           isWatchlistOpen={this.state.watchlistOpen} goHome={this.goHome} saveToLog={this.saveToLog} openLog={this.openLog} show={this.state.show}
           episodes={this.setEpisodes} setShow={this.setShow} user={this.state.user} noResults={this.noResults} networkErrorState={this.state.networkError} tryAgain={this.networkErrorTryAgain} toggleCalling={this.toggleCalling}
-          calling={this.state.calling} networkError={this.networkError} closeMenu={this.closeMenu} />;
+          calling={this.state.calling} networkError={this.networkError} closeMenu={this.closeMenu} noActorResults={this.noActorResults} />;
         <AppDrawer menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist} goHome={this.goHome} openLog={this.openLog} signUp={this.goToSignUp}
           signIn={this.goToSignIn} user={this.state.user} signOut={this.signOut} />;
       </div>;
@@ -404,7 +424,7 @@ export default class App extends React.Component {
           isWatchlistOpen={this.state.watchlistOpen} goHome={this.goHome} saveToLog={this.saveToLog} openLog={this.openLog} show={this.state.show}
           episodes={this.setEpisodes} episodesList={this.state.episodes} showEpisode={this.setShowEpisode} showName={this.state.showName} user={this.state.user}
           noResults={this.noResults} networkErrorState={this.state.networkError} tryAgain={this.networkErrorTryAgain} toggleCalling={this.toggleCalling}
-          calling={this.state.calling} networkError={this.networkError} closeMenu={this.closeMenu} />;
+          calling={this.state.calling} networkError={this.networkError} closeMenu={this.closeMenu} noActorResults={this.noActorResults} />;
         <AppDrawer menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist} goHome={this.goHome} openLog={this.openLog} signUp={this.goToSignUp}
           signIn={this.goToSignIn} user={this.state.user} signOut={this.signOut} />;
       </div>;
@@ -412,7 +432,7 @@ export default class App extends React.Component {
       return <div>
         <SignUp menu={this.openMenu} menuOpen={this.state.menuOpen} actorSearch={this.actorSearch} signUp={this.signUp} goHome={this.goHome} calling={this.state.calling} noResults={this.noResults}
           networkErrorState={this.state.networkError} tryAgain={this.networkErrorTryAgain} toggleCalling={this.toggleCalling} networkError={this.networkError} closeMenu={this.closeMenu}
-          setSearchResults={this.setSearchResults} />;
+          setSearchResults={this.setSearchResults} noActorResults={this.noActorResults} />;
         <AppDrawer menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist} goHome={this.goHome} openLog={this.openLog} signUp={this.goToSignUp}
           signIn={this.goToSignIn} user={this.state.user} signOut={this.signOut} />;
       </div>;
@@ -420,7 +440,7 @@ export default class App extends React.Component {
       return <div>
         <SignIn menu={this.openMenu} menuOpen={this.state.menuOpen} actorSearch={this.actorSearch} signUp={this.signUp} goHome={this.goHome} signIn={this.signIn} logonFailed={this.state.logonFailed}
           setSearchResults={this.setSearchResults} networkErrorState={this.state.networkError} tryAgain={this.networkErrorTryAgain} toggleCalling={this.toggleCalling}
-          calling={this.state.calling} noResults={this.noResults} networkError={this.networkError} closeMenu={this.closeMenu} />;
+          calling={this.state.calling} noResults={this.noResults} networkError={this.networkError} closeMenu={this.closeMenu} noActorResults={this.noActorResults} />;
         <AppDrawer menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist} goHome={this.goHome} openLog={this.openLog} signUp={this.goToSignUp}
           signIn={this.goToSignIn} user={this.state.user} signOut={this.signOut} />;
       </div>;
@@ -431,7 +451,7 @@ export default class App extends React.Component {
           isWatchlistOpen={this.state.watchlistOpen} goHome={this.goHome} saveToLog={this.saveToLog} openLog={this.openLog} show={this.state.show}
           episodes={this.setEpisodes} episodesList={this.state.episodes} showEpisode={this.state.showEpisode} user={this.state.user} noResults={this.noResults}
           networkErrorState={this.state.networkError} tryAgain={this.networkErrorTryAgain} toggleCalling={this.toggleCalling}
-          calling={this.state.calling} networkError={this.networkError} closeMenu={this.closeMenu} />;
+          calling={this.state.calling} networkError={this.networkError} closeMenu={this.closeMenu} noActorResults={this.noActorResults} />;
         <AppDrawer menu={this.openMenu} menuOpen={this.state.menuOpen} openWatchlist={this.openWatchlist} goHome={this.goHome} openLog={this.openLog} signUp={this.goToSignUp}
           signIn={this.goToSignIn} user={this.state.user} signOut={this.signOut} />;
       </div>;

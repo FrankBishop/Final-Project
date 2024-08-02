@@ -1,12 +1,13 @@
 import React from 'react';
 import SearchForm from './search';
 import NetworkError from './network-error';
+// import Watchlist from './watchlist';
 
 class SearchResults extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = { show: null, searching: false };
+    this.state = { show: null, searching: false, watchlistOpen: false };
     this.showInfo = this.showInfo.bind(this);
   }
 

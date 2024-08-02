@@ -29,7 +29,7 @@ class SearchForm extends React.Component {
       this.props.toggleCalling();
     }
     event.preventDefault();
-    fetch('https://api.tvmaze.com/search/shows?q=' + this.state.value + '')
+    fetch('https://api.tvmaze.com/search/shows?q=' + this.state.value + '%')
       .then(response => response.json())
       .then(results => {
         this.props.toggleCalling();

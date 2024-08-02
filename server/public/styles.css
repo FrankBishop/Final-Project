@@ -486,6 +486,17 @@ h4 {
   padding-bottom: 5px;
 }
 
+.diary-rating > button {
+  background-color: #ffd700;
+  height: 30px;
+  font-family: 'roboto', sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  border: none;
+  border-radius: 5px;
+  margin-left: 5px;
+}
+
 .log-date {
   font-size: 14px;
   padding: 0;

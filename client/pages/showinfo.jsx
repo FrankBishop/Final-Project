@@ -6,7 +6,7 @@ class ShowInfo extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = { showName: this.props.show, episodes: null, searching: false };
+    this.state = { showName: this.props.show, episodes: null, searching: false, watchlistOpen: false };
     this.episodeListings = this.episodeListings.bind(this);
   }
 

@@ -6,7 +6,7 @@ class SignUp extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = { username: null, password: null, registered: false };
+    this.state = { username: null, password: null, registered: false, validLength: true };
     this.startSignUp = this.startSignUp.bind(this);
     this.setUsername = this.setUsername.bind(this);
     this.setPassword = this.setPassword.bind(this);
@@ -39,6 +39,42 @@ class SignUp extends React.Component {
         </footer>
       </div>;
     }
+    if (this.state.validLength === false) {
+      return <div>
+      <header>
+        <i onClick={this.props.menu} className="fas fa-tv fa-2x tv-icon"></i>
+        <a className="header-text site-header" onClick={this.props.goHome}> TV Diary </a>
+        <div className="search-form-header">
+          <SearchForm onSubmit={this.props.setSearchResults} noResults={this.props.noResults} networkError={this.props.networkError} calling={this.props.calling} toggleCalling={this.props.toggleCalling} />
+        </div>
+      </header>
+      <main onClick={this.props.closeMenu}>
+        <div className="search-form">
+          <SearchForm onSubmit={this.props.setSearchResults} noResults={this.props.noResults} networkError={this.props.networkError} calling={this.props.calling} toggleCalling={this.props.toggleCalling} />
+        </div>
+        {this.props.networkErrorState === true &&
+          <NetworkError tryAgain={this.props.tryAgain} toggleCalling={this.props.toggleCalling} />
+        }
+        <div className="registration">
+          <h1 className="registration-header">Register</h1>
+          <h1 className="registration-header">UserName and Password Need to be 8 characters Long</h1>
+          <form>
+            <h2 className="registration-fields">Username</h2>
+            <input type="text" id="username" name="username" minLength="8" onChange={this.setUsername}></input>
+            <h2 className="registration-fields">Password</h2>
+            <input type="password" id="password" name="password" minLength="8" required onChange={this.setPassword}></input>
+            <div className="registration-button-holder">
+              <button onClick={this.props.goHome} disabled={this.props.calling === true} type="button">Cancel</button>
+              <button onClick={this.startSignUp} disabled={this.props.calling === true} type="submit">Sign Up</button>
+            </div>
+          </form>
+        </div>;
+        </main>
+      <footer onClick={this.props.closeMenu}>
+
+      </footer>
+    </div>;
+    }
     return <div>
       <header>
         <i onClick={this.props.menu} className="fas fa-tv fa-2x tv-icon"></i>
@@ -58,7 +94,7 @@ class SignUp extends React.Component {
           <h1 className="registration-header">Register</h1>
           <form>
             <h2 className="registration-fields">Username</h2>
-            <input type="text" id="username" name="username" onChange={this.setUsername}></input>
+            <input type="text" id="username" name="username" minLength="8" onChange={this.setUsername}></input>
             <h2 className="registration-fields">Password</h2>
             <input type="password" id="password" name="password" minLength="8" required onChange={this.setPassword}></input>
             <div className="registration-button-holder">
@@ -83,11 +119,20 @@ class SignUp extends React.Component {
   }
 
   startSignUp() {
+    if (this.state.validLength === false) {
+      this.setState({ validLength: true });
+    }
     event.preventDefault();
     const user = {
       username: this.state.username,
       password: this.state.password
     };
+    const userName = this.state.username.toString();
+    const passWord = this.state.password.toString();
+    if (userName.length < 8 || passWord.length < 8) {
+      this.setState({ validLength: false });
+      return;
+    }
     this.props.signUp(user);
     this.setState({ registered: true });
   }

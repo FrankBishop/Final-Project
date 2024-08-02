@@ -1,5 +1,6 @@
-require('dotenv/config');
+require('dotenv').config();
 const express = require('express');
+const port = process.env.PORT;
 const staticMiddleware = require('./static-middleware');
 const app = express();
 const argon2 = require('argon2');
@@ -8,21 +9,23 @@ const ClientError = require('./client-error');
 const authorizationMiddleware = require('./authorization-middleware');
 const jwt = require('jsonwebtoken');
 const db = new pg.Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: {
-    rejectUnauthorized: false
-  }
+  host: 'localhost',
+  user: 'postgres',
+  port: 5432,
+  password: 'test',
+  database: 'postgres'
 });
 
 app.use(staticMiddleware);
 app.use(express.json());
 
-app.listen(process.env.PORT, () => {
+app.listen(port, () => {
   // eslint-disable-next-line no-console
-  console.log(`express server listening on port ${process.env.PORT}`);
+  console.log(`express server listening on port ${port}`);
 });
 
 app.post('/api/users/sign-up', (req, res, next) => {
+
   const { username, password } = req.body;
   if (!username || !password) {
     throw new ClientError(400, 'username and password are required fields');
@@ -173,6 +176,39 @@ app.delete('/api/watchlist/:deleteId', (req, res) => {
   const sql = `
     delete from "watchlist"
     where "entryId" =  $1
+    returning *;
+  `;
+  const params = [deleteId];
+  db.query(sql, params)
+    .then(result => {
+      const deleteId = result.rows[0];
+      if (!deleteId) {
+        res.status(404).json({
+          error: `Cannot find item with "deleteId" ${deleteId}`
+        });
+      } else {
+        res.status(204).json(deleteId);
+      }
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({
+        error: 'An unexpected error occurred.'
+      });
+    });
+});
+
+app.delete('/api/log/:deleteId', (req, res) => {
+  const deleteId = parseInt(req.params.deleteId, 10);
+  if (!Number.isInteger(deleteId) || deleteId <= 0) {
+    res.status(400).json({
+      error: '"deleteId" must be a positive integer'
+    });
+    return;
+  }
+  const sql = `
+    delete from "log"
+    where "logId" =  $1
     returning *;
   `;
   const params = [deleteId];
